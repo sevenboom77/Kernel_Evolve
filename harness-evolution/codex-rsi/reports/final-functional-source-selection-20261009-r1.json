@@ -1,0 +1,75 @@
+{
+  "status": "FUNCTIONAL_RESEARCH_STOPPED_QUALIFIED_ENGINEERING_G031_SELECTED_FINAL_PACKAGE_PENDING",
+  "observed_at": "2026-10-09T11:57:20.047579+00:00",
+  "competitive_target": "Agnes hackathon postgraduate first-prize competitiveness",
+  "ranking_promised": false,
+  "selected_engineering_source_commit": "12e3b131e405295805caa3daa90f4c2b827cbed4",
+  "selected_engineering_generation": "G031",
+  "source_archive": {
+    "path": "/data/lizhijun/agh-evo/codex-rsi-hackathon-v11-20261005/builds/g031-r1/source.tar",
+    "sha256": "6caf9226bddb57c15a12c5a0b61ff3b253938aaee0399794d36a9a53411b9292"
+  },
+  "original_runtime_manifest": {
+    "path": "/data/lizhijun/agh-evo/codex-rsi-hackathon-v11-20261005/versions/g031-r1/runtime-manifest.json",
+    "sha256": "2ee19ddf2e0be895cce9855bfaf707131a4284cfb6092bf8e49ffce08b1d2552"
+  },
+  "original_SDK_1587_qualification": {
+    "path": "/data/lizhijun/agh-evo/codex-rsi-hackathon-v11-20261005/cpu-qualification/g031-complete-SDK-r1/cpu-verification.json",
+    "sha256": "e6d7b630a452a4334e050646d58ec5ee9365ec4026a9018a36a808e7ee30cc2e"
+  },
+  "independent_runtime_startup": {
+    "path": "/data/lizhijun/agh-evo/codex-rsi-hackathon-v11-20261005/delivery-qualification/clean-G031-daemon-CLI-HTTP-smoke-r1/verification.json",
+    "sha256": "2d506f299eff04ed9f9979833229d37e5bcf6fd2a7c94c3af1b5dc2e3d8665dc"
+  },
+  "candidate_ZIP_actual_acceptance": {
+    "path": "/data/lizhijun/agh-evo/codex-rsi-hackathon-v11-20261005/delivery-qualification/final-technical-candidate-ZIP-r2/verification.json",
+    "sha256": "f9558ca43b4edd9deda2f19d6a4cbaf981f823fa9e706cc7a8c8fe8279ef19f5"
+  },
+  "scientific_incumbent_H0_commit": "54b05f2a959b5f6328ac2bf572fbd981bf567094",
+  "measurement_parent_G014_commit": "e1dffe9a8eca77cb1fdd81c1a8b5842c8c36370e",
+  "accepted_performance_generations": 0,
+  "RSI_proven": false,
+  "G031_search_gain_proven": false,
+  "latest_complete_pair": {
+    "path": "/data/lizhijun/work/kernel-lab/harness-evolution/codex-rsi/reports/g030-v50-original-two-arm-public-all40-r1.json",
+    "sha256": "f90c7d031c5cffd19be5f6b5ca323f9d56dfe3879f1306b27f1ed88d9f82c953"
+  },
+  "interrupted_first_screening": {
+    "path": "/data/lizhijun/work/kernel-lab/harness-evolution/codex-rsi/reports/v51-finite-first-screening-interrupted-registered-pool-r1.json",
+    "sha256": "80c91851653d5ac93e4655463106d12c6cdd69b02fbbadb2d48c684e3de744d3"
+  },
+  "original_whole47754_history": {
+    "path": "/data/lizhijun/work/kernel-lab/harness-evolution/codex-rsi/reports/v51-finite-first-screening-whole47754-exact-closed-history-r1.json",
+    "sha256": "836785b474e6ddc7fd513f547e3cc1fcd41fc9cbf8bcd77aa80afc83578c0f81"
+  },
+  "finite_stop_and_unstarted_prototype": {
+    "path": "/data/lizhijun/work/kernel-lab/harness-evolution/codex-rsi/reports/final-unstarted-V52-CPU-registration-and-original-finite-rescreen-refusal-r1.json",
+    "sha256": "1cb49b6bccc3b854c032e17d8a99a36deba7e2f743a70a0b4e579266d8ff20ef"
+  },
+  "finite_journal": {
+    "path": "/data/lizhijun/agh-evo/codex-rsi-hackathon-v11-20261005/finite-submission-execution-20261009-r1/reservations.jsonl",
+    "sha256": "a691e1300d78df4c62fbfa781d7019250cbd933c8c79f35c264de65cad018bdc"
+  },
+  "consumed_primary_positions": 40,
+  "unused_primary_positions_retired": 160,
+  "refunds": 0,
+  "new_generation_not_supported_by_closed_qualified_evidence": true,
+  "no_G032_created": true,
+  "remaining_validation_pairs_not_run_without_supportive_screening": true,
+  "source_performance_not_used_as_selection_claim": true,
+  "engineering_selection_reason": "Exact source/archive and original full SDK passed; independent archive build and actual isolated CLI/daemon/HTTP normal close passed. This is an engineering delivery selection, not a score promotion.",
+  "new_features_allowed": false,
+  "post_freeze_changes": "Only changes required for correct execution, reproduction, credential protection or presentation; requalify changed inputs.",
+  "technical_delivery_goal_still_pending_final_version_alignment": true,
+  "human_rehearsal_not_performed": true,
+  "external_dependencies": [
+    "Registration and real team identity deferred by user",
+    "Official clauses disagree about model eligibility; MiMo eligibility unresolved",
+    "Public links/publication and actual submission require user action",
+    "Human presentation rehearsal and member attribution need real team input"
+  ],
+  "executor": {
+    "path": "/data/lizhijun/agh-evo/codex-rsi-hackathon-v11-20261005/publish_finite_selection_and_cpu_refusal_r1.py",
+    "sha256": "2eb5409856d162deb7a25c2468d4f776563b500acf0cd2a119053b1ce53a5735"
+  }
+}

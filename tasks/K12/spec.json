@@ -1,0 +1,120 @@
+{
+  "task_id": "K12",
+  "name": "small_m_gemm",
+  "group": "advanced",
+  "description": "out = cast_fp16(A @ Bmat) for very small M with fp32 accumulation.",
+  "inputs": [
+    {
+      "name": "A",
+      "dtype": "float16",
+      "shape": [
+        "M",
+        "K"
+      ],
+      "layout": "contiguous"
+    },
+    {
+      "name": "Bmat",
+      "dtype": "float16",
+      "shape": [
+        "K",
+        "N"
+      ],
+      "layout": "contiguous"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "y",
+      "dtype": "float16",
+      "shape": [
+        "M",
+        "N"
+      ]
+    }
+  ],
+  "accumulation_dtype": "float32",
+  "domain": {
+    "M": [
+      1,
+      8
+    ],
+    "N": [
+      128,
+      11008
+    ],
+    "K": [
+      128,
+      11008
+    ]
+  },
+  "dev_shapes": [
+    {
+      "M": 1,
+      "N": 4096,
+      "K": 4096
+    },
+    {
+      "M": 4,
+      "N": 4096,
+      "K": 4096
+    },
+    {
+      "M": 8,
+      "N": 11008,
+      "K": 4096
+    }
+  ],
+  "reserved_shapes": [
+    {
+      "M": 2,
+      "N": 11008,
+      "K": 4096
+    },
+    {
+      "M": 8,
+      "N": 8192,
+      "K": 4096
+    }
+  ],
+  "static_params": {},
+  "finite_input_abs_max": 8.0,
+  "max_candidate_attempts": 12,
+  "m_values": [
+    1,
+    2,
+    4,
+    8
+  ],
+  "checks": [
+    "inputs_unmodified",
+    "outputs_not_aliased"
+  ],
+  "rtol": 0.02,
+  "atol": 0.02,
+  "backend": "triton",
+  "stagnation_attempts": 5,
+  "output_arity": 1,
+  "mutates_inputs": false,
+  "layout": "contiguous",
+  "finite_only": true,
+  "schema_version": 1,
+  "shape_params": {},
+  "dev_correctness_cases": 12,
+  "final_correctness_cases": 21,
+  "dev_timing_cases": 3,
+  "reserved_timing_cases": 2,
+  "coverage": {
+    "dev_families": [
+      "large",
+      "plain",
+      "tiny"
+    ],
+    "final_families": [
+      "large",
+      "mixed_sign",
+      "plain",
+      "tiny"
+    ]
+  }
+}

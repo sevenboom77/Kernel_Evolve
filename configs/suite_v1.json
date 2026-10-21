@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "suite_id": "suite_v1",
+  "frozen_on": "2026-10-02",
+  "tasks": [
+    "K01",
+    "K02",
+    "K03",
+    "K04",
+    "K05",
+    "K06",
+    "K07",
+    "K08",
+    "K09",
+    "K10",
+    "K11",
+    "K12",
+    "K13",
+    "K14",
+    "K15",
+    "K16",
+    "K17",
+    "K18",
+    "K19",
+    "K20"
+  ],
+  "groups": {
+    "core": [
+      "K01",
+      "K02",
+      "K03",
+      "K04",
+      "K05",
+      "K06",
+      "K07",
+      "K08",
+      "K09",
+      "K10"
+    ],
+    "advanced": [
+      "K11",
+      "K12",
+      "K13",
+      "K14",
+      "K15",
+      "K16",
+      "K17",
+      "K18",
+      "K19",
+      "K20"
+    ]
+  },
+  "priority_order": [
+    "K03",
+    "K06",
+    "K01",
+    "K07",
+    "K09",
+    "K02",
+    "K04",
+    "K05",
+    "K10",
+    "K08",
+    "K13",
+    "K14",
+    "K17",
+    "K11",
+    "K12",
+    "K15",
+    "K16",
+    "K18",
+    "K20",
+    "K19"
+  ],
+  "pilot_tasks": [
+    "K03",
+    "K06"
+  ],
+  "budgets": {
+    "pilot_candidates_per_task": 8,
+    "core_max_candidates_per_task": 20,
+    "advanced_max_candidates_per_task": 12,
+    "total_source_candidates_cap": 320,
+    "max_launch_variants_per_candidate": 4,
+    "stagnation_attempts": 5,
+    "optimisation_wall_clock_hours": 24,
+    "initial_workers": 4,
+    "max_workers": 8,
+    "promotion_min_relative_gain": 0.02,
+    "promotion_max_slowdown_vs_baseline": 0.05,
+    "dev_timing_shapes": 3,
+    "reserved_timing_shapes": 2
+  },
+  "gpu_rules": {
+    "candidate_job_timeout_s": 300,
+    "compile_timeout_s": 180,
+    "correctness_timeout_s": 60,
+    "warmup_iters": 20,
+    "batch_target_ms": [
+      20,
+      100
+    ],
+    "batches_per_shape": 30,
+    "min_working_set_bytes": 0,
+    "launch_floor_margin": 2,
+    "max_working_set_frac": 0.25,
+    "max_working_set_gib": 10,
+    "final_verification_rounds": 5,
+    "final_correctness_cases": 20,
+    "dev_correctness_cases": 12
+  },
+  "precision": {
+    "fp32_matmuls": "tf32 disabled for both baseline and candidate",
+    "fp16_dot": "fp32 accumulation",
+    "tracks": [
+      "fp16_fp32_acc_default"
+    ]
+  },
+  "baselines": [
+    "torch_eager",
+    "torch_compile",
+    "specialized"
+  ],
+  "baseline_selection": "fastest tolerance-satisfying baseline per shape"
+}

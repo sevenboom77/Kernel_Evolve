@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "status": "ACTUAL_CPU_WHOLE_FORWARD_ENTRYPOINT_AND_CONTRACTS_PASS_GPU_PENDING",
+  "sources": [
+    {
+      "path": "/data/lizhijun/work/kernel-lab/harness-evolution/competition/application/benchmark_pretrained_aligned_head.py",
+      "sha256": "d2a521ec708e1cec85c660e644400ed6660d388503f672a01c7b27d95b28a63f"
+    },
+    {
+      "path": "/data/lizhijun/work/kernel-lab/harness-evolution/competition/application/aligned_output_head.py",
+      "sha256": "aef9f77646091f902abec3247e66fa515bd83c7654c9474751f26002d65cd34e"
+    },
+    {
+      "path": "/data/lizhijun/work/kernel-lab/harness-evolution/competition/application/benchmark_pretrained_gpt2.py",
+      "sha256": "f2152dcaf06bb643df35b50292b3fcd0399457a9771e7420c071860bd90ca1a9"
+    },
+    {
+      "path": "/data/lizhijun/work/kernel-lab/harness-evolution/competition/application/benchmark_decoder_v3.py",
+      "sha256": "d5d38b76c3ab25d4257f1042e19397bda373dbab90d76830e237f9eaf488c685"
+    },
+    {
+      "path": "/data/lizhijun/work/kernel-lab/harness-evolution/competition/application/pretrained_gpt2.py",
+      "sha256": "eeab9a6743cf98390ebe9c23955f38cee8b4ac2da2d5309e32576d4a0089f0cc"
+    }
+  ],
+  "original_guard": {
+    "path": "/data/lizhijun/agh-evo/codex-rsi-hackathon-v11-20261005/cpu-qualification/portable-v6-no-CUDA-network-external-write-guard.py",
+    "sha256": "17d25f3e440b4dccb2d1fbee9cd87e2bc63c67cfb9f11d78c0df8af6914e403c"
+  },
+  "RED": {
+    "proof": {
+      "path": "/data/lizhijun/agh-evo/codex-rsi-hackathon-v11-20261005/cpu-qualification/phase29-application-aligned-benchmark-RED-r1.json",
+      "sha256": "c3ec635c48da3abe775475ec559e7e98c0848547842462269a849567f64a5f2b"
+    },
+    "tests": 8,
+    "failures": 4,
+    "errors": 0,
+    "skips": 0,
+    "control": "original frozen library protocol and original unpadded linear head"
+  },
+  "GREEN": {
+    "proof": {
+      "path": "/data/lizhijun/agh-evo/codex-rsi-hackathon-v11-20261005/cpu-qualification/phase29-application-aligned-benchmark-GREEN-r1.json",
+      "sha256": "7817320467d056a9d7d8e33db2e1914fba97d33476fe9164a40e05ca09eb96bc"
+    },
+    "tests": 8,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "exit_code": 0
+  },
+  "actual_default_CLI": {
+    "path": "/data/lizhijun/agh-evo/codex-rsi-hackathon-v11-20261005/cpu-qualification/phase29-aligned-head-actual-default-CPU-plan-r1.json",
+    "sha256": "d34569d32980d8d38992f22ce05001f27efc574c197788c8281a7444a91120a4"
+  },
+  "default_plan": {
+    "path": "/tmp/phase29-aligned-head-actual-CPU-plan-70024nb7/plan.json",
+    "sha256": "400d2d250021e9f627e7e83a4eb3424f5fc3caef697c864b63a8ee70a79c5c63"
+  },
+  "total_actual_CPU_unit_checks": 26,
+  "all_original_four_cases_retained": true,
+  "compiled_strong_baseline_missing_implies_no_victory": true,
+  "full_parameter_bytes_and_tied_alias_checked_in_CPU_fixture": true,
+  "original_model_revision": "607a30d783dfa663caf39e06633721c8d4cfcd7e",
+  "full_model_GPU_numerical_qualified": false,
+  "GPU_compilation_qualified": false,
+  "model_GPU_calls": 0,
+  "speedup": null,
+  "RSI_proven": false,
+  "next": "After both V29 arms and exact current history close, register fresh application queues and execute full30-pair/900-second/strong-baseline GPU qualification on independent devices."
+}

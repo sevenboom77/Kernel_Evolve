@@ -1,0 +1,118 @@
+{
+  "idle_admission": {
+    "relative_path": "harness-evolution/codex-rsi/idle_gpu_job_admission_v51.py",
+    "sha256": "32a47482b8a25810b394ce88dfc12d72feb34fd4035248ec3854f0532a84215b"
+  },
+  "idle_policy": {
+    "relative_path": "harness-evolution/codex-rsi/evaluator_idle_gpu_v51_r3.py",
+    "sha256": "b37879faa1556f874c14e94d8e5aba49267176d410891c2394c8103042abdd2e"
+  },
+  "kernel_lab/__init__.py": {
+    "relative_path": "kernel_lab/__init__.py",
+    "sha256": "f6a35bcf8fb1d52e80458e633a6b47ef73727904ea8fe3875cba9cfb6fdf7514"
+  },
+  "kernel_lab/__main__.py": {
+    "relative_path": "kernel_lab/__main__.py",
+    "sha256": "e0930aeba5a3e2e2d94ca6c5fac4f72c0c4eb2be9bba283becf98e909091471c"
+  },
+  "kernel_lab/caseutil.py": {
+    "relative_path": "kernel_lab/caseutil.py",
+    "sha256": "fde002fb3d07dd437a056986b170f3315a6d26bf577a076b344bf6f73552ae3f"
+  },
+  "kernel_lab/children.py": {
+    "relative_path": "kernel_lab/children.py",
+    "sha256": "a3d5f2717e21bdc1dbbd4a2bbede9f08fce4d2259c055d79e7efb061afee8a65"
+  },
+  "kernel_lab/cli.py": {
+    "relative_path": "kernel_lab/cli.py",
+    "sha256": "6e2006654560d50a1c33768d5d7b89ed45e49b6e04972235835a4be8aae72536"
+  },
+  "kernel_lab/correctness.py": {
+    "relative_path": "kernel_lab/correctness.py",
+    "sha256": "9b603b7d86f78556ed565a2fd6e0848ec299dc4f97bc200f8c7d52d73c1f42aa"
+  },
+  "kernel_lab/dsh_adapter.py": {
+    "relative_path": "kernel_lab/dsh_adapter.py",
+    "sha256": "b8e66f26b6f716c8f4ded07ba99cfbe6b3501401489923f2c0433290a134432c"
+  },
+  "kernel_lab/envprobe.py": {
+    "relative_path": "kernel_lab/envprobe.py",
+    "sha256": "984ee109a916588ba8246de05338b389311f639b93b6a59eb652bcf35c358321"
+  },
+  "kernel_lab/evaluator.py": {
+    "relative_path": "kernel_lab/evaluator.py",
+    "sha256": "b88f348ecb03d4401c9d47243e2bb3a2b304b3a43a5c4d721e3b2f716bb7edc0"
+  },
+  "kernel_lab/events.py": {
+    "relative_path": "kernel_lab/events.py",
+    "sha256": "900e0003dfbe14f1e0689b24d0b725abe5f586b3e49300ab3f3b7aa663112822"
+  },
+  "kernel_lab/gpuinfo.py": {
+    "relative_path": "kernel_lab/gpuinfo.py",
+    "sha256": "3ec26c7ec8ad74b9f6cf3ca733d91e34f9282f7080e1c0dce514b57612f9d914"
+  },
+  "kernel_lab/paths.py": {
+    "relative_path": "kernel_lab/paths.py",
+    "sha256": "5a67e2075fb48a17278f6c8e82af2bc84ba757ee6c74879a07e809efd1c6dc6f"
+  },
+  "kernel_lab/queue.py": {
+    "relative_path": "kernel_lab/queue.py",
+    "sha256": "425dbfc789f945819062b490ca1f1379cf0e56ea1cb8220adfb9cfab63b1a59d"
+  },
+  "kernel_lab/reporting.py": {
+    "relative_path": "kernel_lab/reporting.py",
+    "sha256": "173cffd50100743bcd880463fae5028de34412d20a4ffc0331fc5de6048cfaaa"
+  },
+  "kernel_lab/selection.py": {
+    "relative_path": "kernel_lab/selection.py",
+    "sha256": "e05f6882d20998929b5e3459e02496c140a18ccc9ba7ab9bb20a372ffe31d7a4"
+  },
+  "kernel_lab/static_checks.py": {
+    "relative_path": "kernel_lab/static_checks.py",
+    "sha256": "9f6633f1b54fffc2560a1632d57233404d3a80e13624107ac382100f54178053"
+  },
+  "kernel_lab/suitecheck.py": {
+    "relative_path": "kernel_lab/suitecheck.py",
+    "sha256": "bb6063170e26c310fd4c1eb99ced6ae6c63165e8e0a564af98714555002a14db"
+  },
+  "kernel_lab/tasks.py": {
+    "relative_path": "kernel_lab/tasks.py",
+    "sha256": "43098a244d3a1c76e79819297359b06ff95293c51c89d8a018c148dd156d0ebb"
+  },
+  "kernel_lab/timing.py": {
+    "relative_path": "kernel_lab/timing.py",
+    "sha256": "6ca247d34833a8692f39f2c129a0f042c6403a592926eaf355d499a72847ac51"
+  },
+  "kernel_lab/util.py": {
+    "relative_path": "kernel_lab/util.py",
+    "sha256": "7802e27432165d70a32c74681b48cbaab7c00179c791306a5b19493a14742b5b"
+  },
+  "operator_source": {
+    "relative_path": "harness-evolution/codex-rsi/operators/g000-v15-dev2/K12/kernel.py",
+    "sha256": "22af8289078d96579622e2fcf47ef11e1a50cf3b0f6fa0db6b9da354e52ed276"
+  },
+  "protocol": {
+    "relative_path": "harness-evolution/competition/application/native-small-m-reproduction-protocol-v1.json",
+    "sha256": "a81d340c721bdad4cbbe65fc223e2b02293b3ce912c4ecc2ccd61a5b5c8b2d0c"
+  },
+  "tasks/K12/baselines.py": {
+    "relative_path": "tasks/K12/baselines.py",
+    "sha256": "0c5d7f7fa54058bcc9862511d774cb5fa8659f8d0b49b42c41bd64e22f20945e"
+  },
+  "tasks/K12/cases.py": {
+    "relative_path": "tasks/K12/cases.py",
+    "sha256": "b5c8046d7a5692ab8655d17ec39ba1369325d897cc2e28c75a7e64599bb2228b"
+  },
+  "tasks/K12/reference.py": {
+    "relative_path": "tasks/K12/reference.py",
+    "sha256": "a1cbf4dbbdb13f3ca93043547ec12395341ea007d1119c2de1ecdae74f1dd7e5"
+  },
+  "tasks/K12/spec.json": {
+    "relative_path": "tasks/K12/spec.json",
+    "sha256": "2285ccae23a78ca0beff12c106c0c5353801012bb7187f2456a7dbcfd53cec03"
+  },
+  "tasks/K12/task.md": {
+    "relative_path": "tasks/K12/task.md",
+    "sha256": "4f8f82d489bbc6b833ee6568309c88b2c78099b6996349f7078b4dd16006693d"
+  }
+}

@@ -1,0 +1,2194 @@
+{
+  "schema_version": 1,
+  "kind": "original-paired-full-GPT2-fused-Welford-performance",
+  "status": "MEASURED_CLEAN",
+  "numerical_all_four_cases_correct": true,
+  "original_parameter_count": 124439808,
+  "original_tolerances_and_four_cases_preserved": true,
+  "original_paired_rounds": 30,
+  "GPU_samples": 240,
+  "host_samples": 240,
+  "measurements": {
+    "B1_S128": {
+      "GPU": 3,
+      "backend_qualification": {
+        "candidate": {
+          "compiled": false,
+          "correctness": {
+            "all_token_argmax_agreement": 1.0,
+            "last_token_argmax_agreement": 1.0,
+            "max_absolute_error": 0.0,
+            "mean_squared_error": 0.0,
+            "shape": [
+              1,
+              128,
+              50257
+            ],
+            "tolerance": {
+              "atol": 0.05,
+              "rtol": 0.005
+            }
+          },
+          "fullgraph": false,
+          "mode": null,
+          "qualification_seconds": 0.009143948089331388,
+          "status": "AVAILABLE"
+        },
+        "compiled_candidate": {
+          "compiled": true,
+          "diagnostic": "Original diagnostic retained privately; type and numerical evidence preserved.",
+          "error_type": "Unsupported",
+          "fullgraph": true,
+          "mode": "default",
+          "qualification_seconds": 0.15084086684510112,
+          "status": "UNAVAILABLE"
+        },
+        "compiled_fp16": {
+          "compiled": true,
+          "correctness": {
+            "all_token_argmax_agreement": 1.0,
+            "last_token_argmax_agreement": 1.0,
+            "max_absolute_error": 6.0,
+            "mean_squared_error": 0.29158785939216614,
+            "shape": [
+              1,
+              128,
+              50257
+            ],
+            "tolerance": {
+              "atol": 0.05,
+              "rtol": 0.005
+            }
+          },
+          "diagnostic": "Original diagnostic retained privately; type and numerical evidence preserved.",
+          "error_type": "LogitMismatch",
+          "fullgraph": true,
+          "mode": "default",
+          "qualification_seconds": 4.2601078120060265,
+          "status": "INCORRECT"
+        },
+        "fp16_library": {
+          "compiled": false,
+          "correctness": {
+            "all_token_argmax_agreement": 1.0,
+            "last_token_argmax_agreement": 1.0,
+            "max_absolute_error": 0.0,
+            "mean_squared_error": 0.0,
+            "shape": [
+              1,
+              128,
+              50257
+            ],
+            "tolerance": {
+              "atol": 0.05,
+              "rtol": 0.005
+            }
+          },
+          "fullgraph": false,
+          "mode": null,
+          "qualification_seconds": 0.009679271839559078,
+          "status": "AVAILABLE"
+        }
+      },
+      "samples": {
+        "candidate": {
+          "batch_label_order": [
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ]
+          ],
+          "batches": 30,
+          "calibration_batch_ms": 24.35686492919922,
+          "gpu_state_split": {
+            "half_medians": [
+              7184.607982635498,
+              7316.736221313477
+            ],
+            "state_shift_flag": false,
+            "state_shift_ratio": 1.018390459019799
+          },
+          "gpu_us_median": 7296.996116638184,
+          "gpu_us_samples": [
+            7184.607982635498,
+            7086.592197418213,
+            7071.487903594971,
+            7026.088237762451,
+            6975.448131561279,
+            7016.960144042969,
+            7325.175762176514,
+            6991.1041259765625,
+            8308.048248291016,
+            7341.5679931640625,
+            7129.600048065186,
+            8512.248039245605,
+            13154.815673828125,
+            8303.61557006836,
+            7302.656173706055,
+            7990.272045135498,
+            7291.3360595703125,
+            6357.696056365967,
+            7590.400218963623,
+            7942.975997924805,
+            6952.49605178833,
+            7316.736221313477,
+            9092.608451843262,
+            7287.007808685303,
+            7898.623943328857,
+            8372.023582458496,
+            7035.1362228393555,
+            7389.18399810791,
+            7040.256023406982,
+            6987.264156341553
+          ],
+          "host_time_note": "host wall time of the submission loop (includes backpressure while the queue is full); the final device wait after the last call is excluded and is not part of the host number",
+          "host_us_median": 7264.658226631582,
+          "host_us_samples": [
+            7152.385776862502,
+            7053.744746372104,
+            7039.16372731328,
+            6992.828217335045,
+            6943.103275261819,
+            6984.475068747997,
+            7292.706985026598,
+            6959.024001844227,
+            8275.920408777893,
+            7309.501175768673,
+            7096.87708877027,
+            8480.20939156413,
+            13123.306795023382,
+            8271.373226307333,
+            7270.576199516654,
+            7958.2101898267865,
+            7258.74025374651,
+            6325.562717393041,
+            7552.391965873539,
+            7911.561988294125,
+            6920.289481058717,
+            7284.106221050024,
+            9060.50147023052,
+            7254.70925681293,
+            7866.650470532477,
+            8340.15745203942,
+            7002.652273513377,
+            7356.778252869844,
+            7009.944994933903,
+            6954.336306080222
+          ],
+          "iters_per_batch": 4,
+          "timing_backend": "cuda_events",
+          "warmup": 20
+        },
+        "fp16_library": {
+          "batch_label_order": [
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ]
+          ],
+          "batches": 30,
+          "calibration_batch_ms": 22.67545509338379,
+          "gpu_state_split": {
+            "half_medians": [
+              6742.015838623047,
+              6696.159839630127
+            ],
+            "state_shift_flag": false,
+            "state_shift_ratio": 1.0068481040015695
+          },
+          "gpu_us_median": 6712.539911270142,
+          "gpu_us_samples": [
+            6525.12788772583,
+            6511.360168457031,
+            6742.015838623047,
+            8797.183990478516,
+            10031.311988830566,
+            6888.192176818848,
+            6779.136180877686,
+            6453.2880783081055,
+            6783.487796783447,
+            7306.7522048950195,
+            6433.351993560791,
+            6494.192123413086,
+            6801.375865936279,
+            6646.0161209106445,
+            6636.0321044921875,
+            6696.159839630127,
+            6400.512218475342,
+            7305.215835571289,
+            6806.25581741333,
+            6751.999855041504,
+            7846.399784088135,
+            6171.648025512695,
+            6762.4077796936035,
+            6518.271923065186,
+            6535.935878753662,
+            6421.504020690918,
+            6651.455879211426,
+            7509.696006774902,
+            6728.919982910156,
+            6482.944011688232
+          ],
+          "host_time_note": "host wall time of the submission loop (includes backpressure while the queue is full); the final device wait after the last call is excluded and is not part of the host number",
+          "host_us_median": 6679.787824396044,
+          "host_us_samples": [
+            6492.129759863019,
+            6478.515220806003,
+            6709.487061016262,
+            8764.945319853723,
+            9999.561472795904,
+            6855.448940768838,
+            6747.467210516334,
+            6421.2632132694125,
+            6751.554203219712,
+            7275.996147654951,
+            6400.508224032819,
+            6461.104028858244,
+            6768.782041035593,
+            6613.596924580634,
+            6603.573332540691,
+            6663.883221335709,
+            6367.641035467386,
+            7273.347466252744,
+            6773.732719011605,
+            6719.405530020595,
+            7815.782213583589,
+            6138.5484877973795,
+            6730.154855176806,
+            6486.142752692103,
+            6503.330776467919,
+            6388.720008544624,
+            6618.883227929473,
+            7477.482780814171,
+            6695.692427456379,
+            6450.07542334497
+          ],
+          "iters_per_batch": 4,
+          "timing_backend": "cuda_events",
+          "warmup": 20
+        }
+      },
+      "candidate_gains": {
+        "candidate": {
+          "against_fp16_library": {
+            "bootstrap_95_percent_interval": [
+              0.8722825825772957,
+              0.9366426089851804
+            ],
+            "bootstrap_resamples": 2000,
+            "bootstrap_seed": 20261005,
+            "median": 0.9084620816895892,
+            "metric": "median of within-round full-block baseline/candidate latency ratios",
+            "paired_ratio_samples": [
+              0.9082093140636807,
+              0.9188281175300661,
+              0.9534083817347084,
+              1.2520742257686324,
+              1.438088535622916,
+              0.981649038247219,
+              0.9254571359067861,
+              0.9230713721356093,
+              0.8164959559760412,
+              0.9952577176563017,
+              0.9023440235342036,
+              0.7629232716753201,
+              0.5170255543350415,
+              0.8003761812947142,
+              0.9087148493154978,
+              0.8380390306869175,
+              0.8778243337274639,
+              1.1490350861074226,
+              0.8966926144959774,
+              0.8500592041075716,
+              1.1285730657941004,
+              0.8434974063346486,
+              0.7437258313177141,
+              0.89450596104702,
+              0.8274777892513651,
+              0.7670193421511128,
+              0.9454622723036517,
+              1.016309244525221,
+              0.9557777388405029,
+              0.9278229456667091
+            ]
+          },
+          "against_strong_library": null
+        },
+        "compiled_candidate": null
+      },
+      "input_token_sha256": "87bea3efe7b82c954d05d90103014a961c6e3c385398e82c6e5a5c2b12aebeb2",
+      "parameter_sha256": "ef409f46a8a1bd5a74a4902ee5ea20288f676da6d5387e0e761e363d67feb387",
+      "source_report_sha256": "5801c90986f9232abbbfa3cb7ea9f1776f2935acdeb4d95789d780fde546b1bc"
+    },
+    "B1_S33": {
+      "GPU": 3,
+      "backend_qualification": {
+        "candidate": {
+          "compiled": false,
+          "correctness": {
+            "all_token_argmax_agreement": 1.0,
+            "last_token_argmax_agreement": 1.0,
+            "max_absolute_error": 0.0,
+            "mean_squared_error": 0.0,
+            "shape": [
+              1,
+              33,
+              50257
+            ],
+            "tolerance": {
+              "atol": 0.05,
+              "rtol": 0.005
+            }
+          },
+          "fullgraph": false,
+          "mode": null,
+          "qualification_seconds": 0.009539535269141197,
+          "status": "AVAILABLE"
+        },
+        "compiled_candidate": {
+          "compiled": true,
+          "diagnostic": "Original diagnostic retained privately; type and numerical evidence preserved.",
+          "error_type": "Unsupported",
+          "fullgraph": true,
+          "mode": "default",
+          "qualification_seconds": 0.17458462482318282,
+          "status": "UNAVAILABLE"
+        },
+        "compiled_fp16": {
+          "compiled": true,
+          "correctness": {
+            "all_token_argmax_agreement": 0.9696969985961914,
+            "last_token_argmax_agreement": 1.0,
+            "max_absolute_error": 0.21875,
+            "mean_squared_error": 0.0043296474032104015,
+            "shape": [
+              1,
+              33,
+              50257
+            ],
+            "tolerance": {
+              "atol": 0.05,
+              "rtol": 0.005
+            }
+          },
+          "diagnostic": "Original diagnostic retained privately; type and numerical evidence preserved.",
+          "error_type": "LogitMismatch",
+          "fullgraph": true,
+          "mode": "default",
+          "qualification_seconds": 4.717251489404589,
+          "status": "INCORRECT"
+        },
+        "fp16_library": {
+          "compiled": false,
+          "correctness": {
+            "all_token_argmax_agreement": 1.0,
+            "last_token_argmax_agreement": 1.0,
+            "max_absolute_error": 0.0,
+            "mean_squared_error": 0.0,
+            "shape": [
+              1,
+              33,
+              50257
+            ],
+            "tolerance": {
+              "atol": 0.05,
+              "rtol": 0.005
+            }
+          },
+          "fullgraph": false,
+          "mode": null,
+          "qualification_seconds": 0.02137661026790738,
+          "status": "AVAILABLE"
+        }
+      },
+      "samples": {
+        "candidate": {
+          "batch_label_order": [
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ]
+          ],
+          "batches": 30,
+          "calibration_batch_ms": 24.561792373657227,
+          "gpu_state_split": {
+            "half_medians": [
+              7260.672092437744,
+              7355.080127716064
+            ],
+            "state_shift_flag": false,
+            "state_shift_ratio": 1.0130026578912232
+          },
+          "gpu_us_median": 7313.124179840088,
+          "gpu_us_samples": [
+            7068.103790283203,
+            7793.176174163818,
+            7372.983932495117,
+            7089.111804962158,
+            7132.480144500732,
+            7416.575908660889,
+            7762.2480392456055,
+            7160.575866699219,
+            6944.767951965332,
+            7120.183944702148,
+            7260.672092437744,
+            7082.712173461914,
+            8878.335952758789,
+            7437.551975250244,
+            8432.38353729248,
+            7481.599807739258,
+            6567.679882049561,
+            7523.015975952148,
+            7193.3441162109375,
+            7355.080127716064,
+            6910.208225250244,
+            7271.168231964111,
+            8441.55216217041,
+            7458.559989929199,
+            7372.288227081299,
+            7547.3761558532715,
+            7079.216003417969,
+            7185.135841369629,
+            7669.1999435424805,
+            7050.75216293335
+          ],
+          "host_time_note": "host wall time of the submission loop (includes backpressure while the queue is full); the final device wait after the last call is excluded and is not part of the host number",
+          "host_us_median": 7291.920366697013,
+          "host_us_samples": [
+            7046.857965178788,
+            7771.580014377832,
+            7352.384738624096,
+            7068.179314956069,
+            7111.360435374081,
+            7395.7787826657295,
+            7742.226240225136,
+            7139.787543565035,
+            6923.686480149627,
+            7099.504466168582,
+            7239.285041578114,
+            7061.594049446285,
+            8857.735549099743,
+            7416.43225774169,
+            8412.344846874475,
+            7460.838067345321,
+            6546.574993990362,
+            7501.856773160398,
+            7172.140525653958,
+            7333.556772209704,
+            6889.090524055064,
+            7250.283961184323,
+            8419.947698712349,
+            7438.593776896596,
+            7335.9120870009065,
+            7526.265340857208,
+            7058.155257254839,
+            7163.8491936028,
+            7652.294938452542,
+            7029.676577076316
+          ],
+          "iters_per_batch": 4,
+          "timing_backend": "cuda_events",
+          "warmup": 20
+        },
+        "fp16_library": {
+          "batch_label_order": [
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ]
+          ],
+          "batches": 30,
+          "calibration_batch_ms": 34.08588790893555,
+          "gpu_state_split": {
+            "half_medians": [
+              6435.317357381185,
+              6735.359827677409
+            ],
+            "state_shift_flag": false,
+            "state_shift_ratio": 1.0466243471197394
+          },
+          "gpu_us_median": 6622.533162434896,
+          "gpu_us_samples": [
+            6043.306350708008,
+            6661.461512247722,
+            6695.610682169597,
+            6918.144226074219,
+            6435.317357381185,
+            6326.101303100586,
+            6118.058522542317,
+            5954.901377360026,
+            6811.648050944011,
+            6409.727732340495,
+            6587.91987101237,
+            6455.834706624349,
+            6351.397196451823,
+            6173.184076944987,
+            6719.872156778972,
+            7480.85339864095,
+            6241.79204305013,
+            6388.224283854167,
+            6680.234909057617,
+            7223.989486694336,
+            6792.986551920573,
+            6735.359827677409,
+            5986.645380655925,
+            6762.49631245931,
+            6843.952178955078,
+            6657.146453857422,
+            6769.157409667969,
+            6441.6853586832685,
+            6761.813481648763,
+            6457.344055175781
+          ],
+          "host_time_note": "host wall time of the submission loop (includes backpressure while the queue is full); the final device wait after the last call is excluded and is not part of the host number",
+          "host_us_median": 6608.28419495374,
+          "host_us_samples": [
+            6028.230146815379,
+            6647.205523525675,
+            6681.468881045778,
+            6892.7988565216465,
+            6420.746212825179,
+            6311.85380431513,
+            6104.031344875693,
+            5940.7308387259645,
+            6797.243840992451,
+            6395.518702144424,
+            6573.680322617292,
+            6441.734343146284,
+            6336.988260348638,
+            6158.983024458091,
+            6705.691649888952,
+            7466.690537209312,
+            6227.252151196201,
+            6373.934835816423,
+            6666.1343444138765,
+            7209.678102905552,
+            6778.781379883488,
+            6721.052341163158,
+            5972.503994901975,
+            6748.2527034978075,
+            6830.004431928198,
+            6642.888067290187,
+            6754.901881019275,
+            6427.329499274492,
+            6747.29576955239,
+            6443.140329793096
+          ],
+          "iters_per_batch": 6,
+          "timing_backend": "cuda_events",
+          "warmup": 20
+        }
+      },
+      "candidate_gains": {
+        "candidate": {
+          "against_fp16_library": {
+            "bootstrap_95_percent_interval": [
+              0.8683476595778505,
+              0.9210740821029246
+            ],
+            "bootstrap_resamples": 2000,
+            "bootstrap_seed": 20261005,
+            "median": 0.9044655353625564,
+            "metric": "median of within-round full-block baseline/candidate latency ratios",
+            "paired_ratio_samples": [
+              0.8550109803163863,
+              0.8547813322034227,
+              0.908127664928155,
+              0.9758830748348097,
+              0.9022552081470465,
+              0.8529679168675569,
+              0.788181270633155,
+              0.8316232504502509,
+              0.9808316272131671,
+              0.9002194019312835,
+              0.9073429824594241,
+              0.9114918901848925,
+              0.7153814893069277,
+              0.8300021428404585,
+              0.7969125368954254,
+              0.9999002340251432,
+              0.9503800664995671,
+              0.8491573465049891,
+              0.9286688918444794,
+              0.9821768575263047,
+              0.9830364484674518,
+              0.9263105477423443,
+              0.7091877495567943,
+              0.9066758625780662,
+              0.9283348626840937,
+              0.8820477893757233,
+              0.956201563336915,
+              0.896529376883062,
+              0.8816843388393149,
+              0.915837616463505
+            ]
+          },
+          "against_strong_library": null
+        },
+        "compiled_candidate": null
+      },
+      "input_token_sha256": "a792da3998d09eb0cdccd72bc8d8214209a92ee6fb178079e9ecc4e145d43c62",
+      "parameter_sha256": "ef409f46a8a1bd5a74a4902ee5ea20288f676da6d5387e0e761e363d67feb387",
+      "source_report_sha256": "5801c90986f9232abbbfa3cb7ea9f1776f2935acdeb4d95789d780fde546b1bc"
+    },
+    "B1_S512": {
+      "GPU": 4,
+      "backend_qualification": {
+        "candidate": {
+          "compiled": false,
+          "correctness": {
+            "all_token_argmax_agreement": 1.0,
+            "last_token_argmax_agreement": 1.0,
+            "max_absolute_error": 0.0,
+            "mean_squared_error": 0.0,
+            "shape": [
+              1,
+              512,
+              50257
+            ],
+            "tolerance": {
+              "atol": 0.05,
+              "rtol": 0.005
+            }
+          },
+          "fullgraph": false,
+          "mode": null,
+          "qualification_seconds": 0.011875343043357134,
+          "status": "AVAILABLE"
+        },
+        "compiled_candidate": {
+          "compiled": true,
+          "diagnostic": "Original diagnostic retained privately; type and numerical evidence preserved.",
+          "error_type": "Unsupported",
+          "fullgraph": true,
+          "mode": "default",
+          "qualification_seconds": 0.19966859696432948,
+          "status": "UNAVAILABLE"
+        },
+        "compiled_fp16": {
+          "compiled": true,
+          "correctness": {
+            "all_token_argmax_agreement": 0.998046875,
+            "last_token_argmax_agreement": 1.0,
+            "max_absolute_error": 6.5625,
+            "mean_squared_error": 0.3593713343143463,
+            "shape": [
+              1,
+              512,
+              50257
+            ],
+            "tolerance": {
+              "atol": 0.05,
+              "rtol": 0.005
+            }
+          },
+          "diagnostic": "Original diagnostic retained privately; type and numerical evidence preserved.",
+          "error_type": "LogitMismatch",
+          "fullgraph": true,
+          "mode": "default",
+          "qualification_seconds": 5.104674826841801,
+          "status": "INCORRECT"
+        },
+        "fp16_library": {
+          "compiled": false,
+          "correctness": {
+            "all_token_argmax_agreement": 1.0,
+            "last_token_argmax_agreement": 1.0,
+            "max_absolute_error": 0.0,
+            "mean_squared_error": 0.0,
+            "shape": [
+              1,
+              512,
+              50257
+            ],
+            "tolerance": {
+              "atol": 0.05,
+              "rtol": 0.005
+            }
+          },
+          "fullgraph": false,
+          "mode": null,
+          "qualification_seconds": 0.023448770865797997,
+          "status": "AVAILABLE"
+        }
+      },
+      "samples": {
+        "candidate": {
+          "batch_label_order": [
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ]
+          ],
+          "batches": 30,
+          "calibration_batch_ms": 25.658367156982422,
+          "gpu_state_split": {
+            "half_medians": [
+              7549.392223358154,
+              7408.383846282959
+            ],
+            "state_shift_flag": false,
+            "state_shift_ratio": 1.019033621907421
+          },
+          "gpu_us_median": 7474.184036254883,
+          "gpu_us_samples": [
+            7610.879898071289,
+            7324.624061584473,
+            7736.320018768311,
+            6953.184127807617,
+            7721.471786499023,
+            7335.936069488525,
+            7321.608066558838,
+            6778.111934661865,
+            8472.576141357422,
+            7710.207939147949,
+            7571.455955505371,
+            7862.3199462890625,
+            7487.760066986084,
+            7549.392223358154,
+            7149.5680809021,
+            7382.040023803711,
+            8208.127975463867,
+            7460.608005523682,
+            7718.400001525879,
+            7661.8242263793945,
+            7405.784130096436,
+            8609.27963256836,
+            7587.776184082031,
+            6668.536186218262,
+            7280.384063720703,
+            7395.840167999268,
+            7627.776145935059,
+            7408.383846282959,
+            7304.704189300537,
+            7327.439785003662
+          ],
+          "host_time_note": "host wall time of the submission loop (includes backpressure while the queue is full); the final device wait after the last call is excluded and is not part of the host number",
+          "host_us_median": 7374.557782895863,
+          "host_us_samples": [
+            7509.604678489268,
+            7224.818808026612,
+            7636.3809639588,
+            6852.705730125308,
+            7621.677010320127,
+            7235.408993437886,
+            7222.226704470813,
+            6677.858531475067,
+            8373.792050406337,
+            7610.93758046627,
+            7471.870165318251,
+            7762.894965708256,
+            7388.671510852873,
+            7447.909563779831,
+            7048.975210636854,
+            7282.113190740347,
+            8108.728332445025,
+            7360.444054938853,
+            7620.592252351344,
+            7560.896803624928,
+            7304.74479496479,
+            8508.178987540305,
+            7488.5745998471975,
+            6568.017997778952,
+            7180.128246545792,
+            7296.127732843161,
+            7527.616806328297,
+            7309.398031793535,
+            7206.1545215547085,
+            7227.736175991595
+          ],
+          "iters_per_batch": 4,
+          "timing_backend": "cuda_events",
+          "warmup": 20
+        },
+        "fp16_library": {
+          "batch_label_order": [
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ]
+          ],
+          "batches": 30,
+          "calibration_batch_ms": 23.740415573120117,
+          "gpu_state_split": {
+            "half_medians": [
+              6799.047946929932,
+              6834.224224090576
+            ],
+            "state_shift_flag": false,
+            "state_shift_ratio": 1.005173706294648
+          },
+          "gpu_us_median": 6817.0881271362305,
+          "gpu_us_samples": [
+            7091.464042663574,
+            6782.976150512695,
+            6749.911785125732,
+            6939.856052398682,
+            6415.616035461426,
+            6713.600158691406,
+            7500.05578994751,
+            7112.192153930664,
+            7525.119781494141,
+            9041.152000427246,
+            6902.2722244262695,
+            6610.472202301025,
+            6666.736125946045,
+            6557.104110717773,
+            6799.047946929932,
+            6762.752056121826,
+            8230.143547058105,
+            6968.575954437256,
+            6834.224224090576,
+            7075.623989105225,
+            7521.535873413086,
+            6196.479797363281,
+            7100.41618347168,
+            6306.551933288574,
+            6743.512153625488,
+            7112.448215484619,
+            6723.288059234619,
+            6728.19185256958,
+            9550.592422485352,
+            6799.952030181885
+          ],
+          "host_time_note": "host wall time of the submission loop (includes backpressure while the queue is full); the final device wait after the last call is excluded and is not part of the host number",
+          "host_us_median": 6717.61913690716,
+          "host_us_samples": [
+            6991.771049797535,
+            6682.446459308267,
+            6649.396498687565,
+            6840.220303274691,
+            6314.686499536037,
+            6613.260484300554,
+            7398.883462883532,
+            7011.643494479358,
+            7427.969831041992,
+            8940.83920866251,
+            6803.433527238667,
+            6509.660510346293,
+            6566.2667620927095,
+            6456.245784647763,
+            6699.240999296308,
+            6662.463769316673,
+            8130.186935886741,
+            6868.707714602351,
+            6734.153255820274,
+            6974.929478019476,
+            7421.712740324438,
+            6095.792981795967,
+            7000.441430136561,
+            6206.132238730788,
+            6643.790053203702,
+            7013.407303020358,
+            6622.812012210488,
+            6628.242786973715,
+            9450.898971408606,
+            6701.085017994046
+          ],
+          "iters_per_batch": 4,
+          "timing_backend": "cuda_events",
+          "warmup": 20
+        }
+      },
+      "candidate_gains": {
+        "candidate": {
+          "against_fp16_library": {
+            "bootstrap_95_percent_interval": [
+              0.9099018732002269,
+              0.940743980887456
+            ],
+            "bootstrap_resamples": 2000,
+            "bootstrap_seed": 20261005,
+            "median": 0.926154423141389,
+            "metric": "median of within-round full-block baseline/candidate latency ratios",
+            "paired_ratio_samples": [
+              0.9317535078251146,
+              0.9260510974327593,
+              0.8724964542250642,
+              0.9980831694999083,
+              0.8308799426916402,
+              0.9151661212826642,
+              1.024372750052509,
+              1.0492880941609095,
+              0.8881737568295862,
+              1.1726210332825835,
+              0.9116175627235177,
+              0.840778834677302,
+              0.8903511953247574,
+              0.8685605300026408,
+              0.9509732434175323,
+              0.9161088309349498,
+              1.0026821671957415,
+              0.9340493360967183,
+              0.8854457170837859,
+              0.9234907745265282,
+              1.01562991052443,
+              0.7197442831247333,
+              0.9357703774087648,
+              0.9457175843661472,
+              0.9262577488500185,
+              0.961682250281605,
+              0.8814217840959514,
+              0.9081861836769359,
+              1.307457793633101,
+              0.928011997327998
+            ]
+          },
+          "against_strong_library": null
+        },
+        "compiled_candidate": null
+      },
+      "input_token_sha256": "191b58fce215ac85901a5ddb7facbf4d05151cbbffefbfc766552e64d277caf9",
+      "parameter_sha256": "ef409f46a8a1bd5a74a4902ee5ea20288f676da6d5387e0e761e363d67feb387",
+      "source_report_sha256": "420f59e8ff1aef1f1606a0efeae85bf67b4c0c6b95ac80190f183b68d628df5a"
+    },
+    "B2_S1024": {
+      "GPU": 4,
+      "backend_qualification": {
+        "candidate": {
+          "compiled": false,
+          "correctness": {
+            "all_token_argmax_agreement": 1.0,
+            "last_token_argmax_agreement": 1.0,
+            "max_absolute_error": 0.0,
+            "mean_squared_error": 0.0,
+            "shape": [
+              2,
+              1024,
+              50257
+            ],
+            "tolerance": {
+              "atol": 0.05,
+              "rtol": 0.005
+            }
+          },
+          "fullgraph": false,
+          "mode": null,
+          "qualification_seconds": 0.023546449840068817,
+          "status": "AVAILABLE"
+        },
+        "compiled_candidate": {
+          "compiled": true,
+          "diagnostic": "Original diagnostic retained privately; type and numerical evidence preserved.",
+          "error_type": "Unsupported",
+          "fullgraph": true,
+          "mode": "default",
+          "qualification_seconds": 0.1887636100873351,
+          "status": "UNAVAILABLE"
+        },
+        "compiled_fp16": {
+          "compiled": true,
+          "correctness": {
+            "all_token_argmax_agreement": 0.9990234375,
+            "last_token_argmax_agreement": 1.0,
+            "max_absolute_error": 10.7890625,
+            "mean_squared_error": 0.2156582623720169,
+            "shape": [
+              2,
+              1024,
+              50257
+            ],
+            "tolerance": {
+              "atol": 0.05,
+              "rtol": 0.005
+            }
+          },
+          "diagnostic": "Original diagnostic retained privately; type and numerical evidence preserved.",
+          "error_type": "LogitMismatch",
+          "fullgraph": true,
+          "mode": "default",
+          "qualification_seconds": 4.372537538874894,
+          "status": "INCORRECT"
+        },
+        "fp16_library": {
+          "compiled": false,
+          "correctness": {
+            "all_token_argmax_agreement": 1.0,
+            "last_token_argmax_agreement": 1.0,
+            "max_absolute_error": 0.0,
+            "mean_squared_error": 0.0,
+            "shape": [
+              2,
+              1024,
+              50257
+            ],
+            "tolerance": {
+              "atol": 0.05,
+              "rtol": 0.005
+            }
+          },
+          "fullgraph": false,
+          "mode": null,
+          "qualification_seconds": 0.023091566283255816,
+          "status": "AVAILABLE"
+        }
+      },
+      "samples": {
+        "candidate": {
+          "batch_label_order": [
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ]
+          ],
+          "batches": 30,
+          "calibration_batch_ms": 25.851903915405273,
+          "gpu_state_split": {
+            "half_medians": [
+              7401.21603012085,
+              7395.5841064453125
+            ],
+            "state_shift_flag": false,
+            "state_shift_ratio": 1.0007615252013196
+          },
+          "gpu_us_median": 7396.736145019531,
+          "gpu_us_samples": [
+            7401.21603012085,
+            7419.9042320251465,
+            7550.680160522461,
+            6897.6640701293945,
+            7467.25606918335,
+            6873.856067657471,
+            7925.039768218994,
+            7353.343963623047,
+            7459.839820861816,
+            7457.024097442627,
+            6839.0398025512695,
+            7299.839973449707,
+            7363.327980041504,
+            7444.9920654296875,
+            7173.6321449279785,
+            7395.5841064453125,
+            7032.832145690918,
+            8700.624465942383,
+            7386.623859405518,
+            7404.287815093994,
+            7135.824203491211,
+            7409.408092498779,
+            7343.391895294189,
+            7426.815986633301,
+            7298.304080963135,
+            7264.23978805542,
+            7696.6400146484375,
+            6864.640235900879,
+            10041.855812072754,
+            7397.88818359375
+          ],
+          "host_time_note": "host wall time of the submission loop (includes backpressure while the queue is full); the final device wait after the last call is excluded and is not part of the host number",
+          "host_us_median": 7031.735382042825,
+          "host_us_samples": [
+            7069.234270602465,
+            7055.192021653056,
+            7185.3980189189315,
+            6451.84179302305,
+            7103.622774593532,
+            6462.926743552089,
+            7560.8642073348165,
+            6988.309440203011,
+            7095.300708897412,
+            7093.167281709611,
+            6386.899505741894,
+            6926.8589140847325,
+            6998.5156878829,
+            7080.044248141348,
+            6762.413191609085,
+            7030.179491266608,
+            6669.199443422258,
+            8334.653335623443,
+            7021.117256954312,
+            7038.650684989989,
+            6731.780944392085,
+            7046.999060548842,
+            6978.770485147834,
+            7061.923271976411,
+            6927.722250111401,
+            6884.25125554204,
+            7331.183995120227,
+            6410.451722331345,
+            9677.631896920502,
+            7033.291272819042
+          ],
+          "iters_per_batch": 4,
+          "timing_backend": "cuda_events",
+          "warmup": 20
+        },
+        "fp16_library": {
+          "batch_label_order": [
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "fp16_library",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "fp16_library"
+            ]
+          ],
+          "batches": 30,
+          "calibration_batch_ms": 24.091552734375,
+          "gpu_state_split": {
+            "half_medians": [
+              6971.127986907959,
+              6888.192176818848
+            ],
+            "state_shift_flag": false,
+            "state_shift_ratio": 1.0120402869084024
+          },
+          "gpu_us_median": 6939.13197517395,
+          "gpu_us_samples": [
+            6883.327960968018,
+            7304.3999671936035,
+            7734.528064727783,
+            7509.27209854126,
+            7139.575958251953,
+            6907.135963439941,
+            7270.656108856201,
+            6894.08016204834,
+            6893.0559158325195,
+            6971.127986907959,
+            6898.128032684326,
+            10359.503746032715,
+            6988.247871398926,
+            6874.879837036133,
+            6876.67179107666,
+            6855.656147003174,
+            9885.696411132812,
+            8766.976356506348,
+            6883.327960968018,
+            6878.208160400391,
+            6979.328155517578,
+            7490.303993225098,
+            6869.448184967041,
+            6880.447864532471,
+            6740.2238845825195,
+            7718.6479568481445,
+            6883.0718994140625,
+            6888.192176818848,
+            8504.023551940918,
+            9793.279647827148
+          ],
+          "host_time_note": "host wall time of the submission loop (includes backpressure while the queue is full); the final device wait after the last call is excluded and is not part of the host number",
+          "host_us_median": 6511.605984997004,
+          "host_us_samples": [
+            6464.225007221103,
+            6939.043290913105,
+            7376.291789114475,
+            6990.288966335356,
+            6775.020505301654,
+            6516.698515042663,
+            6906.21230751276,
+            6495.999754406512,
+            6499.8220186680555,
+            6291.977246291935,
+            6499.7682347893715,
+            9997.63747677207,
+            6594.931241124868,
+            6423.0045536533,
+            6489.615072496235,
+            6470.948923379183,
+            9524.086490273476,
+            8402.222185395658,
+            6519.583752378821,
+            6483.535165898502,
+            6436.442723497748,
+            7125.532254576683,
+            6504.221702925861,
+            6479.844800196588,
+            5998.973501846194,
+            7353.791035711765,
+            6443.793419748545,
+            6506.513454951346,
+            8139.313198626041,
+            9428.766439668834
+          ],
+          "iters_per_batch": 4,
+          "timing_backend": "cuda_events",
+          "warmup": 20
+        }
+      },
+      "candidate_gains": {
+        "candidate": {
+          "against_fp16_library": {
+            "bootstrap_95_percent_interval": [
+              0.9309452516084804,
+              1.0041362122512212
+            ],
+            "bootstrap_resamples": 2000,
+            "bootstrap_seed": 20261005,
+            "median": 0.9525893983332012,
+            "metric": "median of within-round full-block baseline/candidate latency ratios",
+            "paired_ratio_samples": [
+              0.9300266244026422,
+              0.9844331865722723,
+              1.024348522291613,
+              1.088668862703891,
+              0.9561177348285,
+              1.0048415176947125,
+              0.9174283437684435,
+              0.9375435442913207,
+              0.9240219738439615,
+              0.9348404800379678,
+              1.0086398429953594,
+              1.419141211822633,
+              0.9490610618379023,
+              0.9234233934189356,
+              0.9586039055457729,
+              0.9269931959841297,
+              1.4056494178081402,
+              1.0076261067034546,
+              0.9318638788143186,
+              0.9289493239820898,
+              0.9780689597289873,
+              1.0109179977288896,
+              0.935459836941174,
+              0.9264330605357427,
+              0.9235328933695283,
+              1.0625541256966637,
+              0.8942956778950332,
+              1.0034309068077298,
+              0.8468577632549765,
+              1.3237939537320451
+            ]
+          },
+          "against_strong_library": null
+        },
+        "compiled_candidate": null
+      },
+      "input_token_sha256": "0a920624cde46f329255a6c33de9375b0e3c24dab3579c8f5e38ff8b632d9d7f",
+      "parameter_sha256": "ef409f46a8a1bd5a74a4902ee5ea20288f676da6d5387e0e761e363d67feb387",
+      "source_report_sha256": "420f59e8ff1aef1f1606a0efeae85bf67b4c0c6b95ac80190f183b68d628df5a"
+    }
+  },
+  "against_strong_library_available": false,
+  "strong_library_victory_proven": false,
+  "RSI_proven": false,
+  "harness_causality_proven": false,
+  "model_API_calls": 0,
+  "owned_processes_and_RPC_closed": true,
+  "source_execution_sha256": "7ac0c759d78f5510b4fc08fc7efe2c5df6987e9bc86b8c7da2328864b38e5f13",
+  "source_benchmark_sha256": "5d5ad1a5f5a16e4e7ae7731eda278d412e8d023f5285e211a4ed7c0839499556",
+  "summary": "\u539f\u56db\u5f62\u72b6\u5b8c\u6574\u6570\u503c\u5168\u90e8\u6b63\u786e\uff1beager Welford\u5bf9\u666e\u901aFP16\u5e93\u4e3a0.904\u20130.953\u500d\uff0c\u5c1a\u672a\u52a0\u901f\u3002\u7f16\u8bd1\u5019\u9009\u56e0\u6269\u5c55\u52a0\u8f7d\u5668sys.intern\u4e0d\u53ef\u7528\uff0c\u539f\u7f16\u8bd1\u5e93\u6570\u503c\u5931\u8d25\uff1b\u5f3a\u5e93\u6bd4\u8f83\u4e0d\u6210\u7acb\uff0c\u539f\u5931\u8d25\u4fdd\u6301\u3002"
+}

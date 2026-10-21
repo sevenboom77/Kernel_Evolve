@@ -1,0 +1,5489 @@
+{
+  "schema_version": 1,
+  "kind": "source-bound-decoder-gpu-measurement",
+  "status": "MEASURED_CLEAN",
+  "benchmark_version": "root-execution-v3r2",
+  "optimized_backend": "compiled_candidate",
+  "source_package": {
+    "application_sources": {
+      "harness-evolution/competition/application/benchmark_decoder.py": "ed05c682490411ae12d20efc4e132951f7815ca889412f794fe611d2f79370b9",
+      "harness-evolution/competition/application/benchmark_decoder_v2.py": "732def670d44b7f34f6c1ae725a4a227a6ec2f0359412bd316f2bb3756f87f93",
+      "harness-evolution/competition/application/benchmark_decoder_v3.py": "d5d38b76c3ab25d4257f1042e19397bda373dbab90d76830e237f9eaf488c685",
+      "harness-evolution/competition/application/decoder_block.py": "12e7ddd84eefe91f072248b672d2fb2f9ed89c8382a4df872cfab618c9730d61"
+    },
+    "manifest_sha256": "a47283321704dcf990fdfc5b612e838b79a630dd95f1cf6edc641990d8b39f4f",
+    "operator_sources": {
+      "K04": "39b2320674e9f6877398950d3856d9deb5dc086d59eea4b7b4213a00ec02cc8f",
+      "K06": "14ddd53dd56edd96e92fd0348fb14e619b9511393069b05b3d235d49ffebd2d6",
+      "K10": "99ccb19096acf19e4be6d20079e67959747eaa093f5b8009695f60f3cd8005d2"
+    },
+    "protocol_sha256": "e4e5c46c566b14cdc31eed76c41f2231ea51b4684200bb85f4d41093b87b6265"
+  },
+  "source_package_sha256": "5307d0ad14bfa22912b54c7a5bd0be35065e984bda88d9377dbe57673c1fbbb0",
+  "protocol": {
+    "case_labels": [
+      "normal-s64",
+      "normal-s128",
+      "min-s33-mlp33",
+      "boundary-b2-d128-rows2048"
+    ],
+    "cases": [
+      {
+        "batch": 1,
+        "head_dim": 64,
+        "heads": 8,
+        "mlp_dim": 1024,
+        "sequence": 64
+      },
+      {
+        "batch": 1,
+        "head_dim": 64,
+        "heads": 8,
+        "mlp_dim": 1024,
+        "sequence": 128
+      },
+      {
+        "batch": 1,
+        "head_dim": 64,
+        "heads": 8,
+        "mlp_dim": 33,
+        "sequence": 33
+      },
+      {
+        "batch": 2,
+        "head_dim": 128,
+        "heads": 8,
+        "mlp_dim": 1024,
+        "sequence": 128
+      }
+    ],
+    "compilation_failure_policy": "record unavailable/incorrect; no eager fallback",
+    "compile_baseline": true,
+    "compile_candidate_fullgraph": true,
+    "compile_dynamic": false,
+    "compile_fullgraph": true,
+    "compile_mode": "default",
+    "failure_examples": [
+      "sequence32 rejected",
+      "rows>2048 rejected",
+      "odd head_dim rejected",
+      "nonfinite input rejected",
+      "source mismatch rejected",
+      "contaminated GPU refused"
+    ],
+    "full_block_output_tolerance": {
+      "atol": 0.005,
+      "rtol": 0.005
+    },
+    "max_wall_seconds": 900,
+    "name": "fixed-random-decoder-v3",
+    "operator_tolerances": {
+      "K04": [
+        0.0001,
+        1e-05
+      ],
+      "K06": [
+        0.002,
+        0.01
+      ],
+      "K10": [
+        0.002,
+        0.01
+      ]
+    },
+    "optimization": "whole candidate compilation; unchanged decoder math and operator source bytes",
+    "requested_backends": [
+      "eager",
+      "candidate",
+      "compiled",
+      "compiled_candidate"
+    ],
+    "schema_version": 3,
+    "seed": 20261005,
+    "timing": {
+      "backend": "cuda_events",
+      "cuda_graphs": false,
+      "jit_compile_upload_validation_timed": false,
+      "max_iters": 256,
+      "order_seed": 20261005,
+      "paired_rounds": 30,
+      "target_batch_ms": 20.0,
+      "warmup": 20,
+      "weight_input_policy": "same fixed weights and input in every implementation"
+    }
+  },
+  "protocol_sha256": "e4e5c46c566b14cdc31eed76c41f2231ea51b4684200bb85f4d41093b87b6265",
+  "raw_result_sha256": "511896f0208b12117f142c343e89195e7b2ad056f5333700be522f1c3b4b5dd1",
+  "device": {
+    "cuda": "12.1",
+    "device_name": "NVIDIA GeForce RTX 4090",
+    "device_total_memory": 25386352640,
+    "physical_gpu": 1,
+    "python": "3.11.10",
+    "tf32": false,
+    "torch": "2.5.1+cu121"
+  },
+  "measurement_cases": {
+    "normal-s64": {
+      "status": "MEASURED_CLEAN",
+      "config": {
+        "batch": 1,
+        "head_dim": 64,
+        "heads": 8,
+        "mlp_dim": 1024,
+        "sequence": 64
+      },
+      "correctness": {
+        "full_block_max_abs_error": 0.000244140625,
+        "full_block_tolerance": {
+          "atol": 0.005,
+          "rtol": 0.005
+        },
+        "operators": {
+          "rope_k": {
+            "atol": 0.01,
+            "max_abs_error": 1.52587890625e-05,
+            "rtol": 0.002,
+            "task_id": "K10"
+          },
+          "rope_q": {
+            "atol": 0.01,
+            "max_abs_error": 0.0,
+            "rtol": 0.002,
+            "task_id": "K10"
+          },
+          "silu_mul": {
+            "atol": 0.01,
+            "max_abs_error": 1.52587890625e-05,
+            "rtol": 0.002,
+            "task_id": "K06"
+          },
+          "softmax": {
+            "atol": 1e-05,
+            "max_abs_error": 5.960464477539063e-08,
+            "rtol": 0.0001,
+            "task_id": "K04"
+          }
+        }
+      },
+      "input_weights_sha256": "7b9190764e6140d323ae7b56cfd500158105641299c3a308b9a6216a9460c547",
+      "samples": {
+        "candidate": {
+          "batch_label_order": [
+            [
+              "eager",
+              "candidate",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "eager",
+              "candidate",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "eager",
+              "candidate",
+              "compiled",
+              "compiled_candidate"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "eager",
+              "compiled",
+              "compiled_candidate",
+              "candidate"
+            ],
+            [
+              "eager",
+              "compiled_candidate",
+              "candidate",
+              "compiled"
+            ],
+            [
+              "compiled_candidate",
+              "eager",
+              "candidate",
+              "compiled"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "eager",
+              "compiled_candidate",
+              "candidate",
+              "compiled"
+            ],
+            [
+              "compiled_candidate",
+              "compiled",
+              "eager",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled",
+              "compiled_candidate"
+            ],
+            [
+              "eager",
+              "candidate",
+              "compiled",
+              "compiled_candidate"
+            ],
+            [
+              "compiled_candidate",
+              "candidate",
+              "eager",
+              "compiled"
+            ],
+            [
+              "candidate",
+              "compiled_candidate",
+              "compiled",
+              "eager"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "candidate",
+              "eager"
+            ],
+            [
+              "compiled_candidate",
+              "candidate",
+              "compiled",
+              "eager"
+            ],
+            [
+              "candidate",
+              "compiled_candidate",
+              "compiled",
+              "eager"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled",
+              "compiled_candidate"
+            ],
+            [
+              "compiled_candidate",
+              "eager",
+              "compiled",
+              "candidate"
+            ],
+            [
+              "eager",
+              "compiled_candidate",
+              "candidate",
+              "compiled"
+            ],
+            [
+              "eager",
+              "candidate",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "compiled_candidate",
+              "compiled",
+              "eager",
+              "candidate"
+            ],
+            [
+              "eager",
+              "candidate",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "candidate",
+              "eager"
+            ],
+            [
+              "candidate",
+              "compiled_candidate",
+              "eager",
+              "compiled"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "eager",
+              "compiled_candidate",
+              "candidate",
+              "compiled"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled_candidate",
+              "compiled"
+            ]
+          ],
+          "batches": 30,
+          "calibration_batch_ms": 38.223873138427734,
+          "gpu_state_split": {
+            "half_medians": [
+              879.4263910364222,
+              769.9911329481337
+            ],
+            "state_shift_flag": false,
+            "state_shift_ratio": 1.1421253484689933
+          },
+          "gpu_us_median": 807.2050235889576,
+          "gpu_us_samples": [
+            1041.161501849139,
+            1043.0767624466507,
+            2444.326047544126,
+            725.786632961697,
+            1554.9233048050492,
+            875.7428063286675,
+            1052.6340625904224,
+            1049.3914286295574,
+            671.2888788293909,
+            866.7780558268229,
+            719.3007292570891,
+            1039.4927130805122,
+            773.4613065366392,
+            716.9517234519676,
+            879.4263910364222,
+            1066.2850273980034,
+            746.4580535888672,
+            735.5519753915293,
+            783.8672355369285,
+            697.3682686134621,
+            595.9300994873047,
+            663.8175116644966,
+            776.8746835214121,
+            751.5046155011213,
+            845.1792399088541,
+            1081.2302342167607,
+            860.430187649197,
+            643.9680170129847,
+            769.9911329481337,
+            830.5428116409867
+          ],
+          "host_time_note": "host wall time of the submission loop (includes backpressure while the queue is full); the final device wait after the last call is excluded and is not part of the host number",
+          "host_us_median": 806.1421405593003,
+          "host_us_samples": [
+            1039.8636503076111,
+            1041.8752035884945,
+            2443.0745591719947,
+            724.8665637302178,
+            1553.5010887240921,
+            874.6988174540026,
+            1051.3457193694733,
+            1048.0953173504936,
+            670.198221794433,
+            865.7087002777391,
+            718.2299504401507,
+            1036.1682054483229,
+            772.4794817881452,
+            715.8565179755291,
+            878.3241630428367,
+            1063.97929980799,
+            745.4428511361281,
+            734.3970032201873,
+            782.7691302669269,
+            696.3431886914703,
+            595.0118691005089,
+            662.7906717497993,
+            775.8634423630106,
+            750.5666602540899,
+            844.1211862696541,
+            1079.3602645949081,
+            859.3220005018843,
+            643.0470039723097,
+            768.7955404873247,
+            829.5151508516735
+          ],
+          "iters_per_batch": 54,
+          "timing_backend": "cuda_events",
+          "warmup": 20
+        },
+        "compiled": {
+          "batch_label_order": [
+            [
+              "eager",
+              "candidate",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "eager",
+              "candidate",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "eager",
+              "candidate",
+              "compiled",
+              "compiled_candidate"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "eager",
+              "compiled",
+              "compiled_candidate",
+              "candidate"
+            ],
+            [
+              "eager",
+              "compiled_candidate",
+              "candidate",
+              "compiled"
+            ],
+            [
+              "compiled_candidate",
+              "eager",
+              "candidate",
+              "compiled"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "eager",
+              "compiled_candidate",
+              "candidate",
+              "compiled"
+            ],
+            [
+              "compiled_candidate",
+              "compiled",
+              "eager",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled",
+              "compiled_candidate"
+            ],
+            [
+              "eager",
+              "candidate",
+              "compiled",
+              "compiled_candidate"
+            ],
+            [
+              "compiled_candidate",
+              "candidate",
+              "eager",
+              "compiled"
+            ],
+            [
+              "candidate",
+              "compiled_candidate",
+              "compiled",
+              "eager"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "candidate",
+              "eager"
+            ],
+            [
+              "compiled_candidate",
+              "candidate",
+              "compiled",
+              "eager"
+            ],
+            [
+              "candidate",
+              "compiled_candidate",
+              "compiled",
+              "eager"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled",
+              "compiled_candidate"
+            ],
+            [
+              "compiled_candidate",
+              "eager",
+              "compiled",
+              "candidate"
+            ],
+            [
+              "eager",
+              "compiled_candidate",
+              "candidate",
+              "compiled"
+            ],
+            [
+              "eager",
+              "candidate",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "compiled_candidate",
+              "compiled",
+              "eager",
+              "candidate"
+            ],
+            [
+              "eager",
+              "candidate",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "candidate",
+              "eager"
+            ],
+            [
+              "candidate",
+              "compiled_candidate",
+              "eager",
+              "compiled"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "eager",
+              "compiled_candidate",
+              "candidate",
+              "compiled"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled_candidate",
+              "compiled"
+            ]
+          ],
+          "batches": 30,
+          "calibration_batch_ms": 33.28736114501953,
+          "gpu_state_split": {
+            "half_medians": [
+              393.2269076083569,
+              377.69260812313
+            ],
+            "state_shift_flag": false,
+            "state_shift_ratio": 1.0411294771227364
+          },
+          "gpu_us_median": 388.7948989868164,
+          "gpu_us_samples": [
+            475.0706287140542,
+            393.2269076083569,
+            355.1427962932181,
+            523.8413709275266,
+            387.9356790096202,
+            389.65411896401264,
+            354.19403238499416,
+            433.4597486130735,
+            424.0013690704995,
+            437.4648560868933,
+            382.06161336695897,
+            566.5552261027884,
+            374.7952238042304,
+            480.53924073564247,
+            337.613268101469,
+            354.3942228276679,
+            902.687316245221,
+            374.08885549991686,
+            584.3336227092337,
+            346.11028306027674,
+            377.69260812313,
+            470.6913968350025,
+            360.4915700060256,
+            469.3297122387176,
+            474.31897102518286,
+            338.47557230198635,
+            381.39643567673704,
+            471.6391461960813,
+            356.548065834857,
+            375.1121683323637
+          ],
+          "host_time_note": "host wall time of the submission loop (includes backpressure while the queue is full); the final device wait after the last call is excluded and is not part of the host number",
+          "host_us_median": 388.24855359865626,
+          "host_us_samples": [
+            474.4732088627333,
+            392.6950120466187,
+            354.62228264263337,
+            523.213128697999,
+            387.43319306918914,
+            389.06391412812343,
+            353.6813496116628,
+            432.7019349612454,
+            423.4958063573279,
+            436.8443388808915,
+            381.5427858461725,
+            565.8285672518801,
+            374.2092794322587,
+            479.87630154858243,
+            337.0452682150805,
+            353.8479969063972,
+            901.8948073796136,
+            373.50158821395104,
+            583.2828502071665,
+            345.47217210081027,
+            377.1631522698605,
+            470.03323251896717,
+            359.7824437979688,
+            468.74892382704195,
+            473.79193649171515,
+            337.9404871783992,
+            380.8521408032864,
+            470.38242399216966,
+            356.0239033020557,
+            374.5603731813583
+          ],
+          "iters_per_batch": 94,
+          "timing_backend": "cuda_events",
+          "warmup": 20
+        },
+        "compiled_candidate": {
+          "batch_label_order": [
+            [
+              "eager",
+              "candidate",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "eager",
+              "candidate",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "eager",
+              "candidate",
+              "compiled",
+              "compiled_candidate"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "eager",
+              "compiled",
+              "compiled_candidate",
+              "candidate"
+            ],
+            [
+              "eager",
+              "compiled_candidate",
+              "candidate",
+              "compiled"
+            ],
+            [
+              "compiled_candidate",
+              "eager",
+              "candidate",
+              "compiled"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "eager",
+              "compiled_candidate",
+              "candidate",
+              "compiled"
+            ],
+            [
+              "compiled_candidate",
+              "compiled",
+              "eager",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled",
+              "compiled_candidate"
+            ],
+            [
+              "eager",
+              "candidate",
+              "compiled",
+              "compiled_candidate"
+            ],
+            [
+              "compiled_candidate",
+              "candidate",
+              "eager",
+              "compiled"
+            ],
+            [
+              "candidate",
+              "compiled_candidate",
+              "compiled",
+              "eager"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "candidate",
+              "eager"
+            ],
+            [
+              "compiled_candidate",
+              "candidate",
+              "compiled",
+              "eager"
+            ],
+            [
+              "candidate",
+              "compiled_candidate",
+              "compiled",
+              "eager"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled",
+              "compiled_candidate"
+            ],
+            [
+              "compiled_candidate",
+              "eager",
+              "compiled",
+              "candidate"
+            ],
+            [
+              "eager",
+              "compiled_candidate",
+              "candidate",
+              "compiled"
+            ],
+            [
+              "eager",
+              "candidate",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "compiled_candidate",
+              "compiled",
+              "eager",
+              "candidate"
+            ],
+            [
+              "eager",
+              "candidate",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "candidate",
+              "eager"
+            ],
+            [
+              "candidate",
+              "compiled_candidate",
+              "eager",
+              "compiled"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "eager",
+              "compiled_candidate",
+              "candidate",
+              "compiled"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled_candidate",
+              "compiled"
+            ]
+          ],
+          "batches": 30,
+          "calibration_batch_ms": 30.425952911376953,
+          "gpu_state_split": {
+            "half_medians": [
+              566.9815643973973,
+              570.1398434846298
+            ],
+            "state_shift_flag": false,
+            "state_shift_ratio": 1.005570338235934
+          },
+          "gpu_us_median": 568.5607039410136,
+          "gpu_us_samples": [
+            497.66399549401325,
+            438.7617525847062,
+            1457.2855078655741,
+            446.9106093696926,
+            417.8365209828252,
+            456.1808627584706,
+            566.9815643973973,
+            749.8351387355639,
+            653.6236638608186,
+            553.4942461096722,
+            789.5930746327276,
+            809.9395088527514,
+            833.0017587412958,
+            509.86294124437416,
+            725.5707616391389,
+            522.1954843272333,
+            570.1398434846298,
+            682.7867756719174,
+            646.3763610176418,
+            655.538102854853,
+            540.2267704839292,
+            642.3151182091755,
+            523.123492365298,
+            564.3130592677904,
+            929.8810544221298,
+            784.2490154763926,
+            686.0758325327997,
+            505.23268658181894,
+            511.0260921975841,
+            501.0977206022843
+          ],
+          "host_time_note": "host wall time of the submission loop (includes backpressure while the queue is full); the final device wait after the last call is excluded and is not part of the host number",
+          "host_us_median": 566.2334758950317,
+          "host_us_samples": [
+            495.6981815073801,
+            436.9582090040912,
+            1454.9016385622647,
+            444.65156110084575,
+            415.62687281681144,
+            454.116268488376,
+            564.5108733164227,
+            747.2051024113013,
+            651.0756059509257,
+            551.4394775356935,
+            784.8811295369397,
+            807.0690395391506,
+            830.4714751632317,
+            507.8257830894512,
+            722.5750014185905,
+            520.2390982404999,
+            567.9560784736406,
+            680.2487794471824,
+            644.2011293509732,
+            653.243562935487,
+            537.7686542013417,
+            640.0088212736275,
+            520.8408136082733,
+            562.0437390778376,
+            927.1638548892478,
+            781.2449627596399,
+            683.3772741906021,
+            503.2768189583136,
+            509.07181170971495,
+            499.05689514201623
+          ],
+          "iters_per_batch": 23,
+          "timing_backend": "cuda_events",
+          "warmup": 20
+        },
+        "eager": {
+          "batch_label_order": [
+            [
+              "eager",
+              "candidate",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "eager",
+              "candidate",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "eager",
+              "candidate",
+              "compiled",
+              "compiled_candidate"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "eager",
+              "compiled",
+              "compiled_candidate",
+              "candidate"
+            ],
+            [
+              "eager",
+              "compiled_candidate",
+              "candidate",
+              "compiled"
+            ],
+            [
+              "compiled_candidate",
+              "eager",
+              "candidate",
+              "compiled"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "eager",
+              "compiled_candidate",
+              "candidate",
+              "compiled"
+            ],
+            [
+              "compiled_candidate",
+              "compiled",
+              "eager",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled",
+              "compiled_candidate"
+            ],
+            [
+              "eager",
+              "candidate",
+              "compiled",
+              "compiled_candidate"
+            ],
+            [
+              "compiled_candidate",
+              "candidate",
+              "eager",
+              "compiled"
+            ],
+            [
+              "candidate",
+              "compiled_candidate",
+              "compiled",
+              "eager"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "candidate",
+              "eager"
+            ],
+            [
+              "compiled_candidate",
+              "candidate",
+              "compiled",
+              "eager"
+            ],
+            [
+              "candidate",
+              "compiled_candidate",
+              "compiled",
+              "eager"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled",
+              "compiled_candidate"
+            ],
+            [
+              "compiled_candidate",
+              "eager",
+              "compiled",
+              "candidate"
+            ],
+            [
+              "eager",
+              "compiled_candidate",
+              "candidate",
+              "compiled"
+            ],
+            [
+              "eager",
+              "candidate",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "compiled_candidate",
+              "compiled",
+              "eager",
+              "candidate"
+            ],
+            [
+              "eager",
+              "candidate",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "candidate",
+              "eager"
+            ],
+            [
+              "candidate",
+              "compiled_candidate",
+              "eager",
+              "compiled"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "eager",
+              "compiled_candidate",
+              "candidate",
+              "compiled"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled_candidate",
+              "compiled"
+            ]
+          ],
+          "batches": 30,
+          "calibration_batch_ms": 37.96246337890625,
+          "gpu_state_split": {
+            "half_medians": [
+              1277.3026918110095,
+              1132.651780780993
+            ],
+            "state_shift_flag": false,
+            "state_shift_ratio": 1.1277099577155796
+          },
+          "gpu_us_median": 1179.6092485126696,
+          "gpu_us_samples": [
+            2500.341114244963,
+            882.4993936639083,
+            1234.0219397293895,
+            871.5368572034334,
+            1277.3026918110095,
+            1649.8862818667762,
+            2281.498959189967,
+            1310.8530546489515,
+            989.2109318783408,
+            1661.8980608488384,
+            992.2290601228412,
+            1522.2366734554894,
+            989.6420930561267,
+            1015.9158204731189,
+            1541.4433730276007,
+            1521.5292478862561,
+            1520.2585521497224,
+            1692.2996922543175,
+            972.2880313270971,
+            963.3886437667044,
+            1066.73853020919,
+            977.9991350675884,
+            2890.4075622558594,
+            1148.3688354492188,
+            1132.651780780993,
+            1211.628662912469,
+            1023.4879945453845,
+            939.8703324167352,
+            874.7739289936267,
+            1210.8496615761205
+          ],
+          "host_time_note": "host wall time of the submission loop (includes backpressure while the queue is full); the final device wait after the last call is excluded and is not part of the host number",
+          "host_us_median": 1177.85814463308,
+          "host_us_samples": [
+            2497.8646787961848,
+            880.8798891933341,
+            1229.8829020246078,
+            869.9770796259767,
+            1275.509669396438,
+            1647.7745099875488,
+            2279.549690061494,
+            1309.0816669558224,
+            987.0403936426891,
+            1659.7464411078315,
+            990.6229465023467,
+            1520.1193868721787,
+            987.7530514801804,
+            1014.259288479623,
+            1539.3366890126154,
+            1518.9946065411757,
+            1517.962921704901,
+            1690.1228135745775,
+            970.6687966459676,
+            961.7773742464028,
+            1065.195979256379,
+            976.2896592483709,
+            2888.311056028071,
+            1146.6944247092072,
+            1131.0000462751639,
+            1209.7474506222889,
+            1021.806395759708,
+            938.2610871015411,
+            873.281792002289,
+            1209.0218645569526
+          ],
+          "iters_per_batch": 38,
+          "timing_backend": "cuda_events",
+          "warmup": 20
+        }
+      },
+      "compiled_baseline": {
+        "compile_warmup_seconds": 2.892952413763851,
+        "status": "AVAILABLE"
+      },
+      "speedups": {
+        "against_compiled": {
+          "bootstrap_95_percent_interval": [
+            0.4482941358884007,
+            0.5531178387130619
+          ],
+          "bootstrap_resamples": 2000,
+          "bootstrap_seed": 20261005,
+          "median": 0.4904390011145632,
+          "metric": "median of within-round full-block baseline/candidate latency ratios",
+          "paired_ratio_samples": [
+            0.45628908471002066,
+            0.37698750635188166,
+            0.14529272665978368,
+            0.7217567080147258,
+            0.2494886261018888,
+            0.44494127288072166,
+            0.3364835368459953,
+            0.413058213348613,
+            0.6316228116424079,
+            0.5047022742974197,
+            0.5311569943235861,
+            0.5450304932141519,
+            0.4845688085968605,
+            0.6702532751047028,
+            0.38390167902919625,
+            0.3323634991785232,
+            1.2092940948325563,
+            0.5085824904498312,
+            0.7454497346211703,
+            0.4963091936322659,
+            0.63378676198445,
+            0.7090674599028912,
+            0.4640279541251003,
+            0.6245200662217587,
+            0.5612051842119719,
+            0.3130467143727042,
+            0.44326249956287544,
+            0.7323952956293657,
+            0.4630547685266318,
+            0.4516469988960798
+          ]
+        },
+        "against_eager": {
+          "bootstrap_95_percent_interval": [
+            1.3098149553203466,
+            1.5008461607177188
+          ],
+          "bootstrap_resamples": 2000,
+          "bootstrap_seed": 20261005,
+          "median": 1.4424228863630342,
+          "metric": "median of within-round full-block baseline/candidate latency ratios",
+          "paired_ratio_samples": [
+            2.4014920930175294,
+            0.8460541212651592,
+            0.5048516096979948,
+            1.2008169035119558,
+            0.821457037696887,
+            1.883984966754693,
+            2.167418897290324,
+            1.2491554808684187,
+            1.4735994637708727,
+            1.9173282591511245,
+            1.3794356376471897,
+            1.4644034097597247,
+            1.279497868468029,
+            1.4169933445193543,
+            1.7527827101151443,
+            1.4269442117171618,
+            2.036629579975096,
+            2.300720749683961,
+            1.2403733530986345,
+            1.3814632628498507,
+            1.7900396894315875,
+            1.4732951720651262,
+            3.720558313413227,
+            1.5280928576645652,
+            1.3401320421726646,
+            1.120601907502308,
+            1.1895073060391823,
+            1.4594984651198666,
+            1.136083120391662,
+            1.4579015610089063
+          ]
+        }
+      },
+      "compiled_candidate": {
+        "compile_warmup_seconds": 0.9958039000630379,
+        "full_block_max_abs_error": 0.0009765625,
+        "full_block_tolerance": {
+          "atol": 0.005,
+          "rtol": 0.005
+        },
+        "fullgraph": true,
+        "mode": "default",
+        "status": "AVAILABLE"
+      },
+      "compiled_candidate_speedups": {
+        "against_candidate": {
+          "bootstrap_95_percent_interval": [
+            1.2334215102654902,
+            1.536382993220196
+          ],
+          "bootstrap_resamples": 2000,
+          "bootstrap_seed": 20261005,
+          "median": 1.3551990471075528,
+          "metric": "median of within-round full-block baseline/candidate latency ratios",
+          "paired_ratio_samples": [
+            2.0920973011431445,
+            2.3773192542467045,
+            1.6773144550955081,
+            1.6240085103043795,
+            3.721367632363957,
+            1.9197271911696525,
+            1.8565578295463439,
+            1.3994962017906107,
+            1.0270265841726531,
+            1.5660109602206687,
+            0.9109764920261815,
+            1.2834201835059438,
+            0.9285230174128023,
+            1.40616558972137,
+            1.2120477250898418,
+            2.0419269400074262,
+            1.3092543208813483,
+            1.077279176456935,
+            1.2127102456265944,
+            1.0638104262382913,
+            1.1031110119801673,
+            1.0334763931997606,
+            1.4850693858323594,
+            1.3317157970368723,
+            0.9089111299660652,
+            1.378682297178233,
+            1.254132774904386,
+            1.2745969018152559,
+            1.5067550262197236,
+            1.6574467962910158
+          ]
+        },
+        "against_compiled": {
+          "bootstrap_95_percent_interval": [
+            0.6013872727723389,
+            0.8110262654760436
+          ],
+          "bootstrap_resamples": 2000,
+          "bootstrap_seed": 20261005,
+          "median": 0.6984236281424065,
+          "metric": "median of within-round full-block baseline/candidate latency ratios",
+          "paired_ratio_samples": [
+            0.9546011626629098,
+            0.89621965746078,
+            0.24370159064669564,
+            1.172139036185188,
+            0.9284388978185224,
+            0.8541658600227577,
+            0.6247011448448783,
+            0.5780734006997996,
+            0.6486934187266291,
+            0.7903692931980575,
+            0.4838715354040708,
+            0.6995031356172419,
+            0.4499332923024836,
+            0.9424870918502841,
+            0.46530715672550793,
+            0.6786619828477626,
+            1.5832735188758236,
+            0.5478853264722111,
+            0.9040145307747189,
+            0.5279788948239235,
+            0.6991371563923001,
+            0.732804480995756,
+            0.6891137088416088,
+            0.8316832377540297,
+            0.5100856381249171,
+            0.431591963295458,
+            0.5559100285878432,
+            0.933508774713258,
+            0.6977100998925131,
+            0.7485808713747594
+          ]
+        },
+        "against_eager": {
+          "bootstrap_95_percent_interval": [
+            1.6283764819555575,
+            2.2704252839868753
+          ],
+          "bootstrap_resamples": 2000,
+          "bootstrap_seed": 20261005,
+          "median": 1.9623746819571561,
+          "metric": "median of within-round full-block baseline/candidate latency ratios",
+          "paired_ratio_samples": [
+            5.024155126518574,
+            2.0113407526184393,
+            0.8467949026246823,
+            1.9501368706207693,
+            3.0569436314627745,
+            3.616737168433838,
+            4.023938523671053,
+            1.748188350921276,
+            1.5134258237152527,
+            3.0025570681714755,
+            1.2566334381597357,
+            1.8794448928805558,
+            1.1880432216031833,
+            1.9925272819273143,
+            2.1244562963718683,
+            2.9137158277929327,
+            2.6664660776171605,
+            2.4785185544769193,
+            1.5042134737049273,
+            1.4696150224848403,
+            1.9746124932935432,
+            1.5226157805444875,
+            5.52528724945406,
+            2.034985397891118,
+            1.2180609287548871,
+            1.5449540120575915,
+            1.4918000984919606,
+            1.8602722218459034,
+            1.7117989518535237,
+            2.4163942716018827
+          ]
+        }
+      }
+    },
+    "normal-s128": {
+      "status": "MEASURED_CLEAN",
+      "config": {
+        "batch": 1,
+        "head_dim": 64,
+        "heads": 8,
+        "mlp_dim": 1024,
+        "sequence": 128
+      },
+      "correctness": {
+        "full_block_max_abs_error": 0.00048828125,
+        "full_block_tolerance": {
+          "atol": 0.005,
+          "rtol": 0.005
+        },
+        "operators": {
+          "rope_k": {
+            "atol": 0.01,
+            "max_abs_error": 1.52587890625e-05,
+            "rtol": 0.002,
+            "task_id": "K10"
+          },
+          "rope_q": {
+            "atol": 0.01,
+            "max_abs_error": 3.0517578125e-05,
+            "rtol": 0.002,
+            "task_id": "K10"
+          },
+          "silu_mul": {
+            "atol": 0.01,
+            "max_abs_error": 7.62939453125e-06,
+            "rtol": 0.002,
+            "task_id": "K06"
+          },
+          "softmax": {
+            "atol": 1e-05,
+            "max_abs_error": 5.960464477539063e-08,
+            "rtol": 0.0001,
+            "task_id": "K04"
+          }
+        }
+      },
+      "input_weights_sha256": "cb63593d21885485f529a203e23f051537ee219aac29bad2c6067726a1800df7",
+      "samples": {
+        "candidate": {
+          "batch_label_order": [
+            [
+              "compiled",
+              "candidate",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "compiled_candidate",
+              "eager",
+              "compiled",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "compiled",
+              "candidate",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "eager",
+              "candidate",
+              "compiled",
+              "compiled_candidate"
+            ],
+            [
+              "candidate",
+              "compiled_candidate",
+              "eager",
+              "compiled"
+            ],
+            [
+              "compiled",
+              "candidate",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "compiled_candidate",
+              "compiled",
+              "eager",
+              "candidate"
+            ],
+            [
+              "eager",
+              "compiled_candidate",
+              "compiled",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "compiled_candidate",
+              "candidate",
+              "eager",
+              "compiled"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "candidate",
+              "compiled_candidate",
+              "eager",
+              "compiled"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "compiled_candidate",
+              "compiled",
+              "eager",
+              "candidate"
+            ],
+            [
+              "compiled_candidate",
+              "compiled",
+              "candidate",
+              "eager"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "eager",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "eager",
+              "compiled_candidate",
+              "candidate",
+              "compiled"
+            ],
+            [
+              "eager",
+              "compiled_candidate",
+              "compiled",
+              "candidate"
+            ],
+            [
+              "compiled_candidate",
+              "eager",
+              "compiled",
+              "candidate"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "eager",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "compiled_candidate",
+              "compiled",
+              "eager"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled",
+              "compiled_candidate"
+            ],
+            [
+              "compiled",
+              "eager",
+              "candidate",
+              "compiled_candidate"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled",
+              "compiled_candidate"
+            ]
+          ],
+          "batches": 30,
+          "calibration_batch_ms": 20.326400756835938,
+          "gpu_state_split": {
+            "half_medians": [
+              918.6847686767578,
+              832.6656341552734
+            ],
+            "state_shift_flag": false,
+            "state_shift_ratio": 1.1033057340102062
+          },
+          "gpu_us_median": 836.5808010101318,
+          "gpu_us_samples": [
+            771.011209487915,
+            730.6335926055908,
+            715.4160022735596,
+            1070.900821685791,
+            1015.6031608581543,
+            708.5055828094482,
+            656.3392162322998,
+            759.5647811889648,
+            700.1599788665771,
+            926.9248008728027,
+            947.2512245178223,
+            974.8880386352539,
+            939.9760246276855,
+            930.720043182373,
+            918.6847686767578,
+            634.2144012451172,
+            719.8256015777588,
+            713.2160186767578,
+            1109.660816192627,
+            720.4864025115967,
+            884.7855567932129,
+            2244.1471099853516,
+            840.4959678649902,
+            775.4703998565674,
+            788.4175777435303,
+            828.8895606994629,
+            898.4064102172852,
+            1604.2495727539062,
+            943.6160087585449,
+            832.6656341552734
+          ],
+          "host_time_note": "host wall time of the submission loop (includes backpressure while the queue is full); the final device wait after the last call is excluded and is not part of the host number",
+          "host_us_median": 833.5823426023126,
+          "host_us_samples": [
+            766.0212926566601,
+            727.877370081842,
+            712.5687552616,
+            1067.4009565263987,
+            1012.201514095068,
+            705.8324990794063,
+            654.0510104969144,
+            756.9887209683657,
+            696.9701033085585,
+            924.2501575499773,
+            943.9571993425488,
+            970.2547686174512,
+            936.7547929286957,
+            927.816005423665,
+            915.5728621408343,
+            631.2179379165173,
+            716.7903939262033,
+            710.3964453563094,
+            1106.3087964430451,
+            717.9237203672528,
+            881.6214976832271,
+            2238.9832651242614,
+            837.498833425343,
+            772.9124976322055,
+            785.2202514186502,
+            825.9007008746266,
+            895.2604606747627,
+            1600.5229903385043,
+            940.3092553839087,
+            829.6658517792821
+          ],
+          "iters_per_batch": 20,
+          "timing_backend": "cuda_events",
+          "warmup": 20
+        },
+        "compiled": {
+          "batch_label_order": [
+            [
+              "compiled",
+              "candidate",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "compiled_candidate",
+              "eager",
+              "compiled",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "compiled",
+              "candidate",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "eager",
+              "candidate",
+              "compiled",
+              "compiled_candidate"
+            ],
+            [
+              "candidate",
+              "compiled_candidate",
+              "eager",
+              "compiled"
+            ],
+            [
+              "compiled",
+              "candidate",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "compiled_candidate",
+              "compiled",
+              "eager",
+              "candidate"
+            ],
+            [
+              "eager",
+              "compiled_candidate",
+              "compiled",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "compiled_candidate",
+              "candidate",
+              "eager",
+              "compiled"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "candidate",
+              "compiled_candidate",
+              "eager",
+              "compiled"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "compiled_candidate",
+              "compiled",
+              "eager",
+              "candidate"
+            ],
+            [
+              "compiled_candidate",
+              "compiled",
+              "candidate",
+              "eager"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "eager",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "eager",
+              "compiled_candidate",
+              "candidate",
+              "compiled"
+            ],
+            [
+              "eager",
+              "compiled_candidate",
+              "compiled",
+              "candidate"
+            ],
+            [
+              "compiled_candidate",
+              "eager",
+              "compiled",
+              "candidate"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "eager",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "compiled_candidate",
+              "compiled",
+              "eager"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled",
+              "compiled_candidate"
+            ],
+            [
+              "compiled",
+              "eager",
+              "candidate",
+              "compiled_candidate"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled",
+              "compiled_candidate"
+            ]
+          ],
+          "batches": 30,
+          "calibration_batch_ms": 36.20851135253906,
+          "gpu_state_split": {
+            "half_medians": [
+              371.07592212910555,
+              464.04963123555086
+            ],
+            "state_shift_flag": true,
+            "state_shift_ratio": 1.2505517161366717
+          },
+          "gpu_us_median": 389.8707020039461,
+          "gpu_us_samples": [
+            630.1570425228197,
+            398.6262885891661,
+            369.7394156942562,
+            465.23070821956713,
+            374.0623629823023,
+            369.69535204829003,
+            353.56214095135124,
+            392.3572228879345,
+            356.6553544025032,
+            350.4692389040577,
+            334.4829325773278,
+            365.3381114103356,
+            371.07592212910555,
+            420.3729045634367,
+            513.5986950932717,
+            376.62529458805005,
+            474.1502100107621,
+            470.18319733288826,
+            330.0205542116749,
+            466.9227600097656,
+            464.04963123555086,
+            525.9494002984494,
+            492.8679174306441,
+            377.79329261001277,
+            377.78286058075577,
+            505.59510990064973,
+            392.92604096081794,
+            475.70251931949537,
+            387.38418111995776,
+            372.341233856824
+          ],
+          "host_time_note": "host wall time of the submission loop (includes backpressure while the queue is full); the final device wait after the last call is excluded and is not part of the host number",
+          "host_us_median": 389.2943068236417,
+          "host_us_samples": [
+            629.5289198050693,
+            398.0893584690532,
+            369.2015710914013,
+            464.7135810584438,
+            373.48338839959126,
+            369.12867134170875,
+            353.06258716297395,
+            391.8035820658718,
+            356.17258209659127,
+            349.4187448249788,
+            333.89627743436364,
+            364.3201103395954,
+            370.58346847794496,
+            419.7532140022638,
+            513.010316205268,
+            375.7450910171076,
+            473.589969000646,
+            469.6113637135345,
+            329.41632600007006,
+            466.3852718183581,
+            463.52906228632344,
+            525.154083092906,
+            492.1904289904906,
+            377.2520184592933,
+            377.24739510794075,
+            504.94348041105025,
+            392.4329423022514,
+            475.14388546803775,
+            386.78503158141154,
+            371.8321724813812
+          ],
+          "iters_per_batch": 98,
+          "timing_backend": "cuda_events",
+          "warmup": 20
+        },
+        "compiled_candidate": {
+          "batch_label_order": [
+            [
+              "compiled",
+              "candidate",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "compiled_candidate",
+              "eager",
+              "compiled",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "compiled",
+              "candidate",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "eager",
+              "candidate",
+              "compiled",
+              "compiled_candidate"
+            ],
+            [
+              "candidate",
+              "compiled_candidate",
+              "eager",
+              "compiled"
+            ],
+            [
+              "compiled",
+              "candidate",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "compiled_candidate",
+              "compiled",
+              "eager",
+              "candidate"
+            ],
+            [
+              "eager",
+              "compiled_candidate",
+              "compiled",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "compiled_candidate",
+              "candidate",
+              "eager",
+              "compiled"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "candidate",
+              "compiled_candidate",
+              "eager",
+              "compiled"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "compiled_candidate",
+              "compiled",
+              "eager",
+              "candidate"
+            ],
+            [
+              "compiled_candidate",
+              "compiled",
+              "candidate",
+              "eager"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "eager",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "eager",
+              "compiled_candidate",
+              "candidate",
+              "compiled"
+            ],
+            [
+              "eager",
+              "compiled_candidate",
+              "compiled",
+              "candidate"
+            ],
+            [
+              "compiled_candidate",
+              "eager",
+              "compiled",
+              "candidate"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "eager",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "compiled_candidate",
+              "compiled",
+              "eager"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled",
+              "compiled_candidate"
+            ],
+            [
+              "compiled",
+              "eager",
+              "candidate",
+              "compiled_candidate"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled",
+              "compiled_candidate"
+            ]
+          ],
+          "batches": 30,
+          "calibration_batch_ms": 32.0052490234375,
+          "gpu_state_split": {
+            "half_medians": [
+              617.5773844999426,
+              598.9345662734088
+            ],
+            "state_shift_flag": false,
+            "state_shift_ratio": 1.0311266359905225
+          },
+          "gpu_us_median": 612.4797708847943,
+          "gpu_us_samples": [
+            734.9308238309973,
+            531.2593123492072,
+            558.3491605870864,
+            734.3567118925207,
+            617.5773844999426,
+            612.0051776661593,
+            758.2291995777804,
+            809.0353012084961,
+            603.7233016070197,
+            448.75293619492476,
+            771.2386075188132,
+            484.18448953067553,
+            1146.5515809900621,
+            435.03764096428364,
+            634.6089419196634,
+            745.5774195053998,
+            516.3670708151425,
+            598.9345662734088,
+            631.4164890962488,
+            561.8734359741211,
+            523.3392715454102,
+            479.60847966811235,
+            658.5675407858456,
+            634.7746007582721,
+            485.63199884751265,
+            574.1153043859146,
+            666.1990670596851,
+            2447.1341301413145,
+            612.9543641034295,
+            549.225414500517
+          ],
+          "host_time_note": "host wall time of the submission loop (includes backpressure while the queue is full); the final device wait after the last call is excluded and is not part of the host number",
+          "host_us_median": 611.6382017567315,
+          "host_us_samples": [
+            733.8942412067862,
+            530.5056556073182,
+            557.4931787765202,
+            733.1295158056652,
+            616.7952190427219,
+            611.1571222872418,
+            757.3109982973513,
+            808.0357767860679,
+            602.8475609662778,
+            448.07765002855484,
+            770.290895803448,
+            483.42508756939105,
+            1145.5608353785733,
+            434.35991221271894,
+            633.6844252312885,
+            744.4657179910471,
+            515.5344123897307,
+            598.1556468588465,
+            630.1880006075781,
+            561.1293976578643,
+            522.5017666816711,
+            478.78813518978217,
+            657.1804543080575,
+            634.0111345600556,
+            484.8723765462637,
+            573.3394885764402,
+            665.1990868918159,
+            2446.1751762668,
+            612.1192812262212,
+            548.5067034468931
+          ],
+          "iters_per_batch": 68,
+          "timing_backend": "cuda_events",
+          "warmup": 20
+        },
+        "eager": {
+          "batch_label_order": [
+            [
+              "compiled",
+              "candidate",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "compiled_candidate",
+              "eager",
+              "compiled",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "compiled",
+              "candidate",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "eager",
+              "candidate",
+              "compiled",
+              "compiled_candidate"
+            ],
+            [
+              "candidate",
+              "compiled_candidate",
+              "eager",
+              "compiled"
+            ],
+            [
+              "compiled",
+              "candidate",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "compiled_candidate",
+              "compiled",
+              "eager",
+              "candidate"
+            ],
+            [
+              "eager",
+              "compiled_candidate",
+              "compiled",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "compiled_candidate",
+              "candidate",
+              "eager",
+              "compiled"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "candidate",
+              "compiled_candidate",
+              "eager",
+              "compiled"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "compiled_candidate",
+              "compiled",
+              "eager",
+              "candidate"
+            ],
+            [
+              "compiled_candidate",
+              "compiled",
+              "candidate",
+              "eager"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "eager",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "eager",
+              "compiled_candidate",
+              "candidate",
+              "compiled"
+            ],
+            [
+              "eager",
+              "compiled_candidate",
+              "compiled",
+              "candidate"
+            ],
+            [
+              "compiled_candidate",
+              "eager",
+              "compiled",
+              "candidate"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "eager",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "compiled_candidate",
+              "compiled",
+              "eager"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled",
+              "compiled_candidate"
+            ],
+            [
+              "compiled",
+              "eager",
+              "candidate",
+              "compiled_candidate"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled",
+              "compiled_candidate"
+            ]
+          ],
+          "batches": 30,
+          "calibration_batch_ms": 23.350271224975586,
+          "gpu_state_split": {
+            "half_medians": [
+              1089.8733139038086,
+              1333.2493305206299
+            ],
+            "state_shift_flag": false,
+            "state_shift_ratio": 1.22330670318468
+          },
+          "gpu_us_median": 1226.2446482976277,
+          "gpu_us_samples": [
+            1331.8920135498047,
+            1089.8733139038086,
+            992.9719765981039,
+            880.0026575724283,
+            912.8999710083008,
+            1278.2933712005615,
+            1255.7653586069744,
+            1025.318702061971,
+            1597.4760055541992,
+            1237.114667892456,
+            1090.9026463826497,
+            979.0293375651041,
+            1079.8933506011963,
+            1235.1573308308919,
+            1050.9226322174072,
+            2156.6720008850098,
+            908.3733558654785,
+            1379.5746167500813,
+            1317.3333009084065,
+            1033.941348393758,
+            1202.2573153177898,
+            1621.8454043070476,
+            1333.2493305206299,
+            1352.5759379069011,
+            1146.5333302815754,
+            1146.7853387196858,
+            1418.2826677958171,
+            1792.0427322387695,
+            1217.3319657643635,
+            1811.8826548258464
+          ],
+          "host_time_note": "host wall time of the submission loop (includes backpressure while the queue is full); the final device wait after the last call is excluded and is not part of the host number",
+          "host_us_median": 1223.3986247641346,
+          "host_us_samples": [
+            1328.8730018151302,
+            1082.9246408926945,
+            990.2828799871107,
+            877.6245910363892,
+            910.5436620302498,
+            1275.5240507734318,
+            1252.8644680666428,
+            1022.4007613336047,
+            1593.9549969819684,
+            1233.7806595799823,
+            1087.896836300691,
+            976.3089862341682,
+            1077.118543131898,
+            1232.4243240679305,
+            1048.192789312452,
+            2153.066045138985,
+            905.7816738883654,
+            1371.2282525375485,
+            1314.032085550328,
+            1027.4836095049977,
+            1199.5424865745008,
+            1618.0866320307057,
+            1330.1428019379575,
+            1349.5852472260594,
+            1143.2606649274628,
+            1143.9752803804975,
+            1415.1850482448936,
+            1788.6332352645695,
+            1214.3729254603386,
+            1805.0837873791654
+          ],
+          "iters_per_batch": 24,
+          "timing_backend": "cuda_events",
+          "warmup": 20
+        }
+      },
+      "compiled_baseline": {
+        "compile_warmup_seconds": 0.6511121913790703,
+        "status": "AVAILABLE"
+      },
+      "speedups": {
+        "against_compiled": {
+          "bootstrap_95_percent_interval": [
+            0.43442931296589177,
+            0.5315825374546108
+          ],
+          "bootstrap_resamples": 2000,
+          "bootstrap_seed": 20261005,
+          "median": 0.4982853731775788,
+          "metric": "median of within-round full-block baseline/candidate latency ratios",
+          "paired_ratio_samples": [
+            0.8173124265487048,
+            0.5455898724387721,
+            0.5168173685229868,
+            0.43442931296589177,
+            0.3683154773427751,
+            0.5217959618360822,
+            0.538688123773811,
+            0.5165553124695544,
+            0.5093912322436065,
+            0.37809889062635066,
+            0.3531089999356708,
+            0.3747487885088554,
+            0.39477168822054237,
+            0.45166417940895826,
+            0.5590586810675459,
+            0.5938453839090424,
+            0.6587015090481501,
+            0.6592437424571974,
+            0.2974066934651375,
+            0.6480660264816729,
+            0.5244769511354105,
+            0.23436493889292423,
+            0.5864012871859654,
+            0.48717951411155114,
+            0.47916595373479526,
+            0.6099667963896187,
+            0.43735890182015325,
+            0.29652650522629664,
+            0.41053159073637835,
+            0.44716776889028026
+          ]
+        },
+        "against_eager": {
+          "bootstrap_95_percent_interval": [
+            1.2619353269381486,
+            1.5351736805441007
+          ],
+          "bootstrap_resamples": 2000,
+          "bootstrap_seed": 20261005,
+          "median": 1.3711660794783291,
+          "metric": "median of within-round full-block baseline/candidate latency ratios",
+          "paired_ratio_samples": [
+            1.727461283519356,
+            1.4916824588055067,
+            1.387964447877157,
+            0.8217405755531548,
+            0.8988746847114257,
+            1.804210724962427,
+            1.9132871045184021,
+            1.349876570708051,
+            2.2815871426130387,
+            1.3346440474217274,
+            1.151650816749221,
+            1.0042479738859527,
+            1.1488520156978796,
+            1.327098669335162,
+            1.1439425884148708,
+            3.40054088436172,
+            1.2619353269381486,
+            1.93430122238369,
+            1.1871495160370964,
+            1.4350601826619707,
+            1.3588120941702653,
+            0.7227001282984671,
+            1.586264992927118,
+            1.7442006015407892,
+            1.4542209136977653,
+            1.383520064786393,
+            1.5786649022826948,
+            1.1170598158006622,
+            1.2900713367145278,
+            2.1760026840353195
+          ]
+        }
+      },
+      "compiled_candidate": {
+        "compile_warmup_seconds": 1.0631370292976499,
+        "full_block_max_abs_error": 0.0009765625,
+        "full_block_tolerance": {
+          "atol": 0.005,
+          "rtol": 0.005
+        },
+        "fullgraph": true,
+        "mode": "default",
+        "status": "AVAILABLE"
+      },
+      "compiled_candidate_speedups": {
+        "against_candidate": {
+          "bootstrap_95_percent_interval": [
+            1.2216468632018778,
+            1.4916120068871355
+          ],
+          "bootstrap_resamples": 2000,
+          "bootstrap_seed": 20261005,
+          "median": 1.3619208378742822,
+          "metric": "median of within-round full-block baseline/candidate latency ratios",
+          "paired_ratio_samples": [
+            1.0490935806295896,
+            1.375286184396013,
+            1.2813057720393497,
+            1.4582842429886123,
+            1.6444953885098892,
+            1.1576790665583694,
+            0.8656211295974647,
+            0.9388524580501807,
+            1.1597365498447014,
+            2.0655570718542875,
+            1.2282207027540637,
+            2.0134639991880405,
+            0.8198288155653705,
+            2.1394011817446037,
+            1.4476391805917166,
+            0.8506352052156321,
+            1.3940191818224088,
+            1.1908079093087114,
+            1.7574150110981308,
+            1.2822930510364634,
+            1.690653854774665,
+            4.679123087102828,
+            1.2762487001136675,
+            1.2216468632018778,
+            1.6234877018289142,
+            1.4437684457585747,
+            1.3485554913525515,
+            0.6555625835929417,
+            1.5394555680156963,
+            1.5160726582773414
+          ]
+        },
+        "against_compiled": {
+          "bootstrap_95_percent_interval": [
+            0.5996167936314567,
+            0.779452435208541
+          ],
+          "bootstrap_resamples": 2000,
+          "bootstrap_seed": 20261005,
+          "median": 0.6700699527280628,
+          "metric": "median of within-round full-block baseline/candidate latency ratios",
+          "paired_ratio_samples": [
+            0.8574372200610393,
+            0.7503422139114263,
+            0.6622010773786906,
+            0.6335214217905284,
+            0.6056931040070123,
+            0.6040722620323221,
+            0.4662998222018252,
+            0.4849692248309203,
+            0.5907596302033412,
+            0.7809848373935194,
+            0.43369578404977427,
+            0.7545431944019132,
+            0.32364520557258897,
+            0.966290879179232,
+            0.8093152509633079,
+            0.5051457900078241,
+            0.9182425387084882,
+            0.7850326626803059,
+            0.522666987496693,
+            0.8310105623702617,
+            0.8867089791775454,
+            1.096622396381325,
+            0.7483938805160699,
+            0.5951613252305914,
+            0.7779200330235626,
+            0.8806508135877767,
+            0.5898027487414891,
+            0.194391681869937,
+            0.6319951432054587,
+            0.677938828077435
+          ]
+        },
+        "against_eager": {
+          "bootstrap_95_percent_interval": [
+            1.77840685845041,
+            2.129857208323
+          ],
+          "bootstrap_resamples": 2000,
+          "bootstrap_seed": 20261005,
+          "median": 2.0232428884679736,
+          "metric": "median of within-round full-block baseline/candidate latency ratios",
+          "paired_ratio_samples": [
+            1.8122685433263077,
+            2.051490277101088,
+            1.77840685845041,
+            1.198331333153559,
+            1.47819527385622,
+            2.0886969879491013,
+            1.656181744657482,
+            1.2673349364736022,
+            2.646040000944076,
+            2.756783450560178,
+            1.4144813754750196,
+            2.0220171416768973,
+            0.941861987289481,
+            2.8391964614673366,
+            1.656016111336871,
+            2.892619793013179,
+            1.759162051971112,
+            2.3033811946000067,
+            2.0863143799014745,
+            1.8401677000465628,
+            2.297280904923394,
+            3.3816028553735324,
+            2.0244686352590504,
+            2.1307971936671333,
+            2.360909769130729,
+            1.9974826136124533,
+            2.1289172229788673,
+            0.7323026188741377,
+            1.9860075024426318,
+            3.2989781736040564
+          ]
+        }
+      }
+    },
+    "min-s33-mlp33": {
+      "status": "MEASURED_CLEAN",
+      "config": {
+        "batch": 1,
+        "head_dim": 64,
+        "heads": 8,
+        "mlp_dim": 33,
+        "sequence": 33
+      },
+      "correctness": {
+        "full_block_max_abs_error": 0.0001220703125,
+        "full_block_tolerance": {
+          "atol": 0.005,
+          "rtol": 0.005
+        },
+        "operators": {
+          "rope_k": {
+            "atol": 0.01,
+            "max_abs_error": 0.0,
+            "rtol": 0.002,
+            "task_id": "K10"
+          },
+          "rope_q": {
+            "atol": 0.01,
+            "max_abs_error": 9.5367431640625e-07,
+            "rtol": 0.002,
+            "task_id": "K10"
+          },
+          "silu_mul": {
+            "atol": 0.01,
+            "max_abs_error": 0.0,
+            "rtol": 0.002,
+            "task_id": "K06"
+          },
+          "softmax": {
+            "atol": 1e-05,
+            "max_abs_error": 5.960464477539063e-08,
+            "rtol": 0.0001,
+            "task_id": "K04"
+          }
+        }
+      },
+      "input_weights_sha256": "c7c987c036a46dbbefaee226ec8ddc2ba5e12c21c7385984c038e82eace56fff",
+      "samples": {
+        "candidate": {
+          "batch_label_order": [
+            [
+              "compiled",
+              "eager",
+              "compiled_candidate",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "candidate",
+              "compiled_candidate",
+              "eager",
+              "compiled"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "candidate",
+              "eager"
+            ],
+            [
+              "compiled_candidate",
+              "eager",
+              "compiled",
+              "candidate"
+            ],
+            [
+              "compiled_candidate",
+              "compiled",
+              "eager",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "eager",
+              "candidate",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "eager",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "compiled_candidate",
+              "eager",
+              "compiled",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "compiled_candidate",
+              "compiled",
+              "eager"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "candidate",
+              "eager"
+            ],
+            [
+              "compiled_candidate",
+              "candidate",
+              "eager",
+              "compiled"
+            ],
+            [
+              "compiled",
+              "candidate",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "eager",
+              "compiled_candidate",
+              "compiled",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled",
+              "compiled_candidate"
+            ],
+            [
+              "compiled_candidate",
+              "candidate",
+              "compiled",
+              "eager"
+            ],
+            [
+              "compiled_candidate",
+              "compiled",
+              "candidate",
+              "eager"
+            ],
+            [
+              "compiled_candidate",
+              "eager",
+              "candidate",
+              "compiled"
+            ],
+            [
+              "eager",
+              "compiled",
+              "candidate",
+              "compiled_candidate"
+            ],
+            [
+              "eager",
+              "compiled",
+              "compiled_candidate",
+              "candidate"
+            ],
+            [
+              "eager",
+              "compiled",
+              "compiled_candidate",
+              "candidate"
+            ],
+            [
+              "compiled",
+              "candidate",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "eager",
+              "compiled",
+              "compiled_candidate",
+              "candidate"
+            ]
+          ],
+          "batches": 30,
+          "calibration_batch_ms": 26.993663787841797,
+          "gpu_state_split": {
+            "half_medians": [
+              807.2013854980469,
+              862.5266033670176
+            ],
+            "state_shift_flag": false,
+            "state_shift_ratio": 1.0685395477051056
+          },
+          "gpu_us_median": 840.9711174342943,
+          "gpu_us_samples": [
+            869.5317973261294,
+            991.0566910453465,
+            667.8079936815345,
+            901.1199785315472,
+            907.2417383608611,
+            807.2013854980469,
+            652.5106015412704,
+            1797.099901282269,
+            622.5920138151749,
+            825.1832879107932,
+            720.6289042597232,
+            862.3638153076172,
+            799.8107412587042,
+            781.0671433158543,
+            599.2626107257346,
+            732.6497616975204,
+            1528.1196262525475,
+            1506.2184541121774,
+            886.0493535580842,
+            664.927980174189,
+            699.4824616805366,
+            1962.2066331946332,
+            1055.9881459111753,
+            862.5266033670176,
+            715.4135496720024,
+            847.6271422012993,
+            889.2737678859545,
+            733.6779055388077,
+            834.3150926672894,
+            1042.6768427309783
+          ],
+          "host_time_note": "host wall time of the submission loop (includes backpressure while the queue is full); the final device wait after the last call is excluded and is not part of the host number",
+          "host_us_median": 838.6276743334272,
+          "host_us_samples": [
+            867.9324578817772,
+            989.3904966504678,
+            666.6086998808643,
+            899.6440219166486,
+            905.8221729229326,
+            805.8614988365899,
+            651.2639254493558,
+            1794.784107124028,
+            621.35415678115,
+            823.2729590457419,
+            719.1768482975338,
+            861.036044585964,
+            798.5985291230937,
+            778.9398685259664,
+            597.6304857303267,
+            731.5360455085402,
+            1526.3220841955879,
+            1504.519265954909,
+            883.7609126677979,
+            663.5594991562159,
+            698.1464507787124,
+            1960.7512158868105,
+            1053.5533681673849,
+            861.389187933958,
+            714.1843924055929,
+            844.57128389698,
+            888.1283701276002,
+            732.4620028552802,
+            832.6840647698745,
+            1041.1539823626695
+          ],
+          "iters_per_batch": 46,
+          "timing_backend": "cuda_events",
+          "warmup": 20
+        },
+        "compiled": {
+          "batch_label_order": [
+            [
+              "compiled",
+              "eager",
+              "compiled_candidate",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "candidate",
+              "compiled_candidate",
+              "eager",
+              "compiled"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "candidate",
+              "eager"
+            ],
+            [
+              "compiled_candidate",
+              "eager",
+              "compiled",
+              "candidate"
+            ],
+            [
+              "compiled_candidate",
+              "compiled",
+              "eager",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "eager",
+              "candidate",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "eager",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "compiled_candidate",
+              "eager",
+              "compiled",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "compiled_candidate",
+              "compiled",
+              "eager"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "candidate",
+              "eager"
+            ],
+            [
+              "compiled_candidate",
+              "candidate",
+              "eager",
+              "compiled"
+            ],
+            [
+              "compiled",
+              "candidate",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "eager",
+              "compiled_candidate",
+              "compiled",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled",
+              "compiled_candidate"
+            ],
+            [
+              "compiled_candidate",
+              "candidate",
+              "compiled",
+              "eager"
+            ],
+            [
+              "compiled_candidate",
+              "compiled",
+              "candidate",
+              "eager"
+            ],
+            [
+              "compiled_candidate",
+              "eager",
+              "candidate",
+              "compiled"
+            ],
+            [
+              "eager",
+              "compiled",
+              "candidate",
+              "compiled_candidate"
+            ],
+            [
+              "eager",
+              "compiled",
+              "compiled_candidate",
+              "candidate"
+            ],
+            [
+              "eager",
+              "compiled",
+              "compiled_candidate",
+              "candidate"
+            ],
+            [
+              "compiled",
+              "candidate",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "eager",
+              "compiled",
+              "compiled_candidate",
+              "candidate"
+            ]
+          ],
+          "batches": 30,
+          "calibration_batch_ms": 30.152799606323242,
+          "gpu_state_split": {
+            "half_medians": [
+              393.86119398959846,
+              412.18380595362464
+            ],
+            "state_shift_flag": false,
+            "state_shift_ratio": 1.0465204804221206
+          },
+          "gpu_us_median": 403.0224999716115,
+          "gpu_us_samples": [
+            472.70624027695766,
+            389.17954023494275,
+            393.86119398959846,
+            507.60632891987643,
+            615.685973056527,
+            377.12966564089754,
+            463.91961740892987,
+            366.0561761190725,
+            316.30697915720384,
+            370.4736842665561,
+            414.24374247706214,
+            489.75589663483373,
+            332.2522806566815,
+            360.5075436969136,
+            414.32708917662154,
+            318.49972037381906,
+            364.7702239280523,
+            348.80112492760946,
+            370.8665980849155,
+            485.7421254002771,
+            412.18380595362464,
+            545.5062333927598,
+            470.12315794479014,
+            476.35051816008814,
+            571.9754418661428,
+            449.819520462391,
+            441.0105860510538,
+            374.30772116017897,
+            388.34491995878,
+            328.60873466314274
+          ],
+          "host_time_note": "host wall time of the submission loop (includes backpressure while the queue is full); the final device wait after the last call is excluded and is not part of the host number",
+          "host_us_median": 402.3813675049432,
+          "host_us_samples": [
+            472.01752597682696,
+            388.6034408974093,
+            393.2706990041012,
+            507.0087229183247,
+            614.8983226266018,
+            376.51602178812027,
+            463.2961286535097,
+            364.88843237071535,
+            315.7450091960125,
+            369.9028247230968,
+            413.63497676197875,
+            488.80502148423085,
+            331.67436134156793,
+            359.9796963985576,
+            413.61841871294865,
+            317.93238270248094,
+            364.20955777514814,
+            348.022218447092,
+            370.0725690916527,
+            485.07787395528584,
+            411.4920360057853,
+            544.8719508252865,
+            469.4563130913086,
+            475.6585803142814,
+            571.172397453771,
+            449.0622763283724,
+            440.22975922670474,
+            373.24660306060036,
+            387.7742443406998,
+            328.0319912402436
+          ],
+          "iters_per_batch": 86,
+          "timing_backend": "cuda_events",
+          "warmup": 20
+        },
+        "compiled_candidate": {
+          "batch_label_order": [
+            [
+              "compiled",
+              "eager",
+              "compiled_candidate",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "candidate",
+              "compiled_candidate",
+              "eager",
+              "compiled"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "candidate",
+              "eager"
+            ],
+            [
+              "compiled_candidate",
+              "eager",
+              "compiled",
+              "candidate"
+            ],
+            [
+              "compiled_candidate",
+              "compiled",
+              "eager",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "eager",
+              "candidate",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "eager",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "compiled_candidate",
+              "eager",
+              "compiled",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "compiled_candidate",
+              "compiled",
+              "eager"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "candidate",
+              "eager"
+            ],
+            [
+              "compiled_candidate",
+              "candidate",
+              "eager",
+              "compiled"
+            ],
+            [
+              "compiled",
+              "candidate",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "eager",
+              "compiled_candidate",
+              "compiled",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled",
+              "compiled_candidate"
+            ],
+            [
+              "compiled_candidate",
+              "candidate",
+              "compiled",
+              "eager"
+            ],
+            [
+              "compiled_candidate",
+              "compiled",
+              "candidate",
+              "eager"
+            ],
+            [
+              "compiled_candidate",
+              "eager",
+              "candidate",
+              "compiled"
+            ],
+            [
+              "eager",
+              "compiled",
+              "candidate",
+              "compiled_candidate"
+            ],
+            [
+              "eager",
+              "compiled",
+              "compiled_candidate",
+              "candidate"
+            ],
+            [
+              "eager",
+              "compiled",
+              "compiled_candidate",
+              "candidate"
+            ],
+            [
+              "compiled",
+              "candidate",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "eager",
+              "compiled",
+              "compiled_candidate",
+              "candidate"
+            ]
+          ],
+          "batches": 30,
+          "calibration_batch_ms": 31.677087783813477,
+          "gpu_state_split": {
+            "half_medians": [
+              640.7999992370605,
+              620.6079721450806
+            ],
+            "state_shift_flag": false,
+            "state_shift_ratio": 1.032535880939763
+          },
+          "gpu_us_median": 630.7039856910706,
+          "gpu_us_samples": [
+            570.6714987754822,
+            498.7039864063263,
+            648.7494707107544,
+            465.9999907016754,
+            888.8959884643555,
+            500.495970249176,
+            640.7999992370605,
+            445.9039866924286,
+            443.45301389694214,
+            728.0640006065369,
+            1127.0719766616821,
+            618.0160045623779,
+            649.3750214576721,
+            673.8855242729187,
+            811.5010261535645,
+            533.8854789733887,
+            642.5439715385437,
+            753.9650201797485,
+            673.8719940185547,
+            770.1594829559326,
+            617.5655126571655,
+            658.6574912071228,
+            512.4639868736267,
+            492.31651425361633,
+            494.4320023059845,
+            468.9599871635437,
+            620.6079721450806,
+            809.935986995697,
+            788.9289855957031,
+            545.713484287262
+          ],
+          "host_time_note": "host wall time of the submission loop (includes backpressure while the queue is full); the final device wait after the last call is excluded and is not part of the host number",
+          "host_us_median": 629.8576809058432,
+          "host_us_samples": [
+            569.8274544556625,
+            497.7345743100159,
+            647.9039366240613,
+            465.22862248821184,
+            887.7079671947286,
+            499.710782605689,
+            639.9480989784934,
+            445.148121798411,
+            442.68055353313684,
+            726.9784691743553,
+            1125.910392147489,
+            617.0504202600569,
+            648.4774858108722,
+            673.0198438162915,
+            810.570469184313,
+            533.0343847163022,
+            641.6508622351103,
+            752.8459536843002,
+            672.9520973749459,
+            767.7357134525664,
+            616.6782477521338,
+            657.4412836926058,
+            511.62252202630043,
+            490.76543655246496,
+            493.63129801349714,
+            468.2346771005541,
+            619.767262833193,
+            808.8314061751589,
+            787.9217955633067,
+            544.9497475638054
+          ],
+          "iters_per_batch": 64,
+          "timing_backend": "cuda_events",
+          "warmup": 20
+        },
+        "eager": {
+          "batch_label_order": [
+            [
+              "compiled",
+              "eager",
+              "compiled_candidate",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "candidate",
+              "compiled_candidate",
+              "eager",
+              "compiled"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "candidate",
+              "eager"
+            ],
+            [
+              "compiled_candidate",
+              "eager",
+              "compiled",
+              "candidate"
+            ],
+            [
+              "compiled_candidate",
+              "compiled",
+              "eager",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "eager",
+              "candidate",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "eager",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "compiled_candidate",
+              "eager",
+              "compiled",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "compiled_candidate",
+              "compiled",
+              "eager"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "candidate",
+              "eager"
+            ],
+            [
+              "compiled_candidate",
+              "candidate",
+              "eager",
+              "compiled"
+            ],
+            [
+              "compiled",
+              "candidate",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "eager",
+              "compiled_candidate",
+              "compiled",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled",
+              "compiled_candidate"
+            ],
+            [
+              "compiled_candidate",
+              "candidate",
+              "compiled",
+              "eager"
+            ],
+            [
+              "compiled_candidate",
+              "compiled",
+              "candidate",
+              "eager"
+            ],
+            [
+              "compiled_candidate",
+              "eager",
+              "candidate",
+              "compiled"
+            ],
+            [
+              "eager",
+              "compiled",
+              "candidate",
+              "compiled_candidate"
+            ],
+            [
+              "eager",
+              "compiled",
+              "compiled_candidate",
+              "candidate"
+            ],
+            [
+              "eager",
+              "compiled",
+              "compiled_candidate",
+              "candidate"
+            ],
+            [
+              "compiled",
+              "candidate",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "eager",
+              "compiled",
+              "compiled_candidate",
+              "candidate"
+            ]
+          ],
+          "batches": 30,
+          "calibration_batch_ms": 33.26985549926758,
+          "gpu_state_split": {
+            "half_medians": [
+              1223.4751383463542,
+              1210.9141031901042
+            ],
+            "state_shift_flag": false,
+            "state_shift_ratio": 1.0103731842937154
+          },
+          "gpu_us_median": 1215.4879887898765,
+          "gpu_us_samples": [
+            1162.7733866373699,
+            1339.5210266113281,
+            1556.3103993733723,
+            1305.2586873372395,
+            897.6042429606119,
+            1349.1840362548828,
+            1484.5279693603516,
+            1004.7829310099283,
+            1308.9791615804036,
+            1676.8683115641277,
+            1223.4751383463542,
+            1040.5258814493816,
+            979.857063293457,
+            1018.2389577229818,
+            1197.4933624267578,
+            943.9914703369141,
+            1220.0618743896484,
+            1304.8149108886719,
+            1191.219202677409,
+            1059.0570449829102,
+            1553.988265991211,
+            1059.225591023763,
+            1251.0208129882812,
+            1182.1739196777344,
+            1210.9141031901042,
+            1287.2020721435547,
+            1262.5237782796223,
+            1089.0581766764324,
+            1296.9301859537761,
+            1105.3396860758464
+          ],
+          "host_time_note": "host wall time of the submission loop (includes backpressure while the queue is full); the final device wait after the last call is excluded and is not part of the host number",
+          "host_us_median": 1212.3836980511746,
+          "host_us_samples": [
+            1160.02323726813,
+            1336.7009659608204,
+            1553.2870311290026,
+            1302.5387655943632,
+            892.7604649215937,
+            1345.9992750237386,
+            1481.6485966245334,
+            1002.3639692614476,
+            1305.7255651801825,
+            1673.956261947751,
+            1221.1601094653208,
+            1038.1980643918116,
+            977.3277056713899,
+            1016.0816988597313,
+            1191.9659096747637,
+            941.7271086325248,
+            1217.6146265119314,
+            1301.7836958169937,
+            1188.8461653143167,
+            1056.7400759706895,
+            1551.1036695291598,
+            1056.917601575454,
+            1248.4850051502387,
+            1180.036071067055,
+            1207.1527695904176,
+            1284.8818985124428,
+            1260.2039923270543,
+            1086.701328555743,
+            1294.6564393738906,
+            1103.3257003873587
+          ],
+          "iters_per_batch": 30,
+          "timing_backend": "cuda_events",
+          "warmup": 20
+        }
+      },
+      "compiled_baseline": {
+        "compile_warmup_seconds": 0.6209478210657835,
+        "status": "AVAILABLE"
+      },
+      "speedups": {
+        "against_compiled": {
+          "bootstrap_95_percent_interval": [
+            0.4470783245944402,
+            0.557789731872228
+          ],
+          "bootstrap_resamples": 2000,
+          "bootstrap_seed": 20261005,
+          "median": 0.5019853727272455,
+          "metric": "median of within-round full-block baseline/candidate latency ratios",
+          "paired_ratio_samples": [
+            0.5436330698090192,
+            0.3926915016581383,
+            0.5897820896367163,
+            0.5633060424951012,
+            0.6786349734844696,
+            0.4672064151725989,
+            0.7109763677603446,
+            0.20369272507214745,
+            0.5080485649324502,
+            0.44895926722477003,
+            0.5748364241684147,
+            0.5679225959407063,
+            0.41541362664597203,
+            0.46155768653441953,
+            0.6913948605517911,
+            0.4347230245948185,
+            0.2387052804384098,
+            0.23157406150172696,
+            0.4185620096619185,
+            0.7305184018170341,
+            0.5892696794188883,
+            0.2780065178480367,
+            0.4451973819641103,
+            0.5522734212493549,
+            0.7995032273688105,
+            0.5306808832173584,
+            0.49592218052204085,
+            0.5101799009270833,
+            0.4654655337916143,
+            0.31515875407998034
+          ]
+        },
+        "against_eager": {
+          "bootstrap_95_percent_interval": [
+            1.2960565604967123,
+            1.5736121732569353
+          ],
+          "bootstrap_resamples": 2000,
+          "bootstrap_seed": 20261005,
+          "median": 1.3951593394936066,
+          "metric": "median of within-round full-block baseline/candidate latency ratios",
+          "paired_ratio_samples": [
+            1.3372407889084432,
+            1.3516088824327783,
+            2.3304758464984,
+            1.4484849059325833,
+            0.9893771472445024,
+            1.6714342424256745,
+            2.2751016854803656,
+            0.5591135641891664,
+            2.102466996900786,
+            2.032116180890719,
+            1.6977880447401528,
+            1.2065973351145438,
+            1.2251111578614267,
+            1.3036509939469032,
+            1.9982781187975973,
+            1.2884621270465213,
+            0.7984073062274856,
+            0.8662853036532338,
+            1.3444163103261262,
+            1.5927394794026752,
+            2.221625774944646,
+            0.5398134799387855,
+            1.1846920988955034,
+            1.3705941533431196,
+            1.6926071693012739,
+            1.5185946839794124,
+            1.4197245256440933,
+            1.4843818635599173,
+            1.5544848671111955,
+            1.0600980483854823
+          ]
+        }
+      },
+      "compiled_candidate": {
+        "compile_warmup_seconds": 1.3381484639830887,
+        "full_block_max_abs_error": 0.0009765625,
+        "full_block_tolerance": {
+          "atol": 0.005,
+          "rtol": 0.005
+        },
+        "fullgraph": true,
+        "mode": "default",
+        "status": "AVAILABLE"
+      },
+      "compiled_candidate_speedups": {
+        "against_candidate": {
+          "bootstrap_95_percent_interval": [
+            1.14584757079394,
+            1.751975768423417
+          ],
+          "bootstrap_resamples": 2000,
+          "bootstrap_seed": 20261005,
+          "median": 1.3996692237433939,
+          "metric": "median of within-round full-block baseline/candidate latency ratios",
+          "paired_ratio_samples": [
+            1.5236993597751534,
+            1.9872644255100633,
+            1.0293773233447112,
+            1.9337338980944907,
+            1.0206388037909806,
+            1.6128029664178416,
+            1.0182749724066051,
+            4.03023959173941,
+            1.4039638796092713,
+            1.1333938873826312,
+            0.6393814407436352,
+            1.3953745678775162,
+            1.2316623135015947,
+            1.1590501875798238,
+            0.7384619260017216,
+            1.3722976004261,
+            2.3782335434468886,
+            1.9977298863985604,
+            1.3148630028000352,
+            0.8633640108177895,
+            1.1326449540080559,
+            2.979100153554002,
+            2.060609472976647,
+            1.751975768423417,
+            1.4469402189489773,
+            1.8074615434209749,
+            1.432907419497453,
+            0.9058467796451988,
+            1.0575287610168311,
+            1.910667177470946
+          ]
+        },
+        "against_compiled": {
+          "bootstrap_95_percent_interval": [
+            0.5821331342189842,
+            0.7669468718825787
+          ],
+          "bootstrap_resamples": 2000,
+          "bootstrap_seed": 20261005,
+          "median": 0.6800372582458307,
+          "metric": "median of within-round full-block baseline/candidate latency ratios",
+          "paired_ratio_samples": [
+            0.8283333604206038,
+            0.7803818514453443,
+            0.6071083087868936,
+            1.089283989374233,
+            0.6926411875479128,
+            0.7535118923198132,
+            0.7239694412629131,
+            0.8209304851350595,
+            0.7132818342524855,
+            0.5088476891563396,
+            0.36753974107672044,
+            0.7924647468986402,
+            0.5116493084548657,
+            0.5349685231566285,
+            0.5105687803507674,
+            0.5965693635014458,
+            0.5676969049365226,
+            0.46262242357669825,
+            0.5503517008820875,
+            0.6307032973689561,
+            0.6674333289437485,
+            0.8282092600100995,
+            0.9173779426196483,
+            0.967569651573168,
+            1.1568333748594406,
+            0.9591852882440528,
+            0.7106105719633875,
+            0.46214482029450504,
+            0.4922431892466838,
+            0.6021634871132561
+          ]
+        },
+        "against_eager": {
+          "bootstrap_95_percent_interval": [
+            1.6836552350876193,
+            2.3578090474963815
+          ],
+          "bootstrap_resamples": 2000,
+          "bootstrap_seed": 20261005,
+          "median": 2.029914176194535,
+          "metric": "median of within-round full-block baseline/candidate latency ratios",
+          "paired_ratio_samples": [
+            2.037552933925016,
+            2.686004249262074,
+            2.3989389889880233,
+            2.8009843634800458,
+            1.0097967080617618,
+            2.6956941043564857,
+            2.3166791060047403,
+            2.2533616226737125,
+            2.951787721719281,
+            2.303188057872878,
+            1.0855341661232785,
+            1.6836552350876193,
+            1.5089232429882222,
+            1.510996929072782,
+            1.4756523082943707,
+            1.76815348518585,
+            1.898799037003278,
+            1.7306040412559172,
+            1.7677232668087544,
+            1.3751139451249317,
+            2.51631322368529,
+            1.608158420976156,
+            2.441187761544661,
+            2.4012477449999547,
+            2.4491013881433936,
+            2.744801491336317,
+            2.0343338064379233,
+            1.34462253086949,
+            1.643912455535516,
+            2.0254945459511475
+          ]
+        }
+      }
+    },
+    "boundary-b2-d128-rows2048": {
+      "status": "MEASURED_CLEAN",
+      "config": {
+        "batch": 2,
+        "head_dim": 128,
+        "heads": 8,
+        "mlp_dim": 1024,
+        "sequence": 128
+      },
+      "correctness": {
+        "full_block_max_abs_error": 0.00048828125,
+        "full_block_tolerance": {
+          "atol": 0.005,
+          "rtol": 0.005
+        },
+        "operators": {
+          "rope_k": {
+            "atol": 0.01,
+            "max_abs_error": 0.000244140625,
+            "rtol": 0.002,
+            "task_id": "K10"
+          },
+          "rope_q": {
+            "atol": 0.01,
+            "max_abs_error": 6.103515625e-05,
+            "rtol": 0.002,
+            "task_id": "K10"
+          },
+          "silu_mul": {
+            "atol": 0.01,
+            "max_abs_error": 6.103515625e-05,
+            "rtol": 0.002,
+            "task_id": "K06"
+          },
+          "softmax": {
+            "atol": 1e-05,
+            "max_abs_error": 5.960464477539063e-08,
+            "rtol": 0.0001,
+            "task_id": "K04"
+          }
+        }
+      },
+      "input_weights_sha256": "caba2fd1a98caa7ca6f985beebfa6bde146fd4cf39b211d2453ff22e052efb6b",
+      "samples": {
+        "candidate": {
+          "batch_label_order": [
+            [
+              "compiled_candidate",
+              "candidate",
+              "eager",
+              "compiled"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "eager",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "compiled_candidate",
+              "compiled",
+              "eager"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "compiled",
+              "candidate",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "compiled_candidate",
+              "compiled",
+              "candidate",
+              "eager"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "eager",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "compiled_candidate",
+              "candidate",
+              "compiled",
+              "eager"
+            ],
+            [
+              "eager",
+              "compiled",
+              "candidate",
+              "compiled_candidate"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "compiled_candidate",
+              "candidate",
+              "eager",
+              "compiled"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "candidate",
+              "eager"
+            ],
+            [
+              "compiled_candidate",
+              "candidate",
+              "eager",
+              "compiled"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "compiled_candidate",
+              "candidate",
+              "eager",
+              "compiled"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "eager",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "compiled_candidate",
+              "candidate",
+              "compiled",
+              "eager"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "compiled_candidate",
+              "eager",
+              "candidate",
+              "compiled"
+            ],
+            [
+              "eager",
+              "compiled_candidate",
+              "candidate",
+              "compiled"
+            ],
+            [
+              "compiled_candidate",
+              "candidate",
+              "compiled",
+              "eager"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "eager",
+              "compiled",
+              "candidate",
+              "compiled_candidate"
+            ],
+            [
+              "compiled_candidate",
+              "compiled",
+              "eager",
+              "candidate"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "candidate",
+              "eager"
+            ],
+            [
+              "compiled",
+              "eager",
+              "candidate",
+              "compiled_candidate"
+            ]
+          ],
+          "batches": 30,
+          "calibration_batch_ms": 29.71955108642578,
+          "gpu_state_split": {
+            "half_medians": [
+              897.4178754366361,
+              926.2535388653095
+            ],
+            "state_shift_flag": false,
+            "state_shift_ratio": 1.032131813080549
+          },
+          "gpu_us_median": 913.2282917316143,
+          "gpu_us_samples": [
+            715.2553705068735,
+            804.3028024526743,
+            602.3470805241511,
+            954.3680044320913,
+            899.4658543513372,
+            1060.67444727971,
+            674.6892195481521,
+            876.8590780404897,
+            957.2824331430288,
+            836.1747448260968,
+            674.2646143986628,
+            940.1427782498873,
+            1109.7514079167292,
+            905.7673674363357,
+            897.4178754366361,
+            907.1802726158729,
+            1148.577249967135,
+            739.2098353459285,
+            857.796889085036,
+            935.8547650850736,
+            1086.7396868192232,
+            940.898455106295,
+            926.2535388653095,
+            919.2763108473557,
+            892.6560328556941,
+            950.4369588998647,
+            1045.3070860642654,
+            658.8651950542743,
+            921.599974999061,
+            1086.776586679312
+          ],
+          "host_time_note": "host wall time of the submission loop (includes backpressure while the queue is full); the final device wait after the last call is excluded and is not part of the host number",
+          "host_us_median": 910.8874230430677,
+          "host_us_samples": [
+            713.1760402654226,
+            802.1081941059002,
+            600.957741531042,
+            951.8368886067317,
+            897.0576589210675,
+            1058.2840858170619,
+            672.7944128215313,
+            874.5482012342948,
+            954.4577019718977,
+            834.0613880696205,
+            672.2622694304356,
+            937.7910397373713,
+            1107.252543219007,
+            903.2806489043511,
+            895.0207310800369,
+            904.8093432703844,
+            1145.8374165858213,
+            736.9513444315928,
+            855.5701933801174,
+            933.5201018704818,
+            1084.0671602636576,
+            938.6173019615503,
+            923.8257681807646,
+            916.9655028157509,
+            890.4077291775209,
+            948.1663135095284,
+            1042.6808148622513,
+            656.8508151058967,
+            919.4806468887971,
+            1083.9544165019806
+          ],
+          "iters_per_batch": 26,
+          "timing_backend": "cuda_events",
+          "warmup": 20
+        },
+        "compiled": {
+          "batch_label_order": [
+            [
+              "compiled_candidate",
+              "candidate",
+              "eager",
+              "compiled"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "eager",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "compiled_candidate",
+              "compiled",
+              "eager"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "compiled",
+              "candidate",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "compiled_candidate",
+              "compiled",
+              "candidate",
+              "eager"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "eager",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "compiled_candidate",
+              "candidate",
+              "compiled",
+              "eager"
+            ],
+            [
+              "eager",
+              "compiled",
+              "candidate",
+              "compiled_candidate"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "compiled_candidate",
+              "candidate",
+              "eager",
+              "compiled"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "candidate",
+              "eager"
+            ],
+            [
+              "compiled_candidate",
+              "candidate",
+              "eager",
+              "compiled"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "compiled_candidate",
+              "candidate",
+              "eager",
+              "compiled"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "eager",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "compiled_candidate",
+              "candidate",
+              "compiled",
+              "eager"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "compiled_candidate",
+              "eager",
+              "candidate",
+              "compiled"
+            ],
+            [
+              "eager",
+              "compiled_candidate",
+              "candidate",
+              "compiled"
+            ],
+            [
+              "compiled_candidate",
+              "candidate",
+              "compiled",
+              "eager"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "eager",
+              "compiled",
+              "candidate",
+              "compiled_candidate"
+            ],
+            [
+              "compiled_candidate",
+              "compiled",
+              "eager",
+              "candidate"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "candidate",
+              "eager"
+            ],
+            [
+              "compiled",
+              "eager",
+              "candidate",
+              "compiled_candidate"
+            ]
+          ],
+          "batches": 30,
+          "calibration_batch_ms": 34.479103088378906,
+          "gpu_state_split": {
+            "half_medians": [
+              450.9233659313571,
+              445.8033653997606
+            ],
+            "state_shift_flag": false,
+            "state_shift_ratio": 1.0114848853305658
+          },
+          "gpu_us_median": 449.19743076447514,
+          "gpu_us_samples": [
+            334.6838797292402,
+            396.4201404202369,
+            550.8294259348223,
+            451.33729134836506,
+            552.2167451920047,
+            450.9233659313571,
+            458.07484657533706,
+            590.6472359934161,
+            452.86812320832286,
+            450.8706984981414,
+            505.7089098038212,
+            315.90400203581777,
+            432.8216737316501,
+            439.19689424576296,
+            326.0944427982453,
+            437.9251541629914,
+            345.6474734890846,
+            447.58710553569176,
+            1484.8526985414567,
+            425.22427343553113,
+            445.8033653997606,
+            391.38735494306013,
+            329.6645072198683,
+            438.50323461717176,
+            450.8077559932586,
+            503.62633120629096,
+            521.9102059641192,
+            458.834586604949,
+            349.4812750047253,
+            492.29624963575793
+          ],
+          "host_time_note": "host wall time of the submission loop (includes backpressure while the queue is full); the final device wait after the last call is excluded and is not part of the host number",
+          "host_us_median": 448.2494269107138,
+          "host_us_samples": [
+            333.75054537769284,
+            395.5186074299197,
+            549.7815192586953,
+            450.50638577630446,
+            551.2343223897681,
+            449.96196764611426,
+            457.2418082745806,
+            589.637626563349,
+            451.9738872805911,
+            449.86859504734315,
+            504.55380621696673,
+            315.1260316371918,
+            431.8705008875939,
+            438.2591484294784,
+            325.294564508142,
+            436.9242927960811,
+            344.8585198531228,
+            446.63025877408444,
+            1483.6154652819519,
+            424.38709868058083,
+            444.9219502989323,
+            390.6092080738275,
+            328.92884055693304,
+            437.67363193535033,
+            449.9409302708603,
+            502.4419346403691,
+            520.9611939086068,
+            457.7888551378442,
+            348.7020505652312,
+            491.38929124080363
+          ],
+          "iters_per_batch": 62,
+          "timing_backend": "cuda_events",
+          "warmup": 20
+        },
+        "compiled_candidate": {
+          "batch_label_order": [
+            [
+              "compiled_candidate",
+              "candidate",
+              "eager",
+              "compiled"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "eager",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "compiled_candidate",
+              "compiled",
+              "eager"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "compiled",
+              "candidate",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "compiled_candidate",
+              "compiled",
+              "candidate",
+              "eager"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "eager",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "compiled_candidate",
+              "candidate",
+              "compiled",
+              "eager"
+            ],
+            [
+              "eager",
+              "compiled",
+              "candidate",
+              "compiled_candidate"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "compiled_candidate",
+              "candidate",
+              "eager",
+              "compiled"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "candidate",
+              "eager"
+            ],
+            [
+              "compiled_candidate",
+              "candidate",
+              "eager",
+              "compiled"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "compiled_candidate",
+              "candidate",
+              "eager",
+              "compiled"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "eager",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "compiled_candidate",
+              "candidate",
+              "compiled",
+              "eager"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "compiled_candidate",
+              "eager",
+              "candidate",
+              "compiled"
+            ],
+            [
+              "eager",
+              "compiled_candidate",
+              "candidate",
+              "compiled"
+            ],
+            [
+              "compiled_candidate",
+              "candidate",
+              "compiled",
+              "eager"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "eager",
+              "compiled",
+              "candidate",
+              "compiled_candidate"
+            ],
+            [
+              "compiled_candidate",
+              "compiled",
+              "eager",
+              "candidate"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "candidate",
+              "eager"
+            ],
+            [
+              "compiled",
+              "eager",
+              "candidate",
+              "compiled_candidate"
+            ]
+          ],
+          "batches": 30,
+          "calibration_batch_ms": 33.74284744262695,
+          "gpu_state_split": {
+            "half_medians": [
+              550.7565907069614,
+              588.4342647734143
+            ],
+            "state_shift_flag": false,
+            "state_shift_ratio": 1.0684107547729733
+          },
+          "gpu_us_median": 577.2870381673176,
+          "gpu_us_samples": [
+            468.96761939639134,
+            524.3028459094819,
+            719.0430504935129,
+            397.89712996709915,
+            451.1451267060779,
+            536.3200051443918,
+            423.64343007405597,
+            550.7565907069614,
+            590.0922048659552,
+            567.3569724673316,
+            727.8689429873511,
+            597.4796385992141,
+            555.1176979428246,
+            612.59583064488,
+            530.4556347074963,
+            672.8544689360119,
+            757.8941072736468,
+            597.9283650716146,
+            585.0704738071987,
+            754.8342659359887,
+            667.0712516421363,
+            401.28685179210845,
+            446.71998705182756,
+            529.700551714216,
+            580.827031816755,
+            588.4342647734143,
+            682.0544742402576,
+            559.10401117234,
+            573.7470445178803,
+            598.8594236828033
+          ],
+          "host_time_note": "host wall time of the submission loop (includes backpressure while the queue is full); the final device wait after the last call is excluded and is not part of the host number",
+          "host_us_median": 576.6353985693838,
+          "host_us_samples": [
+            468.3438455685973,
+            523.4011748273458,
+            718.3029083535075,
+            397.3416695814757,
+            450.32302538553876,
+            535.6297007806245,
+            423.11045052927165,
+            550.1653788433898,
+            589.4205921019117,
+            566.7589527244369,
+            727.0577729546598,
+            596.8233925246057,
+            554.4642141709725,
+            611.9405928378304,
+            529.8792883487685,
+            672.1573438318003,
+            756.9920715121996,
+            597.2276031527491,
+            584.4358820468187,
+            753.3326279371977,
+            666.2669281164805,
+            400.7597620199834,
+            446.1372127046897,
+            529.1255601193933,
+            580.1998666443285,
+            587.7421049046375,
+            681.2233810446093,
+            558.4461669925423,
+            573.070930494439,
+            598.0463022188771
+          ],
+          "iters_per_batch": 84,
+          "timing_backend": "cuda_events",
+          "warmup": 20
+        },
+        "eager": {
+          "batch_label_order": [
+            [
+              "compiled_candidate",
+              "candidate",
+              "eager",
+              "compiled"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "eager",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "compiled_candidate",
+              "compiled",
+              "eager"
+            ],
+            [
+              "candidate",
+              "eager",
+              "compiled_candidate",
+              "compiled"
+            ],
+            [
+              "compiled",
+              "candidate",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "compiled_candidate",
+              "compiled",
+              "candidate",
+              "eager"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "eager",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "compiled_candidate",
+              "candidate",
+              "compiled",
+              "eager"
+            ],
+            [
+              "eager",
+              "compiled",
+              "candidate",
+              "compiled_candidate"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "compiled_candidate",
+              "candidate",
+              "eager",
+              "compiled"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "candidate",
+              "eager"
+            ],
+            [
+              "compiled_candidate",
+              "candidate",
+              "eager",
+              "compiled"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "compiled_candidate",
+              "candidate",
+              "eager",
+              "compiled"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "eager",
+              "candidate"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "compiled_candidate",
+              "candidate",
+              "compiled",
+              "eager"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "eager",
+              "compiled_candidate"
+            ],
+            [
+              "compiled_candidate",
+              "eager",
+              "candidate",
+              "compiled"
+            ],
+            [
+              "eager",
+              "compiled_candidate",
+              "candidate",
+              "compiled"
+            ],
+            [
+              "compiled_candidate",
+              "candidate",
+              "compiled",
+              "eager"
+            ],
+            [
+              "candidate",
+              "compiled",
+              "compiled_candidate",
+              "eager"
+            ],
+            [
+              "eager",
+              "compiled",
+              "candidate",
+              "compiled_candidate"
+            ],
+            [
+              "compiled_candidate",
+              "compiled",
+              "eager",
+              "candidate"
+            ],
+            [
+              "compiled",
+              "compiled_candidate",
+              "candidate",
+              "eager"
+            ],
+            [
+              "compiled",
+              "eager",
+              "candidate",
+              "compiled_candidate"
+            ]
+          ],
+          "batches": 30,
+          "calibration_batch_ms": 31.653888702392578,
+          "gpu_state_split": {
+            "half_medians": [
+              1274.4411740984235,
+              1330.1691327776227
+            ],
+            "state_shift_flag": false,
+            "state_shift_ratio": 1.0437273683649013
+          },
+          "gpu_us_median": 1308.3440235682897,
+          "gpu_us_samples": [
+            1298.541750226702,
+            950.674261365618,
+            1027.5474275861468,
+            1251.077651977539,
+            1129.6913964407784,
+            1669.229779924665,
+            1303.4445898873466,
+            1238.6011396135602,
+            1565.293720790318,
+            1474.4502476283483,
+            1274.4411740984235,
+            1336.6857256208148,
+            1381.422860281808,
+            1234.6811294555664,
+            1009.7371510096958,
+            1805.8240073067802,
+            994.3039757864816,
+            1151.2320382254463,
+            1250.1211166381836,
+            1536.292621067592,
+            1318.0343082972936,
+            1542.4731118338448,
+            1345.766884940011,
+            1313.2434572492327,
+            1587.6102447509766,
+            916.4103099278042,
+            1330.1691327776227,
+            993.6422620500837,
+            1702.6605606079102,
+            1363.565717424665
+          ],
+          "host_time_note": "host wall time of the submission loop (includes backpressure while the queue is full); the final device wait after the last call is excluded and is not part of the host number",
+          "host_us_median": 1305.9840338038548,
+          "host_us_samples": [
+            1296.281531852271,
+            948.6507458080139,
+            1025.6776419867363,
+            1248.7095581101519,
+            1127.157559884446,
+            1662.7304389008455,
+            1301.2117207316417,
+            1236.1618989546384,
+            1558.2958835044078,
+            1471.9189743378333,
+            1271.886534855834,
+            1334.2732064692038,
+            1378.8195459970407,
+            1232.2103471628257,
+            1007.6310718432069,
+            1802.6329676753708,
+            992.0987234051738,
+            1148.798453089382,
+            1247.497574825372,
+            1533.2670716036644,
+            1315.2548843728644,
+            1539.376863677587,
+            1339.7247031597155,
+            1310.7563468760677,
+            1584.8581013934952,
+            914.2042503559163,
+            1325.8103114951934,
+            991.0643899015018,
+            1699.7378219717316,
+            1359.363884798118
+          ],
+          "iters_per_batch": 28,
+          "timing_backend": "cuda_events",
+          "warmup": 20
+        }
+      },
+      "compiled_baseline": {
+        "compile_warmup_seconds": 1.5089222881942987,
+        "status": "AVAILABLE"
+      },
+      "speedups": {
+        "against_compiled": {
+          "bootstrap_95_percent_interval": [
+            0.45367873865538055,
+            0.5298892540850272
+          ],
+          "bootstrap_resamples": 2000,
+          "bootstrap_seed": 20261005,
+          "median": 0.47987070147163774,
+          "metric": "median of within-round full-block baseline/candidate latency ratios",
+          "paired_ratio_samples": [
+            0.46792221845473564,
+            0.49287424986134193,
+            0.9144718115932444,
+            0.4729174587290769,
+            0.6139385308742419,
+            0.425128904620858,
+            0.67894199774248,
+            0.6735942533814337,
+            0.47307681362273496,
+            0.5392063097910367,
+            0.7500154968903913,
+            0.33601704905278906,
+            0.39001678271727597,
+            0.48488928839295276,
+            0.3633696761829989,
+            0.4827322279619521,
+            0.30093532977339993,
+            0.6054939803746444,
+            1.731007325201734,
+            0.4543699399734063,
+            0.41022093037255486,
+            0.415971939181093,
+            0.355911738403416,
+            0.4770091749813234,
+            0.5050184386824569,
+            0.5298892540850272,
+            0.49928888163304025,
+            0.6964013125130283,
+            0.37921146320026905,
+            0.45298753733735486
+          ]
+        },
+        "against_eager": {
+          "bootstrap_95_percent_interval": [
+            1.3370145938316425,
+            1.6372524941603055
+          ],
+          "bootstrap_resamples": 2000,
+          "bootstrap_seed": 20261005,
+          "median": 1.4551383884353717,
+          "metric": "median of within-round full-block baseline/candidate latency ratios",
+          "paired_ratio_samples": [
+            1.8154938834034566,
+            1.181985513996212,
+            1.705905881858005,
+            1.3108964740723978,
+            1.2559580677528572,
+            1.5737437478631682,
+            1.9319185072503158,
+            1.4125429851070854,
+            1.635143053498868,
+            1.763327888998844,
+            1.8901202093113296,
+            1.4217901328871638,
+            1.2448038816865044,
+            1.363132713590887,
+            1.1251582775954971,
+            1.9905900313502736,
+            0.8656831534970175,
+            1.5573819275371297,
+            1.4573626140934341,
+            1.6415929889804386,
+            1.2128335095178555,
+            1.639361934821743,
+            1.4529141627773094,
+            1.4285622742075583,
+            1.7785240745778146,
+            0.9641989417041962,
+            1.2725151780859965,
+            1.5081116281582183,
+            1.8475049986949543,
+            1.2546881614289216
+          ]
+        }
+      },
+      "compiled_candidate": {
+        "compile_warmup_seconds": 1.8844099990092218,
+        "full_block_max_abs_error": 0.0009765625,
+        "full_block_tolerance": {
+          "atol": 0.005,
+          "rtol": 0.005
+        },
+        "fullgraph": true,
+        "mode": "default",
+        "status": "AVAILABLE"
+      },
+      "compiled_candidate_speedups": {
+        "against_candidate": {
+          "bootstrap_95_percent_interval": [
+            1.5203275933653941,
+            1.625689963158052
+          ],
+          "bootstrap_resamples": 2000,
+          "bootstrap_seed": 20261005,
+          "median": 1.582806724345563,
+          "metric": "median of within-round full-block baseline/candidate latency ratios",
+          "paired_ratio_samples": [
+            1.5251700563622694,
+            1.5340424121816285,
+            0.8377065602827705,
+            2.398529500604855,
+            1.993739488928008,
+            1.9776895083265595,
+            1.5925874725124651,
+            1.5920991102710855,
+            1.6222590728180932,
+            1.4738071186289046,
+            0.9263544225850836,
+            1.5735143384200405,
+            1.9991281345006409,
+            1.4785725304118276,
+            1.6917868653266168,
+            1.3482562938913099,
+            1.515485130368519,
+            1.2362849440290267,
+            1.4661428451569927,
+            1.23981489357087,
+            1.6291208534980104,
+            2.3447029248636806,
+            2.0734544361406586,
+            1.7354641369966397,
+            1.5368706757045665,
+            1.6151964897316868,
+            1.532585923182508,
+            1.178430456388165,
+            1.6062827404600952,
+            1.8147440679750293
+          ]
+        },
+        "against_compiled": {
+          "bootstrap_95_percent_interval": [
+            0.7327535368730692,
+            0.8213584813918133
+          ],
+          "bootstrap_resamples": 2000,
+          "bootstrap_seed": 20261005,
+          "median": 0.7667560944023433,
+          "metric": "median of within-round full-block baseline/candidate latency ratios",
+          "paired_ratio_samples": [
+            0.7136609562937674,
+            0.7560900031595036,
+            0.7660590357653305,
+            1.13430647611277,
+            1.2240334927784229,
+            0.8407729743550335,
+            1.08127452016726,
+            1.0724288114922969,
+            0.7674531530393559,
+            0.7946860977796523,
+            0.694780172551763,
+            0.5287276446381537,
+            0.7796935232575297,
+            0.7169439821087585,
+            0.6147440454243835,
+            0.6508467646138765,
+            0.4560630174741343,
+            0.7485630916373799,
+            2.537904004758866,
+            0.5633346187699313,
+            0.6682994722112844,
+            0.9753306224591259,
+            0.7379667728670964,
+            0.8278323161984416,
+            0.7761480291011728,
+            0.8558752631446778,
+            0.765203111592335,
+            0.8206605165340449,
+            0.6091208283232107,
+            0.8220564462495819
+          ]
+        },
+        "against_eager": {
+          "bootstrap_95_percent_interval": [
+            1.9828647172959497,
+            2.6526256538940194
+          ],
+          "bootstrap_resamples": 2000,
+          "bootstrap_seed": 20261005,
+          "median": 2.262923163960143,
+          "metric": "median of within-round full-block baseline/candidate latency ratios",
+          "paired_ratio_samples": [
+            2.7689369084758058,
+            1.813215909054491,
+            1.4290485484574156,
+            3.1442238653015333,
+            2.50405319611659,
+            3.112376498943506,
+            3.076749212561835,
+            2.248908429808654,
+            2.6526256538940194,
+            2.5988051952833753,
+            1.750921215112994,
+            2.2372071603220873,
+            2.4885224618150983,
+            2.015490585621219,
+            1.9035279954495814,
+            2.6838255383253062,
+            1.3119299467352583,
+            1.925367829117058,
+            2.1367017694523796,
+            2.035271436919469,
+            1.9758523621767161,
+            3.8438167234867238,
+            3.0125513161422033,
+            2.479218594353577,
+            2.7333614962532446,
+            1.557370746043625,
+            1.9502388489706806,
+            1.7772046742547876,
+            2.9676153923174557,
+            2.2769378981116315
+          ]
+        }
+      }
+    }
+  },
+  "raw_gpu_latency_samples": 480,
+  "raw_host_latency_samples": 480,
+  "clean_measurement": {
+    "snapshot_count": 770,
+    "all_snapshots_available_and_foreign_processes_zero": true
+  },
+  "accounting": {
+    "queue_job_kind": "application",
+    "official_queue_job_status": "complete",
+    "queue_report_sha256_matches": true,
+    "claim_at": "2026-10-05T14:20:20.295+00:00",
+    "finish_at": "2026-10-05T14:25:22.704+00:00",
+    "conservative_claim_to_finish_seconds": 302.409,
+    "note": "Includes compilation and host work; not CUDA elapsed time."
+  },
+  "conclusions": {
+    "all_four_cases_correct_and_measured": true,
+    "compiled_baseline_available_in_all_cases": true,
+    "beats_compiled_baseline": false,
+    "candidate_speedup_against_eager_range": [
+      1.9623746819571561,
+      2.262923163960143
+    ],
+    "candidate_speedup_against_compiled_range": [
+      0.6700699527280628,
+      0.7667560944023433
+    ]
+  },
+  "pretrained_model": false,
+  "text_quality_measured": false,
+  "harness_version_performance_causality_proven": false,
+  "independent_consistency_scope": "Read-only source/sample/CI/clean-snapshot/official-accounting consistency; not a fresh GPU reproduction.",
+  "limits": [
+    "Fixed random decoder computation, no pretrained text quality.",
+    "Four predeclared shapes and repeated fixed tensors; source contracts and tolerances preserved.",
+    "The strong torch.compile baseline and all raw paired samples are retained."
+  ]
+}

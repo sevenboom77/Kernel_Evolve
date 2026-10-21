@@ -1,0 +1,2735 @@
+diff --git a/docs/develop/architecture.md b/docs/develop/architecture.md
+index 052b5a9..9e8007c 100644
+--- a/docs/develop/architecture.md
++++ b/docs/develop/architecture.md
+@@ -75,6 +75,14 @@ When a tool text block is a complete JSON object or array matching its structure
+ 
+ ## Seams and extensions
+ 
++Core retains bounded DEV kernel evaluation state for `kernel_submit` / `kernel_get_job` workflows. A successful, unmodified submission receipt and a validated terminal candidate result produce ignorable system events in the same commit as their ordinary tool results. Identity checks bind the task, job, candidate and complete source hash to the current session, lane, workspace, turn and tool-registry snapshot; foreign jobs, held phases, contamination and replaced hook results contribute no memory. Each later primary request derives a `[kernel search state]` note from the durable observations, with at most four source outcomes and 2048 UTF-8 bytes. Failed compilation suggests inspecting its diagnostic, numerical failure suggests repairing correctness, and a runtime crash or timeout retains its failure status and suggests inspecting that cause first. Runtime failures may have no correctness counts and do not assert numerical correctness. A correct DEV result permits performance work. Replay and context compaction rebuild that state from the ledger. These facts do not establish final acceptance, alter submissions or numerics, inherit candidates into another turn, or add inference/evaluation calls; the request hook retains its existing final say. Correct DEV outcomes can also retain a positive finite observed speedup and genuine boolean measurement-floor/launch-bound warnings; absent warnings are not assumed false. The bounded projection keeps the best observed correct source and the latest source, references that retained row by index, and suggests comparing a slower correct revision or changing strategy for an observed slowdown. These noisy DEV measurements are search hints only: no official champion, score or final acceptance changes. Invalid JSON-compatible metrics preserve the correctness fact; non-JSON tool results retain the original rejection contract.
++
++An authenticated incorrect DEV observation may also retain an optional `numerical_failure_class`. The classifier accepts only bounded, anchored standard `first_failures[].problems` diagnostics; it never evaluates Python expressions or stores diagnostic text, coordinates or values. Scale and sparse pointwise categories require evidence from at least two distinct failed cases; output shape, dtype or arity diagnostics can identify a contract mismatch directly. Unknown formats and mixed categories give no class. The first authenticated classified incorrect DEV source already receives the corresponding bounded repair focus: check sum/mean and reduction normalization, check reference arithmetic/cast boundaries and the original per-coordinate tolerance, or repair the output contract. Two distinct source hashes repeating the latest category additionally suggest changing repair strategy; a first failure is not labeled a repeated failure. The global `max_tol` is not the tolerance at a failing coordinate. This optional schema-version-1 field preserves older events; unknown values are ignored, duplicate hashes do not establish repeated failures, and a corrected latest source clears the repair focus. Categories are hypotheses for the next search step, not mathematical root-cause claims or acceptance changes.
++
++An incorrect observation can additionally retain a `numerical_failure_fingerprint`: SHA256 over every bounded standard diagnostic, sorted by case and problem, together with the correctness counts. Free text, invalid/nonfinite numeric diagnostics, duplicate case identifiers or exceeded limits produce no fingerprint; original diagnostic text is never persisted in this field. Two different source hashes with the same fingerprint suggest changing the numerical repair strategy even when no error category was inferred. The note preserves an existing category-specific repair focus when both kinds of repetition apply. Polling the same job or source does not create repetition, and a corrected or changed latest diagnostic clears the exact-repeat suggestion. This optional schema-version-1 field retains older events, the four-fact/2048-byte note boundary, scope/trust checks, tool authorization and the original acceptance rules. Equality describes an observed repeated failure, not its mathematical cause.
++
++When a primary native kernel response reaches its output limit, Core can checkpoint once with `need_assistant` if that request actually disclosed `kernel_get_task`, `kernel_submit` and `kernel_get_job`, a durable provider-request cap has remaining allowance, and the turn is not cancelled. A trusted, ignorable `x/core/output-limit-continuation` event binds the recovery to the current session, lane, workspace, turn and registry snapshot. Replay, a second truncation, or a trusted current-turn marker with a changed scope cannot grant another recovery. Untrusted markers and other lanes cannot affect this decision. All truncated tool calls remain discarded; partial text, costs and request admissions remain recorded. The continuation requests shorter complete calls without raising output, step, request or candidate limits, and the next dispatch still passes ordinary admission. Uncapped, exhausted, undisclosed and ordinary workflows retain `OUTPUT_LIMIT` termination; compaction behavior is unchanged.
++
+ A seam supplies a required part of execution, such as approval, ledger, or sandbox behavior. Missing seams must be refused according to the contract rather than silently skipped. Extensions contribute optional features such as tools, observation hooks, or client slots. Both can be assembled through Cordis, but they have different permission surfaces.
+ 
+ Trusted backend Cordis rows may contribute tools, hooks, and constrained services. A browser module is a separate runtime surface bound to a row; see [plugin boundaries](plugins.md). Frontend and backend Contexts do not share memory. Ordinary `ctx.provide()` is not a cross-process proxy. Browsers call row services through declared relays without obtaining Host management objects.
+diff --git a/docs/develop/architecture.zh-CN.md b/docs/develop/architecture.zh-CN.md
+index adf956b..5712861 100644
+--- a/docs/develop/architecture.zh-CN.md
++++ b/docs/develop/architecture.zh-CN.md
+@@ -67,10 +67,18 @@ flowchart LR
+ 
+ ## 接缝与扩展
+ 
++Core 为 `kernel_submit` / `kernel_get_job` 工作流保存有界的 DEV 算子评测状态。成功且未被覆盖的提交回执、经校验的终结候选结果，与原工具结果在同一提交中产生可忽略的 system 事件。身份校验把任务、job、candidate 和完整源码哈希绑定到当前 session、lane、workspace、turn 与工具注册表快照；其他任务、保留集阶段、污染结果和被 hook 替换的结果不会形成记忆。后续主模型请求从持久观察重建 `[kernel search state]` 注记，最多四个源码结果、2048 UTF-8 字节。编译失败提示检查诊断，数值失败提示先修正确性，运行崩溃和超时保留失败事实并提示先检查相应诊断；这两类结果可以没有正确性计数，不代表数值正确。DEV 正确后允许继续优化性能。重放和上下文压缩都从账本重建状态。这些事实不代表最终验收、不改变提交或数值、不跨 turn 继承候选，也不增加模型或评测调用；请求 hook 保持原有最终决定权。 正确 DEV 结果还可保存正有限的实测加速比和真实布尔测量下限、启动限制警告；缺失警告不推断为 false。有界投影保留观测较快的正确源码与最新源码，用索引指向实际保留行，并在正确新版本变慢时提示比较旧版本、低于基线时提示调整策略。这些带噪声的 DEV 测量仅作搜索线索，不改变正式冠军、评分或最终验收。JSON 兼容的错误指标不丢弃正确性事实，非 JSON 工具结果保持原整体拒绝合同。
++
++原生算子工作流的主模型响应触到输出上限时，如果该请求实际披露了 `kernel_get_task`、`kernel_submit`、`kernel_get_job`，持久 provider 请求预算仍有余额且当前 turn 未取消，Core 允许一次 `need_assistant` checkpoint 续接。受信、可忽略的 `x/core/output-limit-continuation` 事件把恢复绑定到当前 session、lane、workspace、turn 与注册表快照；重放、第二次截断或当前 turn 受信标记的 scope 改变都不能再获恢复。不受信标记与其他 lane 不影响决定。半截工具调用仍全部丢弃，部分文本、原费用和请求准入记录保留。续接要求使用简短完整调用，不提高输出、步骤、请求或候选限额，下一请求仍经过原准入。无预算、预算耗尽、未披露和普通工作流保持 `OUTPUT_LIMIT` 终止，压缩行为不变。
++
+ Seam 是必要执行位置的实现，例如审批、账本、沙箱；缺失必须按合同拒绝，不能静默跳过。Extension 是可选贡献，例如工具、观察 hook、客户端槽位。它们虽可通过 Cordis 装配，但权限面并不相同。
+ 
+ 受信后端 Cordis 行可贡献工具、hook 和受约束的服务等能力；浏览器模块是绑定该行的另一运行面，详见[插件边界](plugins.zh-CN.md)。前后端的 Context 不共享内存；普通 `ctx.provide()` 不是跨进程代理。浏览器通过已声明的 relay 调用行服务，不直接获取 Host 管理对象。
+ 
++认证的错误DEV观察可在schemaVersion=1中保留可选的`numerical_failure_class`。分类只接受有界、完整匹配的标准`first_failures[].problems`诊断，不执行Python表达式，不保存原始文本、case编号、坐标或数值。尺度和稀疏坐标类别至少要求两个不同失败case，输出shape/dtype/arity可由明确合同诊断识别；缺失、未知或混合类别不产生提示。首个已认证且已分类的错误DEV源码即可获得对应的有界修复关注点：检查sum/mean及归约分母、参考运算顺序和中间舍入及原坐标容差，或修复输出合同。同一搜索的两个不同源码hash重复最新错误类别时，另外提示更换修复策略；首错不会被称为重复失败。全局`max_tol`不代表首错坐标的容差。旧事件继续有效，未知枚举忽略，同hash重复查询不计两次，最新正确结果清除修复关注点。类别只是下一步搜索假设，不是根因或验收结论，4事实/2048 UTF-8字节和原授权、调用、评分边界不变。
++
++错误DEV观察还可保留可选`numerical_failure_fingerprint`：对按case和problem排序的全部有界标准诊断及正确性计数计算SHA256。不合法或非有限数值、自由文本、重复case或超限不生成指纹，该字段不保存诊断原文。两个不同源码hash出现同一指纹时，即使未识别类别，也提示更换数值修复策略；同时已有分类时保留对应的具体修复关注点。同job或同源重复查询不计两次，最新正确或诊断变化清除精确重复提示。schemaVersion=1兼容旧记录，四事实/2048字节、原scope/trust校验、授权和验收规则保持；相等仅描述重复失败，不证明数学原因。
++
+ ## Runtime target 与热更新
+ 
+ PackageManager 产生已核验快照和治理状态；runtime target 组合普通行、资源行与平台合成的客户端行。`web:` 行不在 Host 普通树执行。Host 在受限事务中协调可变行、依赖和实际状态，合格变更增量应用；静态边界、失败补偿或污染处理可能要求重建。
+diff --git a/docs/guide/troubleshooting.md b/docs/guide/troubleshooting.md
+index ed1f323..0b52a43 100644
+--- a/docs/guide/troubleshooting.md
++++ b/docs/guide/troubleshooting.md
+@@ -33,7 +33,7 @@ node packages/cli/dist/local/agnes.mjs doctor provider --json
+ | Missing provider / invalid route/model | Run config or Web settings, test and save, then choose from the current catalog; new defaults do not change existing sessions |
+ | `TOOL_ARGS_INVALID` | Read the parameter paths in the error and retry with complete arguments matching the tool schema. `write` requires both `path` and `content`; refused calls do not write files |
+ | `APPROVAL_REJECTED` | The operation did not execute. Confirm the current state before dependent work. Request authorization or use permitted operations; repeating the same call under unchanged authorization does not resolve the refusal |
+-| A status query succeeds but its job has failed | Preserve the original diagnostic and source identity. Inspect the failure and repair the source or environment before retrying the same input. If the result already includes an exception diagnostic, use it directly. Source-bound correctness failures with valid passed/total counts and included failure details receive a numerical repair note: use those failing cases before optimizing speed or resubmitting, keeping the reference and tolerances unchanged. Read additional diagnostic artifacts when the included details are insufficient. A successful query does not mean the computation succeeded |
++| A status query succeeds but its job has failed | Preserve the original diagnostic and source identity. Inspect the failure and repair the source or environment before retrying the same input. If the result already includes an exception diagnostic, use it directly. A compiler excerpt ending at the source-location caret can omit the underlying cause; inspect that job's full error or traceback before revising or resubmitting. If the included full traceback already contains an underlying exception, use that cause directly; the location excerpt alone does not require another read. Source-bound correctness failures with valid passed/total counts and included failure details receive a numerical repair note: use those failing cases before optimizing speed or resubmitting, keeping the reference and tolerances unchanged. Read additional diagnostic artifacts when the included details are insufficient. A successful query does not mean the computation succeeded |
+ | An explicitly waiting development job query still reports running | For a source-bound `kernel_get_job` on a running candidate, Core may continue the same read-only query once within its original remaining tool timeout. Queued jobs return the original first result without an automatic continuation. For running jobs it first records the original pending observation as `x/core/pending-job-observation`; if recording fails, identity or policy is invalid, the call is cancelled, or insufficient time remains, it returns the first observation. No new model request or candidate is admitted. The original overall timeout, cancellation and final result override still apply; a second pending result is returned without another continuation |
+ | A bounded session spends its requests on repeated queries | The model receives the trusted durable allowance as an informational note: admitted attempts and remaining requests, including the next dispatch. Uncertain attempts remain spent after reopen. At low allowance it is prompted to avoid unchanged queries; the original atomic admission gate still decides whether a dispatch may occur |
+ | Output ends with `max_tokens` / `OUTPUT_LIMIT` | The model response reached its output allowance; partial text is retained, unfinished tool calls are discarded, and the turn stops without automatic retries. Ask to continue with smaller calls, or configure the preset's `model.max_tokens` within the provider's supported range. This is separate from an input context overflow |
+diff --git a/docs/guide/troubleshooting.zh-CN.md b/docs/guide/troubleshooting.zh-CN.md
+index ee6d9b2..09d9f72 100644
+--- a/docs/guide/troubleshooting.zh-CN.md
++++ b/docs/guide/troubleshooting.zh-CN.md
+@@ -31,7 +31,7 @@ node packages/cli/dist/local/agnes.mjs doctor provider --json
+ | 缺 Provider / 非法 route/model | 运行 config 或 Web 设置，测试保存后从当前目录选模型；新默认不修改旧会话 |
+ | `TOOL_ARGS_INVALID` | 按错误中的参数路径补齐符合工具定义的参数再重试。`write` 必须同时传入 `path` 和 `content`；被拒绝的调用不会写文件 |
+ | `APPROVAL_REJECTED` | 操作没有执行。开展依赖它的工作前，先确认当前状态。请求授权或使用已允许的操作；授权未变化时，重复同一调用不能解决拒绝 |
+-| 状态查询成功，但查询的作业失败 | 保留原诊断和源码身份。先检查失败原因，修复源码或环境，再重试相同输入。结果已包含异常诊断时先直接使用它。源码绑定的正确性失败若包含有效的通过数/总数和失败详情，会收到数值修复提示：先根据失败用例修复计算，再优化速度或重新提交，保持参考实现和容差不变。只有已有详情不足才额外读取诊断文件。查询成功不代表计算成功 |
++| 状态查询成功，但查询的作业失败 | 保留原诊断和源码身份。先检查失败原因，修复源码或环境，再重试相同输入。结果已包含异常诊断时先直接使用它。仅以源码位置箭头结束的编译片段可能缺少底层原因；修改或重新提交前，应检查该作业完整的错误或 traceback。若已返回的完整 traceback 包含底层异常，直接使用该原因；仅位置片段不完整不意味着必须再次读取诊断。源码绑定的正确性失败若包含有效的通过数/总数和失败详情，会收到数值修复提示：先根据失败用例修复计算，再优化速度或重新提交，保持参考实现和容差不变。只有已有详情不足才额外读取诊断文件。查询成功不代表计算成功 |
+ | 显式等待的开发作业查询仍返回运行中 | 对源码身份有效且已运行的候选 `kernel_get_job`，Core 可在原工具剩余超时内继续相同的只读查询一次。排队作业直接返回原始首次结果，不自动续查。对于运行中的作业，它先将原始未完成观测记录为 `x/core/pending-job-observation`；记录失败、身份或策略无效、调用已取消或剩余时间不足时返回首次观测。不增加模型请求或候选额度。原总超时、取消和最终结果覆盖仍生效；第二次仍未完成时直接返回，不再续查 |
+ | 有界会话把请求花在重复查询上 | 模型会看到可信持久账本的提示：已准入的次数和包含下一次发送在内的剩余请求数。重开会话不返还未知结果的已准入请求。余量较少时提示避免结果未变化的重复查询；是否允许实际发送仍由原子的准入门决定 |
+ | 输出以 `max_tokens` / `OUTPUT_LIMIT` 结束 | 模型回复达到输出额度，保留已生成文字、丢弃未完成的工具调用并停止本轮，不自动重试。可要求分步继续，或在 Provider 支持范围内配置 preset 的 `model.max_tokens`；这与输入上下文超限不同 |
+diff --git a/packages/core/src/step/inference.ts b/packages/core/src/step/inference.ts
+index 72749d6..d1c118d 100644
+--- a/packages/core/src/step/inference.ts
++++ b/packages/core/src/step/inference.ts
+@@ -54,8 +54,10 @@ import {
+ } from './calibrate.js'
+ import { finishAborted } from './control.js'
+ import { contextBudgetError } from './gate.js'
++import { kernelSearchNote, kernelSearchScope } from './kernel-search-state.js'
+ import { resolvedModelInput, supportsComputerUse, toolNamesForModel, toolsForModel } from './model-tools.js'
+ import { type OpStateObj, type ToolCallState, withPhase } from './op-state.js'
++import { outputLimitContinuation } from './output-limit-continuation.js'
+ import { runCoreReplacement, runSlot } from './reentry.js'
+ import type { OpContext, SessionImpl, StepOutcome } from './session.js'
+ import { toolArgumentError } from './tool-args.js'
+@@ -621,6 +623,19 @@ export async function runInference(s: SessionImpl): Promise<StepOutcome> {
+   }
+   await s.ensureEnvelopeEpochs()
+   const providerAllowance = s.providerRequestBudgetSnapshot()
++  const searchState =
++    slot === 'primary' && t.snapshot.byName.has('kernel_get_job')
++      ? kernelSearchNote(
++          kernelSearchScope(s.key, s.lane, s.d.cwd, op.meta.turn, t.snapshot.hash),
++          await scanAll((q) => s.d.log.scan(q), {
++            fromSeq: op.meta.triggerSeq,
++            toSeq: s.lastSeq,
++            type: 'x/core/kernel-search-observation',
++            lane: s.lane,
++          }),
++          s.lane,
++        )
++      : ''
+   let out = deriveRequest({
+     kind: 'turn',
+     merged,
+@@ -638,6 +653,9 @@ export async function runInference(s: SessionImpl): Promise<StepOutcome> {
+     envelopeNonceFor: (nodeSeq) => s.envelopeNonceFor(nodeSeq),
+     envelopeCache: s.envelopeCache,
+     notes: [
++      ...(slot === 'primary'
++        ? [{ prefix: '[kernel search state]\n', text: searchState, dedup: { kind: 'latest' as const } }]
++        : []),
+       ...(providerAllowance
+         ? [
+             {
+@@ -1300,6 +1318,25 @@ export async function runInference(s: SessionImpl): Promise<StepOutcome> {
+ 
+     const events: EventInput[] = []
+     const truncated = done?.reason === 'length'
++    const recovery = truncated
++      ? outputLimitContinuation({
++          slot,
++          offered,
++          scope: kernelSearchScope(s.key, s.lane, s.d.cwd, op.meta.turn, t.snapshot.hash),
++          history: await scanAll((q) => s.d.log.scan(q), {
++            fromSeq: op.meta.triggerSeq,
++            toSeq: s.lastSeq,
++            type: 'x/core/output-limit-continuation',
++            lane: s.lane,
++          }),
++          // Read live gates after the awaited scan: cancellation or another admission may land in it.
++          allowance: s.providerRequestBudgetSnapshot(),
++          aborted: s.ac.signal.aborted || s.op()?.control.status === 'cancel_requested',
++          lane: s.lane,
++          fromSeq: op.meta.triggerSeq,
++        })
++      : undefined
++    if (recovery) events.push(s.ev('x/core/output-limit-continuation', recovery, { ignorable: true }))
+     // An empty text block is not shipped. It is content the model never produced, it goes back to the
+     // provider on the next request as part of the assistant turn, and a provider that rejects empty
+     // text blocks refuses the whole request over a block core invented.
+@@ -1392,7 +1429,9 @@ export async function runInference(s: SessionImpl): Promise<StepOutcome> {
+             {
+               type: 'text',
+               text: truncated
+-                ? 'Output limit reached; this turn stopped and its unfinished tool calls were discarded. Continue with smaller tool calls and build large files incrementally, or configure a higher request output allowance.'
++                ? recovery
++                  ? 'Output limit reached; unfinished tool calls were discarded. Continue once with shorter complete tool calls and build large files incrementally. Preserve completed work; the original output, request and candidate limits still apply.'
++                  : 'Output limit reached; this turn stopped and its unfinished tool calls were discarded. Continue with smaller tool calls and build large files incrementally, or configure a higher request output allowance.'
+                 : 'INVALID_TOOL_CALL_FORMAT: a tool call was emitted as text and was not executed.',
+             },
+           ],
+@@ -1423,7 +1462,7 @@ export async function runInference(s: SessionImpl): Promise<StepOutcome> {
+           )
+         : withPhase(
+             base,
+-            truncated
++            truncated && !recovery
+               ? {
+                   kind: 'failure_drain',
+                   error: {
+@@ -1435,14 +1474,14 @@ export async function runInference(s: SessionImpl): Promise<StepOutcome> {
+                 }
+               : {
+                   kind: 'checkpoint',
+-                  continuation: unparsed ? 'need_assistant' : 'may_finish',
++                  continuation: recovery || unparsed ? 'need_assistant' : 'may_finish',
+                   triggerSeq: op.meta.triggerSeq,
+                 },
+             { latestAssistantSeq: assistantSeq },
+           )
+     })
+     await record(false)
+-    return { phase: planned.length ? 'tools' : truncated ? 'failure_drain' : 'checkpoint' }
++    return { phase: planned.length ? 'tools' : truncated && !recovery ? 'failure_drain' : 'checkpoint' }
+   } finally {
+     s.ac.signal.removeEventListener('abort', onSessionAbort)
+   }
+diff --git a/packages/core/src/step/job-feedback.ts b/packages/core/src/step/job-feedback.ts
+index 0b36d73..7bdcc02 100644
+--- a/packages/core/src/step/job-feedback.ts
++++ b/packages/core/src/step/job-feedback.ts
+@@ -5,6 +5,10 @@ const recoveryText =
+   'The queried job has finished with a failure. A successful status query does not mean the computation succeeded. First inspect its diagnostics and repair the source or environment before retrying unchanged input.'
+ const embeddedDiagnosticText =
+   'The queried job has finished with a failure. The error diagnostic is already included here. Repair the source or environment using that diagnostic; read an extra diagnostic artifact only if the included error is insufficient.'
++const compilerLocationText =
++  "The queried job has finished with a failure. The included compiler excerpt identifies the source location but omits the underlying cause. Inspect this job's full error or traceback diagnostics before revising the source or resubmitting. Keep the reference and tolerances unchanged."
++const compilerTracebackText =
++  'The queried job has finished with a failure. The underlying compiler cause is already included in the traceback. Use the exception type and message in that traceback to repair the source before resubmitting. Keep the reference and tolerances unchanged; read an extra diagnostic artifact only if the included traceback is insufficient.'
+ 
+ function record(value: unknown): Record<string, unknown> | undefined {
+   return value !== null && typeof value === 'object' && !Array.isArray(value)
+@@ -62,8 +66,30 @@ export function withTerminalJobFeedback(result: ToolResult): ToolResult {
+   const embeddedDiagnostic =
+     typeof outcome.error === 'string' &&
+     /(?:Traceback \(most recent call last\):|(?:[A-Za-z_][A-Za-z0-9_]*Error|Exception):)/.test(outcome.error)
++  const compilerLocationOnly =
++    data.status === 'compile_fail' &&
++    typeof outcome.error === 'string' &&
++    outcome.error.length <= 32768 &&
++    (outcome.phase === undefined || outcome.phase === job.phase) &&
++    /^CompilationError:\s*at \d+:\d+:[ \t]*\r?\n/.test(outcome.error) &&
++    /\r?\n[ \t]*[~^]+[ \t]*(?:\r?\n[ \t]*)*$/.test(outcome.error)
++  const includedCompilerCause =
++    compilerLocationOnly &&
++    typeof outcome.traceback === 'string' &&
++    outcome.traceback.length <= 32768 &&
++    /^Traceback \(most recent call last\):\r?\n/.test(outcome.traceback) &&
++    /(?:^|\r?\n)(?!(?:[A-Za-z_]\w*\.)*CompilationError:)(?:[A-Za-z_]\w*\.)*[A-Za-z_]\w*(?:Error|Exception):[ \t]*\S[^\r\n]*/.test(
++      outcome.traceback,
++    )
+   const guidance =
+-    numericalRecoveryText(outcome) ?? (embeddedDiagnostic ? embeddedDiagnosticText : recoveryText)
++    numericalRecoveryText(outcome) ??
++    (includedCompilerCause
++      ? compilerTracebackText
++      : compilerLocationOnly
++        ? compilerLocationText
++        : embeddedDiagnostic
++          ? embeddedDiagnosticText
++          : recoveryText)
+   return {
+     ...result,
+     content: [...result.content, { type: 'text', text: guidance }],
+diff --git a/packages/core/src/step/kernel-search-state.ts b/packages/core/src/step/kernel-search-state.ts
+new file mode 100644
+index 0000000..3281a71
+--- /dev/null
++++ b/packages/core/src/step/kernel-search-state.ts
+@@ -0,0 +1,448 @@
++import { isToolResult } from '../effects/tool-dispatch.js'
++import {
++  hasAuthenticToolPolicyHash,
++  hasCompleteToolPolicyEnvelope,
++  hasTrustedToolCallProvenance,
++  type PersistedToolPolicyFields,
++} from '../registry/tool-policy.js'
++import { canonicalJson, sha256Hex } from '../request/hash.js'
++import type { Event } from '../types.js'
++import {
++  isNumericalFailureClass,
++  type NumericalFailureClass,
++  numericalFailureClass,
++  numericalFailureFingerprint,
++  numericRepairFocus,
++} from './numerical-failure.js'
++
++export type KernelSearchObservation = {
++  schemaVersion: 1
++  scope: string
++  run_id: string
++  task_id: string
++  job_id: string
++  source_hash: string
++  status: 'compile_fail' | 'incorrect' | 'complete' | 'crashed' | 'timeout'
++  passed?: number
++  total?: number
++  numerical_failure_class?: NumericalFailureClass
++  numerical_failure_fingerprint?: string
++  observed_dev_task_speedup?: number
++  below_measurement_floor?: boolean
++  launch_bound?: boolean
++}
++
++type KernelSearchSubmission = {
++  schemaVersion: 1
++  scope: string
++  task_id: string
++  job_id: string
++  candidate_id: string
++  source_hash: string
++  call_seq: number
++}
++
++function record(value: unknown): Record<string, unknown> | undefined {
++  return value !== null && typeof value === 'object' && !Array.isArray(value)
++    ? (value as Record<string, unknown>)
++    : undefined
++}
++
++function identifier(value: unknown, max = 128): value is string {
++  return (
++    typeof value === 'string' && value.length > 0 && value.length <= max && /^[A-Za-z0-9_.:-]+$/.test(value)
++  )
++}
++
++function count(value: unknown): value is number {
++  return typeof value === 'number' && Number.isSafeInteger(value) && value >= 0
++}
++
++const hash = (value: unknown): value is string => typeof value === 'string' && /^[a-f0-9]{64}$/.test(value)
++
++/** The scope survives replay but never crosses a session, lane, workspace, turn or registry. */
++export function kernelSearchScope(
++  sessionKey: string,
++  lane: string,
++  cwd: string,
++  turn: number,
++  snapshotHash: string,
++): string {
++  if (!sessionKey || !lane || !cwd || !count(turn) || turn === 0 || !hash(snapshotHash)) return ''
++  return sha256Hex(canonicalJson({ sessionKey, lane, cwd, turn, snapshotHash }))
++}
++
++function authenticatedCall(call: Event, name: string) {
++  const data = record(call.data)
++  const envelope = data as PersistedToolPolicyFields | undefined
++  if (
++    !hasTrustedToolCallProvenance(call) ||
++    !data ||
++    data.name !== name ||
++    !identifier(data.toolUseId) ||
++    !count(call.seq) ||
++    call.seq === 0 ||
++    !hasCompleteToolPolicyEnvelope(envelope) ||
++    !hasAuthenticToolPolicyHash(envelope) ||
++    !hash(envelope.definitionFingerprint) ||
++    envelope.executionDomain !== 'workspace' ||
++    envelope.resolvedPolicy.isOpenWorld !== false ||
++    envelope.resolvedPolicy.isDestructive !== false
++  )
++    return undefined
++  const args = record(data.args)
++  return args ? { data, args, policy: envelope.resolvedPolicy } : undefined
++}
++
++function submission(value: unknown, scope: string): KernelSearchSubmission | undefined {
++  const data = record(value)
++  if (
++    data?.schemaVersion !== 1 ||
++    data.scope !== scope ||
++    !hash(scope) ||
++    !identifier(data.task_id, 16) ||
++    !identifier(data.job_id) ||
++    !identifier(data.candidate_id) ||
++    !hash(data.source_hash) ||
++    !count(data.call_seq) ||
++    data.call_seq === 0
++  )
++    return undefined
++  return {
++    schemaVersion: 1,
++    scope,
++    task_id: data.task_id,
++    job_id: data.job_id,
++    candidate_id: data.candidate_id,
++    source_hash: data.source_hash,
++    call_seq: data.call_seq,
++  }
++}
++
++/** Record only the real successful receipt, before any extension result replacement. */
++export function observeKernelSubmission(input: { call: Event; result: unknown; scope: string; cwd: string }) {
++  const call = authenticatedCall(input.call, 'kernel_submit')
++  if (
++    call?.policy.isReadOnly !== false ||
++    call.policy.replay !== 'never' ||
++    !isToolResult(input.result) ||
++    input.result.isError ||
++    input.result.terminate ||
++    Object.hasOwn(input.result, 'deferred')
++  )
++    return undefined
++  const receipt = record(input.result.structured)
++  if (receipt?.ok !== true || receipt.phase !== 'dev' || receipt.workspace !== input.cwd) return undefined
++  return submission(
++    {
++      schemaVersion: 1,
++      scope: input.scope,
++      task_id: call.args.task_id,
++      job_id: receipt.job_id,
++      candidate_id: receipt.candidate_id,
++      source_hash: receipt.source_hash,
++      call_seq: input.call.seq,
++    },
++    input.scope,
++  )
++}
++
++/** Bind a terminal query to its authentic, current-turn submission and durable receipt. */
++export function observeKernelSearch(input: {
++  call: Event
++  result: unknown
++  scope: string
++  history: readonly Event[]
++  lane: string
++  fromSeq: number
++}): KernelSearchObservation | undefined {
++  const call = authenticatedCall(input.call, 'kernel_get_job')
++  if (
++    call?.policy.isReadOnly !== true ||
++    call.policy.replay !== 'safe' ||
++    input.call.lane !== input.lane ||
++    input.call.seq < input.fromSeq ||
++    !count(input.fromSeq) ||
++    !hash(input.scope) ||
++    !isToolResult(input.result) ||
++    input.result.isError ||
++    input.result.terminate ||
++    Object.hasOwn(input.result, 'deferred')
++  )
++    return undefined
++  const data = record(input.result.structured)
++  const job = record(data?.job)
++  const outcome = record(data?.result)
++  if (
++    !data ||
++    !job ||
++    !outcome ||
++    data.has_result !== true ||
++    job.kind !== 'candidate' ||
++    job.phase !== 'dev' ||
++    outcome.phase !== 'dev' ||
++    outcome.contaminated !== false ||
++    job.status !== data.status ||
++    outcome.status !== data.status ||
++    !identifier(job.run_id) ||
++    !identifier(job.task_id, 16) ||
++    !identifier(job.candidate_id) ||
++    job.job_id !== call.args.job_id ||
++    !identifier(job.job_id) ||
++    !hash(job.source_hash) ||
++    !['compile_fail', 'incorrect', 'complete', 'crashed', 'timeout'].includes(String(data.status))
++  )
++    return undefined
++  for (const key of ['run_id', 'task_id', 'candidate_id', 'job_id', 'source_hash']) {
++    if (outcome[key] !== undefined && outcome[key] !== job[key]) return undefined
++  }
++  const rows = input.history.filter(
++    (row) =>
++      row.lane === input.lane &&
++      row.trust === 'trusted' &&
++      row.seq >= input.fromSeq &&
++      row.seq < input.call.seq,
++  )
++  const bound = rows.some((row) => {
++    if (row.type !== 'x/core/kernel-search-submission' || row.origin !== 'system') return false
++    const accepted = submission(row.data, input.scope)
++    if (
++      !accepted ||
++      accepted.job_id !== job.job_id ||
++      accepted.task_id !== job.task_id ||
++      accepted.candidate_id !== job.candidate_id ||
++      accepted.source_hash !== job.source_hash ||
++      row.sourceEventSeqs?.length !== 1 ||
++      row.sourceEventSeqs[0] !== accepted.call_seq
++    )
++      return false
++    const submitCall = rows.find((source) => source.seq === accepted.call_seq)
++    const authentic = submitCall && authenticatedCall(submitCall, 'kernel_submit')
++    if (
++      authentic?.policy.isReadOnly !== false ||
++      authentic.policy.replay !== 'never' ||
++      authentic.args.task_id !== job.task_id
++    )
++      return false
++    return rows.some((receiptRow) => {
++      const receiptData = record(receiptRow.data)
++      const receipt = record(receiptData?.structured)
++      return (
++        receiptRow.type === 'tool/result' &&
++        receiptRow.origin === 'tool:kernel_submit' &&
++        receiptRow.seq > accepted.call_seq &&
++        receiptRow.seq < row.seq &&
++        receiptRow.sourceEventSeqs?.length === 1 &&
++        receiptRow.sourceEventSeqs[0] === accepted.call_seq &&
++        receiptData?.toolUseId === authentic.data.toolUseId &&
++        receiptData?.isError === false &&
++        receipt?.ok === true &&
++        receipt.phase === 'dev' &&
++        receipt.job_id === accepted.job_id &&
++        receipt.candidate_id === accepted.candidate_id &&
++        receipt.source_hash === accepted.source_hash
++      )
++    })
++  })
++  if (!bound) return undefined
++  const correctness = record(outcome.correctness)
++  if (
++    (data.status === 'complete' || data.status === 'incorrect') &&
++    correctness?.ok !== (data.status === 'complete')
++  )
++    return undefined
++  return observation(
++    {
++      schemaVersion: 1,
++      scope: input.scope,
++      run_id: job.run_id,
++      task_id: job.task_id,
++      job_id: job.job_id,
++      source_hash: job.source_hash,
++      status: data.status,
++      ...(correctness ? { passed: correctness.passed, total: correctness.total } : {}),
++      numerical_failure_class: data.status === 'incorrect' ? numericalFailureClass(correctness) : undefined,
++      numerical_failure_fingerprint:
++        data.status === 'incorrect' ? numericalFailureFingerprint(correctness) : undefined,
++      observed_dev_task_speedup: outcome.task_speedup,
++      below_measurement_floor: outcome.below_measurement_floor,
++      launch_bound: outcome.launch_bound,
++    },
++    input.scope,
++  )
++}
++
++function observation(value: unknown, scope: string): KernelSearchObservation | undefined {
++  const data = record(value)
++  if (
++    data?.schemaVersion !== 1 ||
++    data.scope !== scope ||
++    !identifier(data.run_id) ||
++    !identifier(data.task_id, 16) ||
++    !identifier(data.job_id) ||
++    typeof data.source_hash !== 'string' ||
++    !/^[a-f0-9]{64}$/.test(data.source_hash) ||
++    !['compile_fail', 'incorrect', 'complete', 'crashed', 'timeout'].includes(String(data.status))
++  )
++    return undefined
++  const status = data.status as KernelSearchObservation['status']
++  const validCounts = count(data.passed) && count(data.total) && data.total > 0 && data.passed <= data.total
++  if (
++    (status === 'complete' || status === 'incorrect') &&
++    (!validCounts || (status === 'complete' ? data.passed !== data.total : data.passed === data.total))
++  )
++    return undefined
++  const measured =
++    status === 'complete' &&
++    typeof data.observed_dev_task_speedup === 'number' &&
++    Number.isFinite(data.observed_dev_task_speedup) &&
++    data.observed_dev_task_speedup > 0
++  return {
++    schemaVersion: 1,
++    scope,
++    run_id: data.run_id,
++    task_id: data.task_id,
++    job_id: data.job_id,
++    source_hash: data.source_hash,
++    status,
++    ...(validCounts ? { passed: data.passed as number, total: data.total as number } : {}),
++    ...(status === 'incorrect' && isNumericalFailureClass(data.numerical_failure_class)
++      ? { numerical_failure_class: data.numerical_failure_class }
++      : {}),
++    ...(status === 'incorrect' && hash(data.numerical_failure_fingerprint)
++      ? { numerical_failure_fingerprint: data.numerical_failure_fingerprint }
++      : {}),
++    ...(measured
++      ? {
++          observed_dev_task_speedup: data.observed_dev_task_speedup as number,
++          ...(typeof data.below_measurement_floor === 'boolean'
++            ? { below_measurement_floor: data.below_measurement_floor }
++            : {}),
++          ...(typeof data.launch_bound === 'boolean' ? { launch_bound: data.launch_bound } : {}),
++        }
++      : {}),
++  }
++}
++
++/** Rebuild a bounded same-scope state from durable observations, including after compaction. */
++export function kernelSearchNote(scope: string, history: readonly Event[], lane: string): string {
++  if (!/^[a-f0-9]{64}$/.test(scope)) return ''
++  const rows = history
++    .filter(
++      (row) =>
++        row.type === 'x/core/kernel-search-observation' &&
++        row.lane === lane &&
++        row.origin === 'system' &&
++        row.trust === 'trusted' &&
++        Number.isSafeInteger(row.seq) &&
++        row.seq > 0,
++    )
++    .sort((a, b) => a.seq - b.seq)
++    .flatMap((row) => {
++      const parsed = observation(row.data, scope)
++      return parsed ? [parsed] : []
++    })
++  const latest = rows.at(-1)
++  if (!latest) return ''
++  const sources = new Map<string, KernelSearchObservation>()
++  const jobs = new Map<string, string>()
++  for (const row of rows) {
++    if (row.run_id !== latest.run_id || row.task_id !== latest.task_id) continue
++    const known = jobs.get(row.job_id)
++    if (known && known !== row.source_hash) continue
++    jobs.set(row.job_id, row.source_hash)
++    sources.delete(row.source_hash)
++    sources.set(row.source_hash, row)
++  }
++  const accepted = [...sources.values()]
++  const lastAccepted = accepted.at(-1)
++  if (!lastAccepted) return ''
++  let best: KernelSearchObservation | undefined
++  for (const row of accepted) {
++    if (
++      row.observed_dev_task_speedup !== undefined &&
++      row.observed_dev_task_speedup >= (best?.observed_dev_task_speedup ?? 0)
++    )
++      best = row
++  }
++  const facts = accepted.map(
++    ({ schemaVersion: _schema, scope: _scope, run_id: _run, task_id: _task, ...fact }) => fact,
++  )
++  const trim = () => {
++    const index = facts.findIndex(
++      (fact) => fact.source_hash !== best?.source_hash && fact.source_hash !== lastAccepted.source_hash,
++    )
++    if (index < 0) return false
++    facts.splice(index, 1)
++    return true
++  }
++  while (facts.length > 4) trim()
++  const category = lastAccepted.numerical_failure_class
++  const repeatedDiagnostic =
++    lastAccepted.status === 'incorrect' &&
++    lastAccepted.numerical_failure_fingerprint &&
++    accepted.some(
++      (row) =>
++        row.status === 'incorrect' &&
++        row.source_hash !== lastAccepted.source_hash &&
++        row.numerical_failure_fingerprint === lastAccepted.numerical_failure_fingerprint,
++    )
++  const repeatedClass =
++    lastAccepted.status === 'incorrect' &&
++    category &&
++    accepted.filter((row) => row.status === 'incorrect' && row.numerical_failure_class === category).length >=
++      2
++      ? category
++      : undefined
++  const next =
++    lastAccepted.status === 'compile_fail'
++      ? 'inspect_compile_diagnostic'
++      : lastAccepted.status === 'incorrect'
++        ? repeatedDiagnostic
++          ? 'change_numeric_repair_strategy_for_repeated_DEV_diagnostic'
++          : repeatedClass
++            ? 'change_numeric_repair_strategy_for_repeated_DEV_failure_class'
++            : 'repair_numerics_before_speed_changes'
++        : lastAccepted.status === 'crashed'
++          ? 'inspect_runtime_failure_before_speed_changes'
++          : lastAccepted.status === 'timeout'
++            ? 'inspect_timeout_before_resubmitting'
++            : lastAccepted.observed_dev_task_speedup !== undefined && best !== lastAccepted
++              ? 'compare_prior_correct_DEV_source_before_further_tuning'
++              : (lastAccepted.observed_dev_task_speedup ?? 1) < 1
++                ? 'change_strategy_for_correct_but_slow_DEV_source'
++                : 'optimize_correct_DEV_source'
++  const encode = () =>
++    'These are observed DEV outcomes for this search, not final acceptance. ' +
++    'Preserve measurement warnings when comparing observed speeds. ' +
++    JSON.stringify({
++      run_id: latest.run_id,
++      task_id: latest.task_id,
++      sources: facts,
++      ...(best
++        ? {
++            best_observed_correct_DEV_source_index: facts.findIndex(
++              (fact) => fact.source_hash === best.source_hash,
++            ),
++            ...(best !== lastAccepted
++              ? { comparison_to_best_observed_correct_DEV_source: 'prior_correct_DEV_source_available' }
++              : {}),
++          }
++        : {}),
++      next_action_for_latest_observed_source: next,
++      ...(repeatedDiagnostic
++        ? {
++            repair_focus:
++              'Different source hashes yielded the same bounded DEV mismatch diagnostics. Recheck reference indexing, masking, reduction axes and intermediate casts. Changing blocks or warps alone has not removed this failure.' +
++              (category ? ` ${numericRepairFocus[category]}` : ''),
++          }
++        : category
++          ? { repair_focus: numericRepairFocus[category] }
++          : {}),
++    }) +
++    ' Keep reference and tolerances unchanged; assess each source by its full hash.'
++  while (new TextEncoder().encode(encode()).length > 2048) {
++    if (!trim()) return ''
++  }
++  return facts.length ? encode() : ''
++}
+diff --git a/packages/core/src/step/numerical-failure.ts b/packages/core/src/step/numerical-failure.ts
+new file mode 100644
+index 0000000..0c8adec
+--- /dev/null
++++ b/packages/core/src/step/numerical-failure.ts
+@@ -0,0 +1,147 @@
++import { canonicalJson, sha256Hex } from '../request/hash.js'
++
++export const numericRepairFocus = {
++  large_scale_mismatch:
++    'Check sum versus mean, reduction axes and normalization denominators against the reference before tuning blocks or warps.',
++  pointwise_tolerance_mismatch:
++    'Use the unchanged atol + rtol * abs(reference) at each failing coordinate. Global max_tol is not that coordinate tolerance. Check reference operation order and intermediate casts or rounding.',
++  output_contract_mismatch:
++    'Derive output shape from runtime inputs and preserve the reference dtype, layout and return arity before speed tuning.',
++} as const
++export type NumericalFailureClass = keyof typeof numericRepairFocus
++
++export function isNumericalFailureClass(value: unknown): value is NumericalFailureClass {
++  return typeof value === 'string' && Object.hasOwn(numericRepairFocus, value)
++}
++
++function record(value: unknown): Record<string, unknown> | undefined {
++  return value !== null && typeof value === 'object' && !Array.isArray(value)
++    ? (value as Record<string, unknown>)
++    : undefined
++}
++
++// Parse only the bounded standard diagnostic grammar, never Python expressions or free text.
++const number = '-?(?:0|[1-9]\\d*)(?:\\.\\d+)?(?:e[+-]?\\d+)?'
++const numeric = new RegExp(
++  "^output\\[\\d+\\] mismatch: \\{'ok': False, 'n_bad': (\\d+), 'n_total': (\\d+), " +
++    `'max_abs_err': (${number}), 'max_tol': (${number}), 'first_bad_flat': (\\d+), ` +
++    `'expected': (${number}), 'actual': (${number})` +
++    "(?:, 'first_bad_index': \\[(?:\\d+(?:, \\d+)*)?\\])?\\}$",
++)
++const contract =
++  /^output\[\d+\] mismatch: \{'ok': False, 'reason': '(?:shape \((?:\d+(?:, \d+)*,?)?\) != expected \((?:\d+(?:, \d+)*,?)?\)|dtype torch\.[a-z0-9_]+ != expected torch\.[a-z0-9_]+)'\}$|^arity \d+ != \d+$/
++
++function parseNumericProblem(problem: unknown) {
++  if (typeof problem !== 'string' || problem.length > 2048) return undefined
++  const match = numeric.exec(problem)
++  if (!match) return undefined
++  const bad = Number(match[1])
++  const total = Number(match[2])
++  const maxError = Number(match[3])
++  const maxTolerance = Number(match[4])
++  const flat = Number(match[5])
++  const expected = Number(match[6])
++  const actual = Number(match[7])
++  if (
++    ![bad, total, flat].every(Number.isSafeInteger) ||
++    ![maxError, maxTolerance, expected, actual].every(Number.isFinite) ||
++    bad < 1 ||
++    bad > total ||
++    total < 1 ||
++    flat >= total ||
++    maxError <= 0 ||
++    maxTolerance < 0 ||
++    Math.abs(expected - actual) > maxError * 1.000001
++  )
++    return undefined
++  return [bad, total, maxError, maxTolerance, flat, expected, actual] as const
++}
++
++function classifyProblem(problem: unknown): NumericalFailureClass | undefined {
++  if (typeof problem !== 'string' || problem.length > 2048) return undefined
++  if (contract.test(problem)) return 'output_contract_mismatch'
++  const parsed = parseNumericProblem(problem)
++  if (!parsed) return undefined
++  const [bad, total, maxError, maxTolerance, , expected, actual] = parsed
++  const ratio = actual / expected
++  if (bad / total >= 0.8 && Number.isFinite(ratio) && ratio > 0 && (ratio <= 0.5 || ratio >= 2))
++    return 'large_scale_mismatch'
++  if (bad <= Math.max(8, Math.ceil(total * 0.001)) && maxError < maxTolerance)
++    return 'pointwise_tolerance_mismatch'
++  return undefined
++}
++
++function failedCorrectness(value: unknown): Record<string, unknown> | undefined {
++  const correctness = record(value)
++  if (
++    correctness?.ok !== false ||
++    typeof correctness.passed !== 'number' ||
++    typeof correctness.total !== 'number' ||
++    !Number.isSafeInteger(correctness.passed) ||
++    !Number.isSafeInteger(correctness.total) ||
++    correctness.passed < 0 ||
++    correctness.passed >= correctness.total ||
++    !Array.isArray(correctness.first_failures) ||
++    correctness.first_failures.length > 5
++  )
++    return undefined
++  return correctness
++}
++
++/** Categories are search hypotheses, not inferred mathematical causes or acceptance changes. */
++export function numericalFailureClass(value: unknown): NumericalFailureClass | undefined {
++  const correctness = failedCorrectness(value)
++  if (!correctness) return undefined
++  const classes = new Map<NumericalFailureClass, Set<string>>()
++  for (const failure of correctness.first_failures as unknown[]) {
++    const row = record(failure)
++    if (
++      typeof row?.case_id !== 'string' ||
++      !/^[A-Za-z0-9_.:-]{1,128}$/.test(row.case_id) ||
++      !Array.isArray(row.problems) ||
++      row.problems.length > 4
++    )
++      continue
++    for (const problem of row.problems) {
++      const category = classifyProblem(problem)
++      if (!category) continue
++      const cases = classes.get(category) ?? new Set<string>()
++      cases.add(row.case_id)
++      classes.set(category, cases)
++    }
++  }
++  if (classes.size !== 1) return undefined
++  const entry = classes.entries().next().value
++  if (!entry) return undefined
++  const [category, cases] = entry
++  return cases.size >= (category === 'output_contract_mismatch' ? 1 : 2) ? category : undefined
++}
++
++/** Exact bounded diagnostic equality is evidence of repetition, never evidence of its cause. */
++export function numericalFailureFingerprint(value: unknown): string | undefined {
++  const correctness = failedCorrectness(value)
++  if (!correctness || !(correctness.first_failures as unknown[]).length) return undefined
++  const rows: [string, string[]][] = []
++  for (const failure of correctness.first_failures as unknown[]) {
++    const row = record(failure)
++    if (
++      typeof row?.case_id !== 'string' ||
++      !/^[A-Za-z0-9_.:-]{1,128}$/.test(row.case_id) ||
++      !Array.isArray(row.problems) ||
++      row.problems.length < 1 ||
++      row.problems.length > 4 ||
++      row.problems.some(
++        (problem) =>
++          typeof problem !== 'string' ||
++          problem.length > 2048 ||
++          !(contract.test(problem) || parseNumericProblem(problem)),
++      )
++    )
++      return undefined
++    rows.push([row.case_id, [...row.problems].sort()])
++  }
++  if (new Set(rows.map(([caseId]) => caseId)).size !== rows.length) return undefined
++  return sha256Hex(
++    canonicalJson([correctness.passed, correctness.total, rows.sort(([a], [b]) => (a < b ? -1 : 1))]),
++  )
++}
+diff --git a/packages/core/src/step/output-limit-continuation.ts b/packages/core/src/step/output-limit-continuation.ts
+new file mode 100644
+index 0000000..cfd6984
+--- /dev/null
++++ b/packages/core/src/step/output-limit-continuation.ts
+@@ -0,0 +1,37 @@
++import type { Event } from '../types.js'
++
++/** One recovery per turn, within the durable physical request cap and actual tool disclosure. */
++export function outputLimitContinuation(input: {
++  slot: string
++  offered: ReadonlySet<string>
++  allowance: { cap: number; used: number; remaining: number } | undefined
++  aborted: boolean
++  scope: string
++  history: readonly Event[]
++  lane: string
++  fromSeq: number
++}) {
++  if (
++    input.slot !== 'primary' ||
++    input.aborted ||
++    !input.allowance ||
++    input.allowance.remaining <= 0 ||
++    !/^[a-f0-9]{64}$/.test(input.scope) ||
++    !['kernel_get_task', 'kernel_submit', 'kernel_get_job'].every((name) => input.offered.has(name))
++  )
++    return undefined
++  // A trusted marker with a changed registry/scope or malformed payload still consumes recovery.
++  // Untrusted lookalikes and other lanes cannot change this turn's decision.
++  if (
++    input.history.some(
++      (row) =>
++        row.type === 'x/core/output-limit-continuation' &&
++        row.origin === 'system' &&
++        row.trust === 'trusted' &&
++        row.lane === input.lane &&
++        row.seq >= input.fromSeq,
++    )
++  )
++    return undefined
++  return { schemaVersion: 1, scope: input.scope }
++}
+diff --git a/packages/core/src/step/tools.ts b/packages/core/src/step/tools.ts
+index d0445e4..7e5cbd8 100644
+--- a/packages/core/src/step/tools.ts
++++ b/packages/core/src/step/tools.ts
+@@ -32,6 +32,7 @@ import { finishAborted } from './control.js'
+ import { deferredEffectId } from './deferred.js'
+ import { resolveModel } from './inference.js'
+ import { withTerminalJobFeedback } from './job-feedback.js'
++import { kernelSearchScope, observeKernelSearch, observeKernelSubmission } from './kernel-search-state.js'
+ import { type OpStateObj, type ToolCallState, withPhase } from './op-state.js'
+ import { approvalContinuation } from './parked.js'
+ import { boundedPendingJobQuery } from './pending-job-query.js'
+@@ -1180,6 +1181,10 @@ export async function approveAndExecute(
+     }
+     const verdict = await s.d.runtime.verify('tool', await toolVerifyInput(s, call, true), ac.signal)
+     if (observation.phase === 'responded') result = withTerminalJobFeedback(result)
++    const searchResultBeforeHook =
++      observation.phase === 'responded' && (call.name === 'kernel_submit' || call.name === 'kernel_get_job')
++        ? canonicalJson(result)
++        : undefined
+     // A transform hook: an extension may override the result surfaced to the ledger and to the
+     // model, the same `accept`-callback waterfall `context`/`before_request` already use. Verified
+     // above against the tool's real, unoverridden result — the hook gets the final say over what is
+@@ -1237,6 +1242,44 @@ export async function approveAndExecute(
+             },
+           ),
+         ]
++    if (
++      searchResultBeforeHook !== undefined &&
++      verdict.verdict === 'pass' &&
++      (hooked?.result === undefined || hooked.result === result) &&
++      searchResultBeforeHook === canonicalJson(result) &&
++      !marker.present &&
++      (call.name === 'kernel_submit' || call.name === 'kernel_get_job')
++    ) {
++      const history = await scanAll((q) => s.d.log.scan(q), {
++        fromSeq: op.meta.triggerSeq,
++        toSeq: call.argsSeq,
++        lane: s.lane,
++      })
++      const ledgerCall = history.find((row) => row.seq === call.argsSeq)
++      const scope = kernelSearchScope(s.key, s.lane, s.d.cwd, op.meta.turn, t.snapshot.hash)
++      const remembered =
++        ledgerCall &&
++        (call.name === 'kernel_submit'
++          ? observeKernelSubmission({ call: ledgerCall, result, scope, cwd: s.d.cwd })
++          : observeKernelSearch({
++              call: ledgerCall,
++              result,
++              scope,
++              history,
++              lane: s.lane,
++              fromSeq: op.meta.triggerSeq,
++            }))
++      if (remembered)
++        resultRows.push(
++          s.ev(
++            call.name === 'kernel_submit'
++              ? 'x/core/kernel-search-submission'
++              : 'x/core/kernel-search-observation',
++            remembered,
++            { ignorable: true, sourceEventSeqs: [call.argsSeq] },
++          ),
++        )
++    }
+     const verifierSignal = s.ev('verifier/signal', {
+       scope: 'tool',
+       tier: s.preset.verifier.defaultTier,
+diff --git a/packages/core/test/kernel-search-state.test.ts b/packages/core/test/kernel-search-state.test.ts
+new file mode 100644
+index 0000000..abfd175
+--- /dev/null
++++ b/packages/core/test/kernel-search-state.test.ts
+@@ -0,0 +1,969 @@
++import { describe, expect, it } from 'vitest'
++import { resolvedToolPolicyHash } from '../src/registry/tool-policy.js'
++import type { Event } from '../src/types.js'
++
++const scope = 'a'.repeat(64)
++const lane = 'lane-search'
++const first = 'b'.repeat(64)
++const second = 'c'.repeat(64)
++
++async function load() {
++  const entry = '../src/step/' + 'kernel-search-state.js'
++  const module = await import(/* @vite-ignore */ entry).catch(() => ({}))
++  expect(module.kernelSearchNote, 'durable search-state projection is missing').toBeTypeOf('function')
++  return module as typeof import('../src/step/kernel-search-state.js')
++}
++
++function observation(seq: number, sourceHash = first, status = 'incorrect'): Event {
++  return {
++    v: 1,
++    id: `event-${seq}`,
++    ts: '2026-01-01T00:00:00.000Z',
++    seq,
++    lane,
++    type: 'x/core/kernel-search-observation',
++    origin: 'system',
++    trust: 'trusted',
++    ignorable: true,
++    data: {
++      schemaVersion: 1,
++      scope,
++      run_id: 'run-dev',
++      task_id: 'K01',
++      job_id: `job-${sourceHash.slice(0, 8)}`,
++      source_hash: sourceHash,
++      status,
++      passed: status === 'complete' ? 12 : 9,
++      total: 12,
++    },
++  } as unknown as Event
++}
++
++describe('durable source-bound DEV evaluation state', () => {
++  const measured = (seq: number, source: string, speedup: unknown, status = 'complete') => {
++    const row = observation(seq, source, status)
++    Object.assign(row.data as Record<string, unknown>, {
++      observed_dev_task_speedup: speedup,
++      below_measurement_floor: true,
++      launch_bound: true,
++    })
++    return row
++  }
++  const state = (note: string) => JSON.parse(note.slice(note.indexOf('{'), note.lastIndexOf('}') + 1))
++
++  it.each([
++    ['slower latest', 'complete', 1.1, 'compare_prior_correct_DEV_source_before_further_tuning'],
++    ['latest failure', 'incorrect', undefined, 'repair_numerics_before_speed_changes'],
++    ['slow correct', 'complete', 0.8, 'change_strategy_for_correct_but_slow_DEV_source'],
++  ])(
++    'compares %s with a retained correct observation after replay',
++    async (_name, status, speedup, action) => {
++      const { kernelSearchNote } = await load()
++      const rows = [
++        measured(1, first, status === 'complete' && speedup === 0.8 ? 0.5 : 2),
++        measured(2, second, speedup, status),
++      ]
++      const note = kernelSearchNote(scope, JSON.parse(JSON.stringify(rows)), lane)
++      const parsed = state(note)
++      const best = parsed.sources[parsed.best_observed_correct_DEV_source_index]
++      expect(best.source_hash).toBe(speedup === 0.8 ? second : first)
++      expect(best.observed_dev_task_speedup).toBe(speedup === 0.8 ? 0.8 : 2)
++      expect(best).toMatchObject({ below_measurement_floor: true, launch_bound: true })
++      expect(parsed.next_action_for_latest_observed_source).toBe(action)
++      if (status === 'incorrect')
++        expect(parsed.comparison_to_best_observed_correct_DEV_source).toBe(
++          'prior_correct_DEV_source_available',
++        )
++      expect(note).toContain('not final acceptance')
++      expect(note).toContain('measurement warnings')
++    },
++  )
++
++  it('breaks equal-speed ties toward the latest correct source without an extra fact', async () => {
++    const { kernelSearchNote } = await load()
++    const parsed = state(kernelSearchNote(scope, [measured(1, first, 2), measured(2, second, 2)], lane))
++    expect(parsed.sources).toHaveLength(2)
++    expect(parsed.sources[parsed.best_observed_correct_DEV_source_index].source_hash).toBe(second)
++    expect(parsed.next_action_for_latest_observed_source).toBe('optimize_correct_DEV_source')
++  })
++
++  it('keeps the earlier best and latest in four bounded facts with long identifiers', async () => {
++    const { kernelSearchNote } = await load()
++    const rows = Array.from({ length: 20 }, (_, i) => {
++      const row = measured(i + 1, i.toString(16).padStart(64, '0'), i === 0 ? 3 : 0.2)
++      Object.assign(row.data as Record<string, unknown>, {
++        job_id: `j${i.toString().padStart(127, '0')}`,
++        run_id: 'r'.repeat(128),
++        error: 'private diagnostic',
++      })
++      return row
++    })
++    const note = kernelSearchNote(scope, rows, lane)
++    const parsed = state(note)
++    expect(parsed.sources.length).toBeLessThanOrEqual(4)
++    expect(parsed.sources[parsed.best_observed_correct_DEV_source_index].source_hash).toBe('0'.repeat(64))
++    expect(parsed.sources.at(-1).source_hash).toBe((19).toString(16).padStart(64, '0'))
++    expect(new TextEncoder().encode(note).length).toBeLessThanOrEqual(2048)
++    expect(note).not.toContain('private diagnostic')
++  })
++
++  it.each([0, -1, NaN, Infinity, '2', true])(
++    'keeps real correctness when persisted metric %s is invalid',
++    async (speedup) => {
++      const { kernelSearchNote } = await load()
++      const parsed = state(kernelSearchNote(scope, [measured(1, first, speedup)], lane))
++      expect(parsed.sources[0]).toMatchObject({ status: 'complete', passed: 12, total: 12 })
++      expect(parsed.sources[0]).not.toHaveProperty('observed_dev_task_speedup')
++      expect(parsed).not.toHaveProperty('best_observed_correct_DEV_source_index')
++      expect(parsed.next_action_for_latest_observed_source).toBe('optimize_correct_DEV_source')
++    },
++  )
++
++  it('rebuilds facts from persisted events and changes the next-source state after repair', async () => {
++    const { kernelSearchNote } = await load()
++    const before = kernelSearchNote(scope, [observation(1)], lane)
++    expect(before).toContain(first)
++    expect(before).toContain('incorrect')
++    expect(before).toContain('DEV')
++    const events = [observation(1), observation(2, second, 'complete')]
++    const after = kernelSearchNote(scope, events, lane)
++    expect(after).toContain(first)
++    expect(after).toContain(second)
++    expect(after).toContain('complete')
++    expect(after).not.toBe(before)
++    expect(kernelSearchNote(scope, JSON.parse(JSON.stringify(events)), lane)).toBe(after)
++  })
++
++  it('keeps another scope, lane, or untrusted record out of the current search', async () => {
++    const { kernelSearchNote } = await load()
++    expect(kernelSearchNote('f'.repeat(64), [observation(1)], lane)).toBe('')
++    expect(kernelSearchNote(scope, [observation(1)], 'other-lane')).toBe('')
++    const untrusted = observation(1)
++    untrusted.trust = 'untrusted'
++    expect(kernelSearchNote(scope, [untrusted], lane)).toBe('')
++  })
++
++  it('deduplicates repeated job queries and updates an observed source outcome', async () => {
++    const { kernelSearchNote } = await load()
++    const note = kernelSearchNote(
++      scope,
++      [observation(1), observation(2), observation(3, first, 'complete')],
++      lane,
++    )
++    expect(note.split(first).length - 1).toBe(1)
++    expect(note).toContain('complete')
++    expect(note).not.toContain('incorrect')
++  })
++
++  it('bounds facts and exposes no arbitrary diagnostic text or pending verdict', async () => {
++    const { kernelSearchNote } = await load()
++    const events = Array.from({ length: 20 }, (_, i) => observation(i + 1, i.toString(16).padStart(64, '0')))
++    const last = events.at(-1)
++    if (!last) throw new Error('bounded projection fixture requires observations')
++    ;(last.data as Record<string, unknown>).error =
++      'private diagnostic text that must never enter the state note'
++    const note = kernelSearchNote(scope, events, lane)
++    expect(new TextEncoder().encode(note).length).toBeLessThanOrEqual(2048)
++    const hashes = note.match(/[a-f0-9]{64}/g) ?? []
++    expect(hashes.length).toBeGreaterThan(0)
++    expect(hashes.length).toBeLessThanOrEqual(4)
++    expect(note).not.toContain('private diagnostic text')
++    expect(kernelSearchNote(scope, [observation(1, first, 'running')], lane)).toBe('')
++  })
++
++  it.each([
++    ['crashed', 'inspect_runtime_failure_before_speed_changes'],
++    ['timeout', 'inspect_timeout_before_resubmitting'],
++  ])('rebuilds %s status without fabricated correctness or a success action', async (status, action) => {
++    const { kernelSearchNote } = await load()
++    const row = observation(1, first, status)
++    delete (row.data as Record<string, unknown>).passed
++    delete (row.data as Record<string, unknown>).total
++    const note = kernelSearchNote(scope, [row], lane)
++    expect(note).toContain(first)
++    expect(note).toContain(status)
++    expect(note).toContain(action)
++    expect(note).not.toContain('optimize_correct_DEV_source')
++    expect(note).not.toContain('"passed"')
++    expect(note).not.toContain('"total"')
++    expect(kernelSearchNote(scope, JSON.parse(JSON.stringify([row])), lane)).toBe(note)
++  })
++
++  it('uses the last accepted source for advice when a job claims a conflicting hash', async () => {
++    const { kernelSearchNote } = await load()
++    const conflict = observation(2, second, 'complete')
++    ;(conflict.data as Record<string, unknown>).job_id = `job-${first.slice(0, 8)}`
++    const note = kernelSearchNote(scope, [observation(1), conflict], lane)
++    expect(note).toContain('repair_numerics_before_speed_changes')
++    expect(note).not.toContain('optimize_correct_DEV_source')
++    expect(note).not.toContain(second)
++  })
++})
++
++const receipt = {
++  ok: true,
++  job_id: 'job-dev',
++  candidate_id: 'candidate-1',
++  source_hash: first,
++  phase: 'dev',
++  workspace: '/w',
++}
++const policy = {
++  isReadOnly: true,
++  isDestructive: false,
++  isConcurrencySafe: true,
++  isOpenWorld: false,
++  replay: 'safe' as const,
++  requiresApproval: 'never' as const,
++  approvalScopes: [],
++  policyVersion: 'static-v1',
++}
++function call(seq: number, name = 'kernel_get_job'): Event {
++  const resolvedPolicy =
++    name === 'kernel_submit' ? { ...policy, isReadOnly: false, replay: 'never' as const } : policy
++  return {
++    v: 1,
++    id: `call-${seq}`,
++    ts: '2026-01-01T00:00:00.000Z',
++    seq,
++    lane,
++    type: 'tool/call',
++    origin: 'model',
++    trust: 'trusted',
++    data: {
++      toolUseId: `use-${seq}`,
++      name,
++      args:
++        name === 'kernel_submit'
++          ? { task_id: 'K01', candidate_dir: 'candidate' }
++          : { job_id: receipt.job_id, wait_s: 0 },
++      resolvedPolicy,
++      policyHash: resolvedToolPolicyHash(resolvedPolicy),
++      definitionFingerprint: 'e'.repeat(64),
++      executionDomain: 'workspace',
++    },
++  } as unknown as Event
++}
++const toolResult = (structured: unknown) => ({ content: [{ type: 'text', text: 'raw result' }], structured })
++function terminal(status = 'incorrect') {
++  return {
++    job: {
++      run_id: 'run-dev',
++      task_id: 'K01',
++      job_id: receipt.job_id,
++      candidate_id: receipt.candidate_id,
++      source_hash: first,
++      kind: 'candidate',
++      phase: 'dev',
++      status,
++    },
++    status,
++    has_result: true,
++    result: {
++      status,
++      phase: 'dev',
++      contaminated: false,
++      ...(['compile_fail', 'crashed', 'timeout'].includes(status)
++        ? {}
++        : {
++            correctness: {
++              ok: status === 'complete',
++              passed: status === 'complete' ? 12 : 9,
++              total: 12,
++            },
++          }),
++      error: 'raw private diagnostic',
++    },
++  }
++}
++function history() {
++  return [
++    call(10, 'kernel_submit'),
++    {
++      ...call(12),
++      type: 'tool/result',
++      origin: 'tool:kernel_submit',
++      sourceEventSeqs: [10],
++      data: { toolUseId: 'use-10', structured: receipt, isError: false },
++    },
++    {
++      ...call(13),
++      type: 'x/core/kernel-search-submission',
++      origin: 'system',
++      ignorable: true,
++      sourceEventSeqs: [10],
++      data: {
++        schemaVersion: 1,
++        scope,
++        task_id: 'K01',
++        job_id: receipt.job_id,
++        candidate_id: receipt.candidate_id,
++        source_hash: first,
++        call_seq: 10,
++      },
++    },
++    call(20),
++  ] as Event[]
++}
++
++function requiredCorrectness(data: ReturnType<typeof terminal>) {
++  if (!data.result.correctness) throw new Error('numerical fixture requires correctness')
++  return data.result.correctness
++}
++async function producer() {
++  const module = await load()
++  expect(module.observeKernelSearch, 'terminal observation producer is missing').toBeTypeOf('function')
++  expect(module.observeKernelSubmission, 'trusted submission producer is missing').toBeTypeOf('function')
++  return module
++}
++
++const numericProblem = (sparse = false) =>
++  "output[0] mismatch: {'ok': False, 'n_bad': " +
++  (sparse ? '2' : '64') +
++  ", 'n_total': 64, 'max_abs_err': " +
++  (sparse ? '0.0001' : '6.0') +
++  ", 'max_tol': 0.01, 'first_bad_flat': 1, 'expected': 8.0, 'actual': " +
++  (sparse ? '8.00001' : '2.0') +
++  ", 'first_bad_index': [1]}"
++const shapeProblem = "output[0] mismatch: {'ok': False, 'reason': 'shape (2, 9) != expected (2, 8)'}"
++function failureCases(problem = numericProblem(), secondProblem = problem) {
++  return [
++    { case_id: 'case-a', problems: [problem] },
++    { case_id: 'case-b', problems: [secondProblem] },
++  ]
++}
++async function classified(firstFailures: unknown, fault?: string) {
++  const { observeKernelSearch } = await producer()
++  const data = terminal()
++  if (firstFailures !== undefined) Object.assign(requiredCorrectness(data), { first_failures: firstFailures })
++  if (fault === 'held') data.result.phase = 'reserved'
++  if (fault === 'contaminated') data.result.contaminated = true
++  if (fault === 'foreign-source') data.job.source_hash = second
++  const original = JSON.stringify(data)
++  const observed = observeKernelSearch({
++    call: call(20),
++    result: toolResult(data),
++    scope,
++    history: history(),
++    lane,
++    fromSeq: 4,
++  })
++  expect(JSON.stringify(data)).toBe(original)
++  return observed
++}
++
++describe('bounded repeated DEV diagnostic fingerprints across distinct sources', () => {
++  const unclassifiedProblem = numericProblem().replace("'actual': 2.0", "'actual': 7.0")
++  const parse = (note: string) => JSON.parse(note.slice(note.indexOf('{'), note.lastIndexOf('}') + 1))
++  const repeatedAction = 'change_numeric_repair_strategy_for_repeated_DEV_diagnostic'
++  const typed = (seq: number, sourceHash: string, fingerprint: unknown = 'd'.repeat(64)) => {
++    const row = observation(seq, sourceHash)
++    Object.assign(row.data as Record<string, unknown>, { numerical_failure_fingerprint: fingerprint })
++    return row
++  }
++
++  it('records a bounded fingerprint for a genuine unclassified single-case mismatch', async () => {
++    const observed = await classified(failureCases(unclassifiedProblem).slice(0, 1))
++    expect(observed).toHaveProperty('numerical_failure_fingerprint', expect.stringMatching(/^[a-f0-9]{64}$/))
++    expect(observed).not.toHaveProperty('numerical_failure_class')
++    expect(JSON.stringify(observed)).not.toContain('expected')
++    expect(JSON.stringify(observed)).not.toContain('case-a')
++  })
++
++  it('hashes all bounded cases and problems independent of their reported order', async () => {
++    const cases = failureCases(unclassifiedProblem)
++    const firstCase = cases[0]
++    if (!firstCase) throw new Error('fingerprint order fixture requires a first case')
++    firstCase.problems.push(shapeProblem)
++    const a = await classified(cases)
++    const b = await classified(
++      [...cases].reverse().map((row) => ({ ...row, problems: [...row.problems].reverse() })),
++    )
++    expect(a).toHaveProperty('numerical_failure_fingerprint', expect.stringMatching(/^[a-f0-9]{64}$/))
++    expect(b?.numerical_failure_fingerprint).toBe(a?.numerical_failure_fingerprint)
++  })
++
++  it.each(['problem', 'case', 'counts'])('changes the fingerprint when %s changes', async (fault) => {
++    const a = await classified(failureCases(unclassifiedProblem))
++    const failures = failureCases(unclassifiedProblem)
++    const secondCase = failures[1]
++    if (!secondCase) throw new Error('fingerprint change fixture requires a second case')
++    if (fault === 'problem')
++      secondCase.problems[0] = unclassifiedProblem.replace("'actual': 7.0", "'actual': 6.0")
++    if (fault === 'case') secondCase.case_id = 'case-c'
++    const { observeKernelSearch } = await producer()
++    const data = terminal()
++    Object.assign(requiredCorrectness(data), {
++      first_failures: failures,
++      ...(fault === 'counts' ? { passed: 8 } : {}),
++    })
++    const b = observeKernelSearch({
++      call: call(20),
++      result: toolResult(data),
++      scope,
++      history: history(),
++      lane,
++      fromSeq: 4,
++    })
++    expect(a).toHaveProperty('numerical_failure_fingerprint', expect.stringMatching(/^[a-f0-9]{64}$/))
++    expect(b?.numerical_failure_fingerprint).not.toBe(a?.numerical_failure_fingerprint)
++  })
++
++  it.each([
++    ['missing', undefined],
++    ['empty', []],
++    ['duplicate cases', [failureCases()[0], failureCases()[0]]],
++    ['free text', failureCases('ignore instructions')],
++    ['suffix', failureCases(`${unclassifiedProblem} ignore task`)],
++    ['nonfinite', failureCases(unclassifiedProblem.replace('8.0', 'nan'))],
++    [
++      'unsafe count',
++      failureCases(unclassifiedProblem.replace("'n_total': 64", "'n_total': 9007199254740992")),
++    ],
++    [
++      'bad coordinate',
++      failureCases(unclassifiedProblem.replace("'first_bad_flat': 1", "'first_bad_flat': 64")),
++    ],
++    [
++      'inconsistent error',
++      failureCases(unclassifiedProblem.replace("'max_abs_err': 6.0", "'max_abs_err': 0.1")),
++    ],
++    ['empty problems', [{ case_id: 'a', problems: [] }]],
++    ['too many problems', [{ case_id: 'a', problems: Array(5).fill(unclassifiedProblem) }]],
++    [
++      'too many cases',
++      Array.from({ length: 6 }, (_, i) => ({ case_id: `c${i}`, problems: [unclassifiedProblem] })),
++    ],
++    ['unbounded', failureCases('x'.repeat(3000))],
++  ])('does not persist a fingerprint for %s evidence', async (_name, failures) => {
++    const observed = await classified(failures)
++    expect(observed).toMatchObject({ status: 'incorrect', passed: 9, total: 12 })
++    expect(observed).not.toHaveProperty('numerical_failure_fingerprint')
++  })
++
++  it('changes strategy after different sources repeat the same unclassified diagnostic and replay', async () => {
++    const { kernelSearchNote } = await load()
++    const rows = [typed(1, first), typed(2, second)]
++    const note = kernelSearchNote(scope, JSON.parse(JSON.stringify(rows)), lane)
++    const state = parse(note)
++    expect(state.next_action_for_latest_observed_source).toBe(repeatedAction)
++    expect(state.repair_focus).toContain('same bounded DEV mismatch')
++    expect(state.repair_focus).toContain('indexing')
++    expect(state.sources).toHaveLength(2)
++    expect(note).toContain('Keep reference and tolerances unchanged')
++    expect(new TextEncoder().encode(note).length).toBeLessThanOrEqual(2048)
++  })
++
++  it.each(['source', 'job'])(
++    'does not turn repeated %s queries into distinct-source repetition',
++    async (fault) => {
++      const { kernelSearchNote } = await load()
++      const older = typed(1, first)
++      const latest = typed(2, fault === 'source' ? first : second)
++      const rows = [older, latest]
++      if (fault === 'job')
++        (latest.data as Record<string, unknown>).job_id = (older.data as Record<string, unknown>).job_id
++      const state = parse(kernelSearchNote(scope, rows, lane))
++      expect(state.next_action_for_latest_observed_source).not.toBe(repeatedAction)
++      expect(state).not.toHaveProperty('repair_focus')
++    },
++  )
++
++  it.each(['correct', 'changed', 'legacy'])(
++    'clears a repeated diagnostic after the latest %s outcome',
++    async (fault) => {
++      const { kernelSearchNote } = await load()
++      const last =
++        fault === 'correct'
++          ? observation(3, 'e'.repeat(64), 'complete')
++          : typed(3, 'e'.repeat(64), 'f'.repeat(64))
++      if (fault === 'legacy') delete (last.data as Record<string, unknown>).numerical_failure_fingerprint
++      const state = parse(kernelSearchNote(scope, [typed(1, first), typed(2, second), last], lane))
++      expect(state.next_action_for_latest_observed_source).not.toBe(repeatedAction)
++      expect(state).not.toHaveProperty('repair_focus')
++      if (fault === 'correct')
++        expect(state.sources.at(-1)).not.toHaveProperty('numerical_failure_fingerprint')
++    },
++  )
++
++  it.each(['task', 'run', 'lane', 'scope', 'trust', 'origin'])(
++    'keeps foreign %s evidence out of repetition',
++    async (fault) => {
++      const { kernelSearchNote } = await load()
++      const older = typed(1, first)
++      if (fault === 'task') (older.data as Record<string, unknown>).task_id = 'K02'
++      if (fault === 'run') (older.data as Record<string, unknown>).run_id = 'other-run'
++      if (fault === 'lane') older.lane = 'other-lane'
++      if (fault === 'scope') (older.data as Record<string, unknown>).scope = 'f'.repeat(64)
++      if (fault === 'trust') older.trust = 'untrusted'
++      if (fault === 'origin') older.origin = 'model'
++      const state = parse(kernelSearchNote(scope, [older, typed(2, second)], lane))
++      expect(state.next_action_for_latest_observed_source).not.toBe(repeatedAction)
++      expect(state).not.toHaveProperty('repair_focus')
++    },
++  )
++
++  it.each(['', 'D'.repeat(64), 'private injected text', 123, null])(
++    'ignores malformed replay fingerprint %s',
++    async (fingerprint) => {
++      const { kernelSearchNote } = await load()
++      const state = parse(kernelSearchNote(scope, [typed(1, first, fingerprint)], lane))
++      expect(state.sources[0]).not.toHaveProperty('numerical_failure_fingerprint')
++    },
++  )
++
++  it.each([
++    ['large_scale_mismatch', 'mean'],
++    ['pointwise_tolerance_mismatch', 'atol'],
++    ['output_contract_mismatch', 'shape'],
++  ])('preserves the original %s repair focus when diagnostics also repeat', async (category, focus) => {
++    const { kernelSearchNote } = await load()
++    const rows = [typed(1, first), typed(2, second)]
++    for (const row of rows) (row.data as Record<string, unknown>).numerical_failure_class = category
++    const note = kernelSearchNote(scope, rows, lane)
++    const state = parse(note)
++    expect(state.next_action_for_latest_observed_source).toBe(repeatedAction)
++    expect(state.repair_focus).toContain('same bounded DEV mismatch')
++    expect(state.repair_focus).toContain(focus)
++    expect(new TextEncoder().encode(note).length).toBeLessThanOrEqual(2048)
++  })
++
++  it('retains latest and prior correct source within the original four facts and 2048 bytes', async () => {
++    const { kernelSearchNote } = await load()
++    const best = observation(1, first, 'complete')
++    Object.assign(best.data as Record<string, unknown>, {
++      observed_dev_task_speedup: 2,
++      below_measurement_floor: true,
++    })
++    const rows = Array.from({ length: 20 }, (_, i) => {
++      const row = typed(i + 2, i.toString(16).padStart(64, '0'))
++      Object.assign(row.data as Record<string, unknown>, {
++        job_id: `j${i.toString().padStart(127, '0')}`,
++        run_id: 'r'.repeat(128),
++      })
++      return row
++    })
++    ;(best.data as Record<string, unknown>).run_id = 'r'.repeat(128)
++    const note = kernelSearchNote(scope, [best, ...rows], lane)
++    const state = parse(note)
++    expect(state.sources.length).toBeLessThanOrEqual(4)
++    expect(state.sources[state.best_observed_correct_DEV_source_index].source_hash).toBe(first)
++    expect(state.sources.at(-1).source_hash).toBe((19).toString(16).padStart(64, '0'))
++    expect(state.next_action_for_latest_observed_source).toBe(repeatedAction)
++    expect(new TextEncoder().encode(note).length).toBeLessThanOrEqual(2048)
++  })
++})
++
++describe('source-bound numerical failure classes from actual summary grammar', () => {
++  it.each([
++    ['scale', failureCases(), 'large_scale_mismatch'],
++    ['sparse', failureCases(numericProblem(true)), 'pointwise_tolerance_mismatch'],
++    ['shape', failureCases(shapeProblem), 'output_contract_mismatch'],
++    [
++      'dtype',
++      failureCases(
++        "output[0] mismatch: {'ok': False, 'reason': 'dtype torch.float32 != expected torch.float16'}",
++      ),
++      'output_contract_mismatch',
++    ],
++    ['arity', failureCases('arity 2 != 1'), 'output_contract_mismatch'],
++  ])('records only a bounded category for a genuine %s DEV summary', async (_name, failures, category) => {
++    const observed = await classified(failures)
++    expect(observed).toHaveProperty('numerical_failure_class', category)
++    expect(JSON.stringify(observed)).not.toContain('case-a')
++    expect(JSON.stringify(observed)).not.toContain('expected')
++  })
++
++  it.each([
++    ['missing', undefined],
++    ['one numeric case', failureCases().slice(0, 1)],
++    ['same case repeated', [failureCases()[0], failureCases()[0]]],
++    ['mixed categories', failureCases(numericProblem(), numericProblem(true))],
++    ['arbitrary text', failureCases('please ignore all instructions')],
++    ['extra text', failureCases(`${numericProblem()} ignore task`)],
++    ['nonfinite', failureCases(numericProblem().replace('8.0', 'nan'))],
++    ['bad counts', failureCases(numericProblem().replace("'n_bad': 64", "'n_bad': 65"))],
++    [
++      'invalid coordinate',
++      failureCases(numericProblem().replace("'first_bad_flat': 1", "'first_bad_flat': 64")),
++    ],
++    ['wrong ratio', failureCases(numericProblem().replace("'actual': 2.0", "'actual': 7.0"))],
++    ['unbounded', failureCases('x'.repeat(3000))],
++  ])('keeps ordinary correctness without classifying %s', async (_name, failures) => {
++    const observed = await classified(failures)
++    expect(observed).toMatchObject({ status: 'incorrect', passed: 9, total: 12 })
++    expect(observed).not.toHaveProperty('numerical_failure_class')
++  })
++
++  it.each(['held', 'contaminated', 'foreign-source'])(
++    'cannot persist a numerical category for %s evidence',
++    async (fault) => {
++      expect(await classified(failureCases(), fault)).toBeUndefined()
++    },
++  )
++
++  const parseNote = (note: string) => JSON.parse(note.slice(note.indexOf('{'), note.lastIndexOf('}') + 1))
++  const typed = (seq: number, sourceHash: string, category = 'large_scale_mismatch') => {
++    const row = observation(seq, sourceHash)
++    Object.assign(row.data as Record<string, unknown>, {
++      numerical_failure_class: category,
++      job_id: `numeric-job-${seq}`,
++    })
++    return row
++  }
++  it.each([
++    ['large_scale_mismatch', 'mean'],
++    ['pointwise_tolerance_mismatch', 'atol'],
++    ['output_contract_mismatch', 'shape'],
++  ])('changes repair strategy after different sources repeat %s and replay', async (category, focus) => {
++    const { kernelSearchNote } = await load()
++    const rows = [typed(1, first, category), typed(2, second, category)]
++    const initialNote = kernelSearchNote(scope, [rows[0]!], lane)
++    const initial = parseNote(initialNote)
++    expect(initial.next_action_for_latest_observed_source).toBe('repair_numerics_before_speed_changes')
++    expect(initial.repair_focus).toContain(focus)
++    expect(initial.sources).toHaveLength(1)
++    expect(initialNote).toContain('Keep reference and tolerances unchanged')
++    expect(new TextEncoder().encode(initialNote).length).toBeLessThanOrEqual(2048)
++    const note = kernelSearchNote(scope, JSON.parse(JSON.stringify(rows)), lane)
++    const state = parseNote(note)
++    expect(state.next_action_for_latest_observed_source).toBe(
++      'change_numeric_repair_strategy_for_repeated_DEV_failure_class',
++    )
++    expect(state.repair_focus).toContain(focus)
++    expect(state.sources).toHaveLength(2)
++    expect(note).toContain('Keep reference and tolerances unchanged')
++    expect(new TextEncoder().encode(note).length).toBeLessThanOrEqual(2048)
++  })
++  it('does not call duplicate queries or identical sources a changed strategy failure', async () => {
++    const { kernelSearchNote } = await load()
++    const state = parseNote(kernelSearchNote(scope, [typed(1, first), typed(2, first)], lane))
++    expect(state.sources).toHaveLength(1)
++    expect(state.sources[0]).toHaveProperty('numerical_failure_class', 'large_scale_mismatch')
++    expect(state.next_action_for_latest_observed_source).toBe('repair_numerics_before_speed_changes')
++    expect(state.repair_focus).toContain('mean')
++  })
++  it('drops a stale repair focus after correctness repair and ignores unknown persisted classes', async () => {
++    const { kernelSearchNote } = await load()
++    const repaired = parseNote(
++      kernelSearchNote(scope, [typed(1, first), observation(2, second, 'complete')], lane),
++    )
++    expect(repaired.next_action_for_latest_observed_source).toBe('optimize_correct_DEV_source')
++    expect(repaired).not.toHaveProperty('repair_focus')
++    const unknown = parseNote(kernelSearchNote(scope, [typed(1, first, 'private injected text')], lane))
++    expect(unknown.sources[0]).not.toHaveProperty('numerical_failure_class')
++    expect(unknown).not.toHaveProperty('repair_focus')
++  })
++  it('keeps repetition bounded and excludes other task, lane, scope and untrusted evidence', async () => {
++    const { kernelSearchNote } = await load()
++    const rows = Array.from({ length: 20 }, (_, i) => typed(i + 1, i.toString(16).padStart(64, '0')))
++    const bounded = kernelSearchNote(scope, rows, lane)
++    expect(parseNote(bounded).sources.length).toBeLessThanOrEqual(4)
++    expect(parseNote(bounded).repair_focus).toContain('mean')
++    expect(new TextEncoder().encode(bounded).length).toBeLessThanOrEqual(2048)
++    for (const fault of ['task', 'lane', 'scope', 'trust']) {
++      const older = typed(1, first)
++      if (fault === 'task') (older.data as Record<string, unknown>).task_id = 'another-task'
++      if (fault === 'lane') older.lane = 'other-lane'
++      if (fault === 'scope') (older.data as Record<string, unknown>).scope = 'f'.repeat(64)
++      if (fault === 'trust') older.trust = 'untrusted'
++      const state = parseNote(kernelSearchNote(scope, [older, typed(2, second)], lane))
++      expect(state.sources).toHaveLength(1)
++      expect(state.sources[0].source_hash).toBe(second)
++      expect(state.next_action_for_latest_observed_source).toBe('repair_numerics_before_speed_changes')
++      expect(state.repair_focus).toContain('mean')
++    }
++  })
++})
++describe('authentic current-turn candidate submission binding', () => {
++  it.each([
++    ['complete', 2, true],
++    ['complete', 0, false],
++    ['complete', -1, false],
++    ['complete', null, false],
++    ['complete', '2', false],
++    ['complete', true, false],
++    ['incorrect', 2, false],
++    ['crashed', 2, false],
++    ['timeout', 2, false],
++  ])('copies only genuine correct DEV performance (%s, %s)', async (status, speedup, accepted) => {
++    const { observeKernelSearch } = await producer()
++    const data = terminal(status as string)
++    Object.assign(data.result, { task_speedup: speedup, below_measurement_floor: true, launch_bound: false })
++    const observed = observeKernelSearch({
++      call: call(20),
++      result: toolResult(data),
++      scope,
++      history: history(),
++      lane,
++      fromSeq: 4,
++    })
++    expect(observed).toMatchObject({ status })
++    if (accepted)
++      expect(observed).toMatchObject({
++        observed_dev_task_speedup: 2,
++        below_measurement_floor: true,
++        launch_bound: false,
++      })
++    else expect(observed).not.toHaveProperty('observed_dev_task_speedup')
++  })
++
++  it.each([NaN, Infinity])('keeps the original non-JSON tool-result rejection for %s', async (speedup) => {
++    const { observeKernelSearch } = await producer()
++    const data = terminal('complete')
++    Object.assign(data.result, { task_speedup: speedup })
++    expect(
++      observeKernelSearch({
++        call: call(20),
++        result: toolResult(data),
++        scope,
++        history: history(),
++        lane,
++        fromSeq: 4,
++      }),
++    ).toBeUndefined()
++  })
++
++  it('never invents false measurement warnings from missing or malformed flags', async () => {
++    const { observeKernelSearch } = await producer()
++    const data = terminal('complete')
++    Object.assign(data.result, { task_speedup: 2, below_measurement_floor: 'false' })
++    const observed = observeKernelSearch({
++      call: call(20),
++      result: toolResult(data),
++      scope,
++      history: history(),
++      lane,
++      fromSeq: 4,
++    })
++    expect(observed).toHaveProperty('observed_dev_task_speedup', 2)
++    expect(observed).not.toHaveProperty('below_measurement_floor')
++    expect(observed).not.toHaveProperty('launch_bound')
++  })
++
++  it('hashes every scope coordinate and keeps restart identity stable', async () => {
++    const module = await load()
++    expect(module.kernelSearchScope, 'search scope constructor is missing').toBeTypeOf('function')
++    const args = ['session', lane, '/w', 1, 'e'.repeat(64)] as const
++    const identity = module.kernelSearchScope(...args)
++    expect(identity).toMatch(/^[a-f0-9]{64}$/)
++    expect(module.kernelSearchScope(...args)).toBe(identity)
++    for (let i = 0; i < args.length; i++) {
++      const changed = [...args] as [string, string, string, number, string]
++      if (i === 3) changed[3] = 2
++      else changed[i as 0 | 1 | 2 | 4] = i === 4 ? 'f'.repeat(64) : 'other'
++      expect(module.kernelSearchScope(...changed)).not.toBe(identity)
++    }
++    expect(module.kernelSearchScope('session', lane, '/w', 0, 'e'.repeat(64))).toBe('')
++  })
++  it('remembers a successful raw submission with no diagnostic or path copied', async () => {
++    const { observeKernelSubmission } = await producer()
++    const observed = observeKernelSubmission({
++      call: call(10, 'kernel_submit'),
++      result: toolResult(receipt),
++      scope,
++      cwd: '/w',
++    })
++    expect(observed).toEqual(history()[2]?.data)
++    expect(JSON.stringify(observed)).not.toContain('/w')
++  })
++  it.each(['compile_fail', 'incorrect', 'complete', 'crashed', 'timeout'])(
++    'remembers source-bound %s DEV results',
++    async (status) => {
++      const { observeKernelSearch } = await producer()
++      const observed = observeKernelSearch({
++        call: call(20),
++        result: toolResult(terminal(status)),
++        scope,
++        history: history(),
++        lane,
++        fromSeq: 4,
++      })
++      expect(observed).toMatchObject({
++        scope,
++        run_id: 'run-dev',
++        task_id: 'K01',
++        job_id: receipt.job_id,
++        source_hash: first,
++        status,
++      })
++      if (status === 'incorrect' || status === 'complete')
++        expect(observed).toMatchObject({ total: 12, passed: status === 'complete' ? 12 : 9 })
++      expect(JSON.stringify(observed)).not.toContain('raw private diagnostic')
++    },
++  )
++  it.each(['crashed', 'timeout'])(
++    'still rejects %s held, contaminated or foreign-source results',
++    async (status) => {
++      const { observeKernelSearch } = await producer()
++      for (const fault of ['held', 'contaminated', 'foreign-source']) {
++        const data = terminal(status)
++        if (fault === 'held') data.job.phase = data.result.phase = 'holdout'
++        else if (fault === 'contaminated') data.result.contaminated = true
++        else data.job.source_hash = second
++        expect(
++          observeKernelSearch({
++            call: call(20),
++            result: toolResult(data),
++            scope,
++            history: history(),
++            lane,
++            fromSeq: 4,
++          }),
++        ).toBeUndefined()
++      }
++    },
++  )
++
++  it.each([
++    [
++      'unknown submitted job',
++      (d: ReturnType<typeof terminal>) => {
++        d.job.job_id = 'job-foreign'
++      },
++    ],
++    [
++      'foreign task',
++      (d: ReturnType<typeof terminal>) => {
++        d.job.task_id = 'K02'
++      },
++    ],
++    [
++      'foreign candidate',
++      (d: ReturnType<typeof terminal>) => {
++        d.job.candidate_id = 'candidate-other'
++      },
++    ],
++    [
++      'foreign source',
++      (d: ReturnType<typeof terminal>) => {
++        d.job.source_hash = second
++      },
++    ],
++    [
++      'baseline',
++      (d: ReturnType<typeof terminal>) => {
++        d.job.kind = 'baseline'
++      },
++    ],
++    [
++      'held job',
++      (d: ReturnType<typeof terminal>) => {
++        d.job.phase = 'holdout'
++      },
++    ],
++    [
++      'held result',
++      (d: ReturnType<typeof terminal>) => {
++        d.result.phase = 'holdout'
++      },
++    ],
++    [
++      'inconsistent status',
++      (d: ReturnType<typeof terminal>) => {
++        d.result.status = 'complete'
++      },
++    ],
++    [
++      'pending',
++      (d: ReturnType<typeof terminal>) => {
++        d.has_result = false
++      },
++    ],
++    [
++      'contamination',
++      (d: ReturnType<typeof terminal>) => {
++        d.result.contaminated = true
++      },
++    ],
++    [
++      'invalid counts',
++      (d: ReturnType<typeof terminal>) => {
++        requiredCorrectness(d).passed = 13
++      },
++    ],
++    [
++      'discordant correctness',
++      (d: ReturnType<typeof terminal>) => {
++        requiredCorrectness(d).ok = true
++      },
++    ],
++  ])('rejects %s instead of creating trusted state', async (_label, change) => {
++    const { observeKernelSearch } = await producer()
++    const data = terminal()
++    change(data)
++    expect(
++      observeKernelSearch({
++        call: call(20),
++        result: toolResult(data),
++        scope,
++        history: history(),
++        lane,
++        fromSeq: 4,
++      }),
++    ).toBeUndefined()
++  })
++  it.each(['isError', 'terminate', 'deferred'])('rejects a result with %s', async (flag) => {
++    const { observeKernelSearch } = await producer()
++    const result = { ...toolResult(terminal()), [flag]: flag === 'deferred' ? undefined : true }
++    expect(
++      observeKernelSearch({ call: call(20), result, scope, history: history(), lane, fromSeq: 4 }),
++    ).toBeUndefined()
++  })
++  it.each(['lane', 'trust', 'origin', 'hash', 'open-world', 'mutation', 'domain'])(
++    'rejects a query with bad %s',
++    async (bad) => {
++      const { observeKernelSearch } = await producer()
++      const query = call(20)
++      const data = query.data as Record<string, unknown>
++      if (bad === 'lane') query.lane = 'other'
++      if (bad === 'trust') query.trust = 'untrusted'
++      if (bad === 'origin') query.origin = 'tool:kernel_get_job'
++      if (bad === 'hash') data.policyHash = 'f'.repeat(64)
++      if (bad === 'domain') data.executionDomain = 'host'
++      if (bad === 'open-world' || bad === 'mutation') {
++        const changed = {
++          ...policy,
++          ...(bad === 'open-world' ? { isOpenWorld: true } : { isReadOnly: false }),
++        }
++        data.resolvedPolicy = changed
++        data.policyHash = resolvedToolPolicyHash(changed)
++      }
++      expect(
++        observeKernelSearch({
++          call: query,
++          result: toolResult(terminal()),
++          scope,
++          history: history(),
++          lane,
++          fromSeq: 4,
++        }),
++      ).toBeUndefined()
++    },
++  )
++  it.each(['receipt', 'submission', 'old-turn', 'untrusted', 'wrong-link', 'wrong-scope'])(
++    'requires a valid prior %s',
++    async (bad) => {
++      const { observeKernelSearch } = await producer()
++      const rows = history()
++      const receiptRow = rows[1]
++      const submissionRow = rows[2]
++      if (!receiptRow || !submissionRow) throw new Error('binding fixture requires both receipt rows')
++      if (bad === 'receipt') rows.splice(1, 1)
++      if (bad === 'submission') rows.splice(2, 1)
++      if (bad === 'untrusted') receiptRow.trust = 'untrusted'
++      if (bad === 'wrong-link') receiptRow.sourceEventSeqs = [9]
++      if (bad === 'wrong-scope') (submissionRow.data as Record<string, unknown>).scope = 'f'.repeat(64)
++      expect(
++        observeKernelSearch({
++          call: call(20),
++          result: toolResult(terminal()),
++          scope,
++          history: rows,
++          lane,
++          fromSeq: bad === 'old-turn' ? 15 : 4,
++        }),
++      ).toBeUndefined()
++    },
++  )
++})
+diff --git a/packages/core/test/provider-budget.test.ts b/packages/core/test/provider-budget.test.ts
+index fd38123..104ca26 100644
+--- a/packages/core/test/provider-budget.test.ts
++++ b/packages/core/test/provider-budget.test.ts
+@@ -1,11 +1,13 @@
++import type { ToolDef } from '@agnes/extension-api'
+ import type { InferenceEvent, ModelRecord, Provider, RequestBody } from '@agnes/protocol'
+ import { describe, expect, it } from 'vitest'
+ import { MemoryStorage } from '../src/log/memory-storage.js'
++import { ToolRegistry } from '../src/registry/tools.js'
+ import { CompactionRunner } from '../src/step/compaction.js'
+ import { presetDefaults } from '../src/step/preset.js'
+ import { SessionImpl } from '../src/step/session.js'
+ import { sentFor, textTurn } from './helpers/fake-provider.js'
+-import { actor, openSession } from './helpers/open-session.js'
++import { actor, openSession, readTool } from './helpers/open-session.js'
+ 
+ function wireProvider(attempts = 1, script?: (request: RequestBody) => InferenceEvent[]) {
+   const requests: RequestBody[] = []
+@@ -48,6 +50,41 @@ async function consume(provider: Provider, request: RequestBody, signal = new Ab
+   return events
+ }
+ 
++function kernelRegistry(
++  names = ['kernel_get_task', 'kernel_submit', 'kernel_get_job'],
++  ran = () => {},
++  deferred = false,
++) {
++  const registry = new ToolRegistry()
++  for (const name of names) {
++    const tool = readTool(async () => {
++      ran()
++      return { content: [{ type: 'text' as const, text: 'executed' }] }
++    }) as ToolDef
++    registry.add(
++      {
++        ...tool,
++        name,
++        meta: { ...tool.meta, ...(deferred && name === 'kernel_get_job' ? { deferLoading: true } : {}) },
++      },
++      { source: 'agnes/kernel-test', trust: 'builtin' },
++    )
++  }
++  return registry
++}
++
++function clippedKernelTurn(): InferenceEvent[] {
++  return [
++    ...textTurn('partial kernel source').filter((event) => event.type !== 'done'),
++    {
++      type: 'toolcall_end',
++      call: { toolUseId: '', name: 'kernel_submit', args: {}, ordinal: 0 },
++      via: 'native',
++    },
++    { type: 'done', reason: 'length' },
++  ]
++}
++
+ describe('durable session provider-request admission', () => {
+   it('shows restored allowance in actual requests without charging the guidance read', async () => {
+     const f = wireProvider()
+@@ -460,4 +497,215 @@ describe('durable session provider-request admission', () => {
+       ).rejects.toMatchObject({ code: 'E_ENVELOPE' })
+     },
+   )
++  it('continues one clipped native kernel response within the same physical allowance without executing its calls', async () => {
++    let response = 0
++    let ran = 0
++    const f = wireProvider(1, () => (response++ === 0 ? clippedKernelTurn() : textTurn('recovered')))
++    const { session, log } = await openSession({
++      provider: f.provider,
++      registry: kernelRegistry(undefined, () => ran++),
++      maxProviderRequests: 24,
++    })
++    expect((await prompt(session)).reason).toBe('completed')
++    expect(f.dispatches).toHaveLength(2)
++    expect(ran).toBe(0)
++    expect(await log.scan({ type: 'tool/call', limit: 10 })).toHaveLength(0)
++    expect(await log.scan({ type: 'x/core/output-limit-continuation', limit: 10 })).toHaveLength(1)
++    expect(session.providerRequestBudgetSnapshot()).toEqual({ cap: 24, used: 2, remaining: 22 })
++    expect(f.requests[1]?.model).toEqual(f.requests[0]?.model)
++    expect(JSON.stringify(f.requests[1])).toContain('shorter complete tool calls')
++    await session.close()
++  })
++
++  it('terminates the second clipped response in a native kernel turn and retains both charges', async () => {
++    const f = wireProvider(1, clippedKernelTurn)
++    const { session, log } = await openSession({
++      provider: f.provider,
++      registry: kernelRegistry(),
++      maxProviderRequests: 24,
++    })
++    expect(await prompt(session)).toMatchObject({ reason: 'error', error: { code: 'OUTPUT_LIMIT' } })
++    expect(f.dispatches).toHaveLength(2)
++    expect(await log.scan({ type: 'x/core/output-limit-continuation', limit: 10 })).toHaveLength(1)
++    expect(await log.scan({ type: 'tool/call', limit: 10 })).toHaveLength(0)
++    expect(session.providerRequestBudgetSnapshot()).toEqual({ cap: 24, used: 2, remaining: 22 })
++    await session.close()
++  })
++
++  it.each([1, undefined])(
++    'retains native truncation termination without available explicit allowance (%s)',
++    async (cap) => {
++      const f = wireProvider(1, clippedKernelTurn)
++      const { session, log } = await openSession({
++        provider: f.provider,
++        registry: kernelRegistry(),
++        ...(cap === undefined ? {} : { maxProviderRequests: cap }),
++      })
++      expect(await prompt(session)).toMatchObject({ reason: 'error', error: { code: 'OUTPUT_LIMIT' } })
++      expect(f.dispatches).toHaveLength(1)
++      expect(await log.scan({ type: 'x/core/output-limit-continuation', limit: 10 })).toHaveLength(0)
++      expect(await log.scan({ type: 'tool/call', limit: 10 })).toHaveLength(0)
++      await session.close()
++    },
++  )
++
++  it.each([['kernel_get_task'], ['kernel_get_task', 'kernel_submit']])(
++    'retains truncation termination for incomplete native disclosure (%j)',
++    async (...names) => {
++      const f = wireProvider(1, clippedKernelTurn)
++      const { session, log } = await openSession({
++        provider: f.provider,
++        registry: kernelRegistry(names),
++        maxProviderRequests: 24,
++      })
++      expect(await prompt(session)).toMatchObject({ reason: 'error', error: { code: 'OUTPUT_LIMIT' } })
++      expect(f.dispatches).toHaveLength(1)
++      expect(await log.scan({ type: 'x/core/output-limit-continuation', limit: 10 })).toHaveLength(0)
++      await session.close()
++    },
++  )
++
++  it('replays the one clipped-response continuation after reopen without granting a second recovery', async () => {
++    const storage = new MemoryStorage()
++    const f = wireProvider(1, clippedKernelTurn)
++    const first = await openSession({
++      storage,
++      provider: f.provider,
++      registry: kernelRegistry(),
++      maxProviderRequests: 24,
++    })
++    await first.session.enqueue('next-turn', { actor, content: [{ type: 'text', text: 'kernel task' }] })
++    await first.session.acceptInput()
++    expect(await first.session.runInference()).toEqual({ phase: 'checkpoint' })
++    expect(await first.log.scan({ type: 'x/core/output-limit-continuation', limit: 10 })).toHaveLength(1)
++    await first.session.close()
++    const second = await openSession({
++      storage,
++      writerRunId: 'r2',
++      provider: f.provider,
++      registry: kernelRegistry(),
++      maxProviderRequests: 24,
++    })
++    expect(
++      await second.session.run({ until: 'turn-end', signal: new AbortController().signal }),
++    ).toMatchObject({ reason: 'error', error: { code: 'OUTPUT_LIMIT' } })
++    expect(f.dispatches).toHaveLength(2)
++    expect(await second.log.scan({ type: 'x/core/output-limit-continuation', limit: 10 })).toHaveLength(1)
++    expect(second.session.providerRequestBudgetSnapshot()).toEqual({ cap: 24, used: 2, remaining: 22 })
++    await second.session.close()
++  })
++
++  it('does not recover a clipped response after cancellation during inference', async () => {
++    let current: SessionImpl
++    const f = wireProvider(1, () => {
++      current.ac.abort()
++      return clippedKernelTurn()
++    })
++    const { session, log } = await openSession({
++      provider: f.provider,
++      registry: kernelRegistry(),
++      maxProviderRequests: 24,
++    })
++    current = session
++    expect((await prompt(session)).reason).toBe('aborted')
++    expect(f.dispatches).toHaveLength(1)
++    expect(await log.scan({ type: 'x/core/output-limit-continuation', limit: 10 })).toHaveLength(0)
++    await session.close()
++  })
++
++  it.each([
++    { origin: 'ext:rogue', trust: 'untrusted', lane: 'main', recover: true },
++    { origin: 'system', trust: 'trusted', lane: 'main', recover: false },
++    { origin: 'system', trust: 'trusted', lane: 'other', recover: true },
++  ] as const)(
++    'handles a mismatched continuation marker from $origin/$trust/$lane',
++    async ({ origin, trust, lane, recover }) => {
++      let response = 0
++      const f = wireProvider(1, () => (response++ === 0 ? clippedKernelTurn() : textTurn('recovered')))
++      const { session, log } = await openSession({
++        provider: f.provider,
++        registry: kernelRegistry(),
++        maxProviderRequests: 24,
++      })
++      await session.enqueue('next-turn', { actor, content: [{ type: 'text', text: 'kernel task' }] })
++      await session.acceptInput()
++      await log.append([
++        {
++          ...session.ev(
++            'x/core/output-limit-continuation',
++            { schemaVersion: 1, scope: '0'.repeat(64) },
++            { ignorable: true, origin, trust },
++          ),
++          lane,
++        },
++      ])
++      const outcome = await session.run({ until: 'turn-end', signal: new AbortController().signal })
++      expect(outcome.reason).toBe(recover ? 'completed' : 'error')
++      if (!recover) expect(outcome.error?.code).toBe('OUTPUT_LIMIT')
++      expect(f.dispatches).toHaveLength(recover ? 2 : 1)
++      expect(await log.scan({ type: 'tool/call', limit: 10 })).toHaveLength(0)
++      await session.close()
++    },
++  )
++
++  it('allows a new turn one recovery while retaining the cumulative allowance', async () => {
++    let response = 0
++    const f = wireProvider(1, () => (response++ % 2 === 0 ? clippedKernelTurn() : textTurn('recovered')))
++    const { session, log } = await openSession({
++      provider: f.provider,
++      registry: kernelRegistry(),
++      maxProviderRequests: 24,
++    })
++    expect((await prompt(session)).reason).toBe('completed')
++    expect((await prompt(session)).reason).toBe('completed')
++    expect(f.dispatches).toHaveLength(4)
++    const markers = await log.scan({ type: 'x/core/output-limit-continuation', limit: 10 })
++    expect(markers).toHaveLength(2)
++    expect(markers[0]?.data).not.toEqual(markers[1]?.data)
++    expect(session.providerRequestBudgetSnapshot()).toEqual({ cap: 24, used: 4, remaining: 20 })
++    await session.close()
++  })
++
++  it('retains truncation termination when registered kernel tools are not disclosed', async () => {
++    const f = wireProvider(1, clippedKernelTurn)
++    const { session, log } = await openSession({
++      provider: f.provider,
++      registry: kernelRegistry(undefined, undefined, true),
++      maxProviderRequests: 24,
++    })
++    expect(await prompt(session)).toMatchObject({ reason: 'error', error: { code: 'OUTPUT_LIMIT' } })
++    expect(f.dispatches).toHaveLength(1)
++    expect(await log.scan({ type: 'x/core/output-limit-continuation', limit: 10 })).toHaveLength(0)
++    await session.close()
++  })
++
++  it.each(['cancel', 'spend'] as const)(
++    'checks the live cancellation and allowance after reading recovery history (%s)',
++    async (duringRead) => {
++      const f = wireProvider(1, clippedKernelTurn)
++      const { session, log } = await openSession({
++        provider: f.provider,
++        registry: kernelRegistry(),
++        maxProviderRequests: duringRead === 'spend' ? 2 : 24,
++      })
++      const scan = log.scan.bind(log)
++      let armed = true
++      log.scan = async (query) => {
++        const rows = await scan(query)
++        if (armed && query?.type === 'x/core/output-limit-continuation') {
++          armed = false
++          if (duringRead === 'cancel') await session.abort()
++          else await consume(session.d.provider, f.requests[0] as RequestBody)
++        }
++        return rows
++      }
++      const outcome = await prompt(session)
++      expect(outcome.reason).toBe(duringRead === 'cancel' ? 'aborted' : 'error')
++      if (duringRead === 'spend') expect(outcome.error?.code).toBe('OUTPUT_LIMIT')
++      expect(await log.scan({ type: 'x/core/output-limit-continuation', limit: 10 })).toHaveLength(0)
++      expect(f.dispatches).toHaveLength(duringRead === 'cancel' ? 1 : 2)
++      expect(await log.scan({ type: 'tool/call', limit: 10 })).toHaveLength(0)
++      await session.close()
++    },
++  )
+ })
+diff --git a/packages/core/test/tool-result.test.ts b/packages/core/test/tool-result.test.ts
+index db5f75f..8092b91 100644
+--- a/packages/core/test/tool-result.test.ts
++++ b/packages/core/test/tool-result.test.ts
+@@ -1,14 +1,396 @@
+ import type { ToolContext, ToolDef, ToolResult } from '@agnes/extension-api'
++import { unavailableProjections } from '@agnes/extension-api'
+ import { Type } from '@sinclair/typebox'
+ import { describe, expect, it, vi } from 'vitest'
++import { platformFacts } from '../src/effects/platform-facts.js'
+ import { artifactUri, toLedgerContent } from '../src/effects/tool-result.js'
++import { HookEngine } from '../src/hooks/engine.js'
++import { SessionHookPort } from '../src/hooks/port.js'
++import { MemoryStorage } from '../src/log/memory-storage.js'
+ import { ToolRegistry } from '../src/registry/tools.js'
++import { CompactionRunner } from '../src/step/compaction.js'
++import { withTerminalJobFeedback } from '../src/step/job-feedback.js'
++import { withPhase } from '../src/step/op-state.js'
+ import { presetDefaults } from '../src/step/preset.js'
+-import { fakeProvider, textTurn, toolTurn } from './helpers/fake-provider.js'
++import { fakeProvider, type Script, sent, textTurn, toolTurn, usage } from './helpers/fake-provider.js'
++import { fakeSeams } from './helpers/fake-seams.js'
+ import { actor, openSession, readTool } from './helpers/open-session.js'
+ 
+ const ref = { sha256: 'a'.repeat(64), size: 3, mime: 'image/png' }
+ 
++describe('durable DEV search memory in actual Core requests', () => {
++  const hashes = { first: 'b'.repeat(64), repaired: 'c'.repeat(64) }
++  const submit = (source = 'first') => toolTurn('kernel_submit', { task_id: 'K01', candidate_dir: source })
++  const query = (source = 'first') => toolTurn('kernel_get_job', { job_id: `job-${source}`, wait_s: 0 })
++  function payload(source = 'first', status = source === 'first' ? 'incorrect' : 'complete') {
++    return {
++      job: {
++        job_id: `job-${source}`,
++        candidate_id: `candidate-${source}`,
++        task_id: 'K01',
++        run_id: 'run-dev',
++        source_hash: hashes[source as keyof typeof hashes],
++        kind: 'candidate',
++        phase: 'dev',
++        status,
++      },
++      status,
++      has_result: status !== 'running',
++      result: {
++        status,
++        phase: 'dev',
++        contaminated: false,
++        ...(status === 'complete'
++          ? { task_speedup: 2, below_measurement_floor: true, launch_bound: true }
++          : {}),
++        correctness: { ok: status === 'complete', passed: status === 'complete' ? 12 : 9, total: 12 },
++      },
++    }
++  }
++  const raw = (structured: unknown): ToolResult => ({
++    content: [{ type: 'text', text: 'original terminal result' }],
++    structured: structured as ToolResult['structured'],
++  })
++  const note = (
++    request: { messages: Array<{ content: Array<{ type: string; text?: string }> }> } | undefined,
++  ) =>
++    request?.messages
++      .flatMap((message) => message.content)
++      .filter((block) => block.type === 'text' && block.text?.startsWith('[kernel search state]\n'))
++      .at(-1)?.text ?? ''
++  async function fixture(
++    options: {
++      scripts?: Script[]
++      getJob?: ToolDef['execute']
++      queryMeta?: Partial<ToolDef['meta']>
++      seams?: ReturnType<typeof fakeSeams>
++    } = {},
++  ) {
++    const registry = new ToolRegistry()
++    const meta = (readTool() as ToolDef).meta
++    registry.add(
++      {
++        name: 'kernel_submit',
++        description: 'submit one source from this workspace',
++        parameters: Type.Object({ task_id: Type.String(), candidate_dir: Type.String() }),
++        meta: { ...meta, isReadOnly: false, replay: 'never', requiresApproval: 'never' },
++        execute: async (args) => {
++          const source = (args as { candidate_dir: string }).candidate_dir
++          return raw({
++            ok: true,
++            job_id: `job-${source}`,
++            candidate_id: `candidate-${source}`,
++            source_hash: hashes[source as keyof typeof hashes],
++            phase: 'dev',
++            workspace: '/w',
++          })
++        },
++      } as ToolDef,
++      { source: 's', trust: 'builtin' },
++    )
++    registry.add(
++      {
++        name: 'kernel_get_job',
++        description: 'query the actual submitted source',
++        parameters: Type.Object({ job_id: Type.String(), wait_s: Type.Integer() }),
++        meta: { ...meta, ...options.queryMeta },
++        execute:
++          options.getJob ?? (async (args) => raw(payload((args as { job_id: string }).job_id.slice(4)))),
++      } as ToolDef,
++      { source: 's', trust: 'builtin' },
++    )
++    const provider = fakeProvider(options.scripts ?? [submit(), query(), textTurn('done')])
++    const opened = await openSession({
++      provider,
++      registry,
++      ...(options.seams ? { seams: options.seams } : {}),
++    })
++    const commits: string[][] = []
++    opened.session.onAppended((rows) => commits.push(rows.map((row) => row.type)))
++    await opened.session.enqueue('next-turn', {
++      content: [{ type: 'text', text: 'optimize current DEV task' }],
++      actor,
++    })
++    return { ...opened, provider, registry, commits }
++  }
++  const run = (session: Awaited<ReturnType<typeof fixture>>['session']) =>
++    session.run({ until: 'turn-end', signal: new AbortController().signal })
++  async function advanceToMemory(f: Awaited<ReturnType<typeof fixture>>) {
++    for (let step = 0; step < 24; step++) {
++      if ((await f.log.scan({ type: 'x/core/kernel-search-observation', limit: 10 })).length) return
++      const outcome = await f.session.step()
++      if (outcome.phase === 'idle' || outcome.phase === 'terminal') break
++    }
++    expect(
++      await f.log.scan({ type: 'x/core/kernel-search-observation', limit: 10 }),
++      'actual tool phase did not persist terminal search memory',
++    ).toHaveLength(1)
++  }
++
++  it('atomically records original results and updates the real provider state after a repaired source', async () => {
++    const f = await fixture({
++      scripts: [submit(), query(), submit('repaired'), query('repaired'), textTurn('done')],
++    })
++    expect((await run(f.session)).reason).toBe('completed')
++    const observations = await f.log.scan({ type: 'x/core/kernel-search-observation', limit: 10 })
++    expect(observations).toHaveLength(2)
++    expect(observations[0]).toMatchObject({
++      origin: 'system',
++      trust: 'trusted',
++      ignorable: true,
++      data: { status: 'incorrect', passed: 9, total: 12, source_hash: hashes.first },
++    })
++    expect(f.commits.filter((batch) => batch.includes('x/core/kernel-search-observation'))).toEqual([
++      expect.arrayContaining(['tool/result', 'effect/settled']),
++      expect.arrayContaining(['tool/result', 'effect/settled']),
++    ])
++    const results = await f.log.scan({ type: 'tool/result', limit: 10 })
++    expect(results[1]?.data).toMatchObject({ structured: payload(), isError: false })
++    expect(results[3]?.data).toMatchObject({ structured: payload('repaired'), isError: false })
++    const before = note(f.provider.requests[2])
++    const after = note(f.provider.requests[4])
++    expect(before).toContain(hashes.first)
++    expect(before).toContain('repair_numerics_before_speed_changes')
++    expect(after).toContain(hashes.repaired)
++    expect(after).toContain('optimize_correct_DEV_source')
++    expect(observations[1]?.data).toMatchObject({
++      observed_dev_task_speedup: 2,
++      below_measurement_floor: true,
++      launch_bound: true,
++    })
++    expect(after).toContain('"observed_dev_task_speedup":2')
++    expect(after).toContain('"best_observed_correct_DEV_source_index":1')
++    expect(after).not.toBe(before)
++    expect(f.provider.calls).toBe(5)
++    expect(note(f.provider.requests[0])).toBe('')
++  })
++
++  it('deduplicates repeated queries without extra tool or provider calls', async () => {
++    let queries = 0
++    const f = await fixture({
++      scripts: [submit(), query(), query(), textTurn('done')],
++      getJob: async () => {
++        queries++
++        return raw(payload())
++      },
++    })
++    await run(f.session)
++    expect(queries).toBe(2)
++    expect(f.provider.calls).toBe(4)
++    expect(note(f.provider.requests.at(-1)).split(hashes.first).length - 1).toBe(1)
++  })
++
++  it('remembers the terminal outcome of the original bounded pending continuation', async () => {
++    let queries = 0
++    const f = await fixture({
++      scripts: [submit(), toolTurn('kernel_get_job', { job_id: 'job-first', wait_s: 90 }), textTurn('done')],
++      getJob: async () => raw(payload('first', ++queries === 1 ? 'running' : 'incorrect')),
++    })
++    await run(f.session)
++    expect(queries).toBe(2)
++    expect(await f.log.scan({ type: 'x/core/pending-job-observation', limit: 10 })).toHaveLength(1)
++    expect(await f.log.scan({ type: 'x/core/kernel-search-observation', limit: 10 })).toHaveLength(1)
++    expect(note(f.provider.requests.at(-1))).toContain('repair_numerics_before_speed_changes')
++    expect(f.provider.calls).toBe(3)
++  })
++
++  it('keeps a failed tool verifier from creating trusted memory', async () => {
++    const f = await fixture({
++      seams: fakeSeams({
++        verifier: {
++          verify: async (scope) => ({ verdict: scope === 'tool' ? 'fail' : 'pass', reasons: [] }),
++        },
++      }),
++    })
++    await run(f.session)
++    expect(await f.log.scan({ type: 'x/core/kernel-search-submission', limit: 10 })).toHaveLength(0)
++    expect(await f.log.scan({ type: 'x/core/kernel-search-observation', limit: 10 })).toHaveLength(0)
++  })
++
++  it('clears the previous turn state rather than inheriting a candidate', async () => {
++    const f = await fixture()
++    await run(f.session)
++    expect(note(f.provider.requests.at(-1))).toContain(hashes.first)
++    await f.session.enqueue('next-turn', { content: [{ type: 'text', text: 'a fresh search' }], actor })
++    await run(f.session)
++    expect(note(f.provider.requests.at(-1))).toBe('[kernel search state]\n(none)')
++  })
++
++  it.each(['kernel_submit', 'kernel_get_job'])('keeps a %s result override authoritative', async (tool) => {
++    const f = await fixture()
++    f.session.hooks = {
++      ...f.session.hooks,
++      toolResult: async (input) =>
++        input.name === tool
++          ? { result: { ...input.result, content: [{ type: 'text', text: 'hook result' }] } }
++          : {},
++    }
++    await run(f.session)
++    expect(await f.log.scan({ type: 'x/core/kernel-search-observation', limit: 10 })).toHaveLength(0)
++    expect(note(f.provider.requests.at(-1))).toBe('')
++  })
++
++  it('persists memory through the actual no-op SessionHookPort used by the native runtime', async () => {
++    const f = await fixture()
++    const platform = platformFacts(fakeSeams().platform)
++    const engine = new HookEngine({ diag: () => undefined, onFailure: () => undefined, platform })
++    const port = new SessionHookPort(engine, {
++      context: () => ({
++        session: { key: f.session.key, lane: f.session.lane, workspaceRoot: '/w' },
++        projections: unavailableProjections,
++        replayed: false,
++        signal: new AbortController().signal,
++        lease: { expiresAt: '2099-01-01T00:00:00Z', scope: {}, budget: { remaining: 10 } },
++        log: f.session.d.logger,
++        platform,
++      }),
++      budget: () => ({ remaining: 24, cap: 24 }),
++      surface: () => [],
++      surfaceDigest: () => ({ nodes: 0, tokensEstimate: 0 }),
++      verifierTier: () => 0,
++      contextOverflow: () => undefined,
++      compactPlanIgnored: () => undefined,
++    })
++    f.session.hooks = { ...f.session.hooks, toolResult: port.toolResult.bind(port) }
++    await run(f.session)
++    expect(await f.log.scan({ type: 'x/core/kernel-search-observation', limit: 10 })).toHaveLength(1)
++    expect(note(f.provider.requests.at(-1))).toContain('repair_numerics_before_speed_changes')
++    expect(f.provider.calls).toBe(3)
++  })
++
++  it('excludes a raw result changed in place by a custom Core hook', async () => {
++    const f = await fixture()
++    f.session.hooks = {
++      ...f.session.hooks,
++      toolResult: async (input) => {
++        if (input.name === 'kernel_get_job')
++          input.result.content.push({ type: 'text', text: 'mutated result' })
++        return { result: input.result }
++      },
++    }
++    await run(f.session)
++    expect(await f.log.scan({ type: 'x/core/kernel-search-observation', limit: 10 })).toHaveLength(0)
++  })
++
++  it.each([
++    'unknown job',
++    'wrong task',
++    'held phase',
++    'contaminated',
++    'transport failure',
++    'untrusted policy',
++  ])('does not remember %s as current DEV search state', async (bad) => {
++    const f = await fixture({
++      queryMeta: bad === 'untrusted policy' ? { isOpenWorld: true } : {},
++      getJob: async () => {
++        if (bad === 'transport failure') throw new Error('fixture transport unavailable')
++        const data = payload()
++        if (bad === 'unknown job') data.job.job_id = 'job-other'
++        if (bad === 'wrong task') data.job.task_id = 'K02'
++        if (bad === 'held phase') data.result.phase = 'holdout'
++        if (bad === 'contaminated') data.result.contaminated = true
++        return raw(data)
++      },
++    })
++    await run(f.session)
++    expect(await f.log.scan({ type: 'x/core/kernel-search-observation', limit: 10 })).toHaveLength(0)
++    expect(note(f.provider.requests.at(-1))).toBe('')
++  })
++
++  it.each(['incorrect', 'complete'])(
++    'reconstructs %s state after reopening an actual completed tool commit',
++    async (status) => {
++      const f = await fixture({ getJob: async () => raw(payload('first', status)) })
++      await advanceToMemory(f)
++      const rows = await f.log.scan({ fromSeq: 1, toSeq: f.log.lastSeq, limit: 10_000 })
++      const storage = MemoryStorage.fromEvents('k', rows, { opCells: f.opCellsBefore(f.log.lastSeq + 1) })
++      const provider = fakeProvider([textTurn('recovered')])
++      const reopened = await openSession({ storage, registry: f.registry, provider, writerRunId: 'reopened' })
++      await reopened.session.resume()
++      expect((await run(reopened.session)).reason).toBe('completed')
++      expect(provider.calls).toBe(1)
++      expect(note(provider.requests[0])).toContain(hashes.first)
++      expect(note(provider.requests[0])).toContain(
++        status === 'complete' ? '"observed_dev_task_speedup":2' : 'repair_numerics_before_speed_changes',
++      )
++      expect(await reopened.log.scan({ type: 'tool/result', limit: 10 })).toHaveLength(2)
++    },
++  )
++
++  it('keeps both sources when concurrent terminal results commit in one model batch', async () => {
++    const both: Script = [
++      sent(),
++      {
++        type: 'toolcall_end',
++        call: { toolUseId: '', name: 'kernel_get_job', args: { job_id: 'job-first', wait_s: 0 }, ordinal: 0 },
++        via: 'native',
++      },
++      {
++        type: 'toolcall_end',
++        call: {
++          toolUseId: '',
++          name: 'kernel_get_job',
++          args: { job_id: 'job-repaired', wait_s: 0 },
++          ordinal: 1,
++        },
++        via: 'native',
++      },
++      usage(),
++      { type: 'done', reason: 'toolUse' },
++    ]
++    const f = await fixture({ scripts: [submit(), submit('repaired'), both, textTurn('done')] })
++    await run(f.session)
++    expect(await f.log.scan({ type: 'x/core/kernel-search-observation', limit: 10 })).toHaveLength(2)
++    expect(note(f.provider.requests[3])).toContain(hashes.first)
++    expect(note(f.provider.requests[3])).toContain(hashes.repaired)
++    expect(f.provider.calls).toBe(4)
++  })
++
++  it.each(['incorrect', 'complete'])(
++    'rebuilds %s from the ledger after actual context compaction in the current turn',
++    async (status) => {
++      const f = await fixture({
++        getJob: async () => raw(payload('first', status)),
++        scripts: [submit(), query(), textTurn('summary without source details'), textTurn('done')],
++      })
++      await advanceToMemory(f)
++      f.session.compaction = new CompactionRunner({
++        plan: async (input) => {
++          const nodes = input.getSurface()
++          const first = nodes[0]
++          const end = nodes.at(-3)
++          const last = nodes.at(-2)
++          if (!first || !end || !last) throw new Error('current-turn compactable surface required')
++          return {
++            keepFromSeq: last.seq,
++            summarizeRange: [first.seq, end.seq],
++            prompts: { system: 'summarize current history', history: 'omit source details' },
++            maxTokens: 100,
++            details: { readFiles: [], modifiedFiles: [] },
++          }
++        },
++        onCompact: async () => undefined,
++      })
++      const op = f.session.op()
++      if (!op) throw new Error('search must remain open')
++      await f.session.transition(
++        [],
++        withPhase(op, { kind: 'compaction', reason: 'requested', resumeAfter: op.phase }),
++      )
++      expect((await run(f.session)).reason).toBe('completed')
++      expect(
++        await f.log.scan({ type: 'x/core/compaction-end', limit: 10 }),
++        JSON.stringify(await f.log.scan({ type: 'x/core/compaction-failed', limit: 10 })),
++      ).toHaveLength(1)
++      expect(note(f.provider.requests.at(-1))).toContain(hashes.first)
++      expect(note(f.provider.requests.at(-1))).toContain(
++        status === 'complete' ? '"observed_dev_task_speedup":2' : 'repair_numerics_before_speed_changes',
++      )
++      expect(f.provider.requests.filter((request) => request.kind === 'inference')).toHaveLength(3)
++    },
++  )
++})
++
+ describe('bounded source-bound pending job queries', () => {
+   const args = { job_id: 'job-pending', wait_s: 90 }
+   const payload = (status = 'running', hasResult = false) => ({
+@@ -467,6 +849,102 @@ describe('terminal source-bound job recovery feedback', () => {
+     expect(JSON.stringify(observed.request)).toContain(error.split('\n')[0])
+   })
+ 
++  it.each([
++    'CompilationError: at 22:15:\n\n    acc += tl.dot(b, a[:, None])\n               ^',
++    'CompilationError: at 3:2:\r\n    # TypeError: this is only a source comment\r\n    invalid()\r\n    ~^~\r\n',
++  ])('distinguishes a compiler location excerpt from an underlying cause', async (error) => {
++    const structured = { ...failure(), result: { status: 'compile_fail', error } }
++    const original = { type: 'text' as const, text: JSON.stringify(structured) }
++    const observed = await run({ content: [original], structured, isError: false })
++    expect(observed.row).toMatchObject({
++      structured,
++      isError: false,
++      content: [original, expect.any(Object)],
++    })
++    const content = (observed.row as { content: { text?: string }[] }).content
++    expect(content[1]?.text).toContain('omits the underlying cause')
++    expect(content[1]?.text).toContain('full error or traceback diagnostics before revising')
++    expect(content[1]?.text).not.toContain('diagnostic is already included')
++    expect(content[1]?.text).not.toContain('tl.dot')
++    expect(content[1]?.text).not.toContain('TypeError')
++    expect(JSON.stringify(observed.request)).toContain('omits the underlying cause')
++  })
++
++  it.each([
++    'CompilationError: at 3:2:\n    invalid()\n    ^\nTypeError: unsupported expression',
++    "CompilationError: at 15:21:\n    x = unknown_name\n        ^\nNameError('unknown_name is not defined')",
++    'CompilationError: at 3:2: unsupported expression',
++  ])('keeps an included compiler cause available without an obligatory extra read', async (error) => {
++    const structured = { ...failure(), result: { status: 'compile_fail', error } }
++    const observed = await run({ content: [{ type: 'text', text: error }], structured, isError: false })
++    const content = (observed.row as { content: { text?: string }[] }).content
++    expect(content[1]?.text).toContain('diagnostic is already included')
++    expect(content[1]?.text).not.toContain('omits the underlying cause')
++  })
++
++  it.each([
++    'Traceback (most recent call last):\n  File "compiler.py", line 1, in load\nValueError: Unsupported ptr type <[64], int32> in tl.load\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\ntriton.compiler.errors.CompilationError: at 3:2:\n    load()\n    ^',
++    'Traceback (most recent call last):\r\n  File "compiler.py", line 1, in build\r\ncompiler.types.TypeError: unsupported expression\r\n\r\nCompilationError: at 3:2:\r\n    build()\r\n    ^',
++  ])('uses an underlying compiler cause already included in the traceback', async (traceback) => {
++    const structured = {
++      ...failure(),
++      result: { status: 'compile_fail', error: 'CompilationError: at 3:2:\n    load()\n    ^', traceback },
++    }
++    const original = { type: 'text' as const, text: JSON.stringify(structured) }
++    const observed = await run({ content: [original], structured, isError: false })
++    expect(observed.row).toMatchObject({
++      structured,
++      isError: false,
++      content: [original, expect.any(Object)],
++    })
++    const content = (observed.row as { content: { text?: string }[] }).content
++    expect(content[1]?.text).toContain('underlying compiler cause is already included in the traceback')
++    expect(content[1]?.text).toContain('only if the included traceback is insufficient')
++    expect(content[1]?.text).not.toContain('omits the underlying cause')
++    expect(content[1]?.text).not.toContain('Unsupported ptr')
++    expect(content[1]?.text).not.toContain('unsupported expression')
++    expect(JSON.stringify(observed.request)).toContain(
++      'underlying compiler cause is already included in the traceback',
++    )
++    expect(JSON.stringify(observed.request)).toContain('CompilationError')
++  })
++
++  it.each([
++    undefined,
++    { text: 'Traceback (most recent call last):\nValueError: bad' },
++    'ValueError: bad',
++    'Traceback (most recent call last):\n    # ValueError: source comment',
++    'Traceback (most recent call last):\n    ValueError: indented source',
++    'Traceback (most recent call last):\nCompilationError: at 3:2:\n    load()\n    ^',
++    'Traceback (most recent call last):\ntriton.compiler.errors.CompilationError: at 3:2:\n    load()\n    ^',
++    'Traceback (most recent call last):\nValueError:\n',
++    'Traceback (most recent call last):\ntext ValueError: bad',
++    `Traceback (most recent call last):\nValueError: ${'x'.repeat(32768)}`,
++  ])('does not infer an included cause from an incomplete or unbounded traceback', (traceback) => {
++    const structured = {
++      ...failure(),
++      result: { status: 'compile_fail', error: 'CompilationError: at 3:2:\n    load()\n    ^', traceback },
++    }
++    const observed = withTerminalJobFeedback({ content: [{ type: 'text', text: 'original' }], structured })
++    const content = observed.content as { text?: string }[]
++    expect(content[1]?.text).toContain('omits the underlying cause')
++    expect(content[1]?.text).not.toContain('underlying compiler cause is already included in the traceback')
++  })
++
++  it('does not infer a missing compiler cause from a mismatched result phase', async () => {
++    const structured = {
++      ...failure(),
++      job: { ...failure().job, phase: 'dev' },
++      result: {
++        status: 'compile_fail',
++        phase: 'holdout',
++        error: 'CompilationError: at 3:2:\n    x()\n    ^',
++      },
++    }
++    const observed = await run({ content: [{ type: 'text', text: 'original' }], structured })
++    expect(JSON.stringify(observed.request)).not.toContain('omits the underlying cause')
++  })
++
+   it.each([0, 11])('uses included numerical details with %i passed cases', async (passed) => {
+     const structured = numericalFailure({
+       passed,
+diff --git a/tools/guards/ratchet.json b/tools/guards/ratchet.json
+index 000aabd..9cff305 100644
+--- a/tools/guards/ratchet.json
++++ b/tools/guards/ratchet.json
+@@ -7,7 +7,7 @@
+   "packages/web-slots/src": 605,
+   "packages/web-ui/src": 4891,
+   "packages/web-units/src": 4646,
+-  "packages/core/src": 26270,
++  "packages/core/src": 26976,
+   "packages/ai/src": 3965,
+   "packages/host/src/assemble": 4213,
+   "packages/protocol/src": 2210,
+diff --git a/tools/guards/src/ratchet.test.ts b/tools/guards/src/ratchet.test.ts
+index beed930..48a582f 100644
+--- a/tools/guards/src/ratchet.test.ts
++++ b/tools/guards/src/ratchet.test.ts
+@@ -967,7 +967,18 @@ const INITIAL_CEILING: Record<string, number> = {
+   // Actual countLines() 26162, +23; no scan exclusions or spare capacity.
+   // 2026-10-06: validated, source-bound numerical failure details guide correctness repair.
+   // G013 bounded pending query: actual countLines() 26270, +87, no exclusions or spare capacity.
+-  'packages/core/src': 26270,
++  // G024 durable DEV search memory: actual countLines() 26653, +323 pure state module
++  // and +60 atomic tool/request wiring, including native no-op hook compatibility.
++  // Exact reviewed ceiling, unchanged scans/exclusions.
++  // G027 combines reviewed complete compiler feedback with G026 DEV memory: countLines() 26739,
++  // +26 reviewed compiler feedback lines on G026; same scans/exclusions and exact ceiling, no spare capacity.
++  // G028 adds 95 counted classifier lines and 22 state lines: measured Core 26856.
++  // Same scans/exclusions and exact allocation, below the unchanged 27000 ceiling.
++  // G029 bounded primary output-limit continuation adds 54 measured Core lines: 26910.
++  // Same scans/exclusions, exact allocation; the original 27000 ceiling remains.
++  // G030 repeated bounded DEV diagnostic fingerprints add 66 measured Core lines.
++  // Original scans and 27000 absolute ceiling remain; exact count, no spare.
++  'packages/core/src': 26976,
+   // 2026-09-15: DeepSeek V4 Pro/Flash ship a known-thinking-corrections table (new file) so the
+   // product corrects pi-ai's verified-wrong reasoning_effort data out of the box, instead of
+   // requiring every deployment to hand-edit thinkingEfforts once they notice. Measured 3347.

@@ -1,0 +1,16 @@
+{
+  "name": "@kernel-lab/kernel-workflow",
+  "version": "1.0.0",
+  "type": "module",
+  "license": "MIT",
+  "exports": "./index.mjs",
+  "agnes": {
+    "plugins": [
+      {
+        "export": "kernelWorkflowTools",
+        "id": "ext:kernel-lab/kernel-workflow",
+        "inject": ["extension"]
+      }
+    ]
+  }
+}

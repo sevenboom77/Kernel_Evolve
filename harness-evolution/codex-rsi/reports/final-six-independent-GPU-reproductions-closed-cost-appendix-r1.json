@@ -1,0 +1,36 @@
+{
+  "status": "SIX_INDEPENDENT_FINAL_GPU_REPRODUCTIONS_CLOSED_SEPARATE_FROM_MAIN_ENDPOINT",
+  "production_history": {
+    "path": "/data/lizhijun/agh-evo/codex-rsi-hackathon-v11-20261005/closed-v51-finite-first-screening-interrupted-carry-r1/carry.json",
+    "sha256": "cec613e3d1711989acf418da2ab72677fe946fe32134842c83002a30ffd8831a"
+  },
+  "closed_main_request_count": 47754,
+  "closed_main_unknown_all_history": 34309,
+  "main_endpoint_GPU_seconds": 279992.9190003147,
+  "default_FP16_native_attempt_GPU_seconds": 994.3484515687451,
+  "accurate_FP16_native_attempt_GPU_seconds": 1164.4891996700317,
+  "citation_graph_GPU_seconds": 614.5639998912811,
+  "source_reports": [
+    {
+      "path": "/data/lizhijun/work/kernel-lab/harness-evolution/codex-rsi/reports/native-small-M-final-two-device-default-FP16-comparison-r1.json",
+      "sha256": "e95d56a6ae73af527b92e4a51ec91b8af407a95d41dbbf4d3b611ab3a2c0d7cc"
+    },
+    {
+      "path": "/data/lizhijun/work/kernel-lab/harness-evolution/codex-rsi/reports/final-native-small-M-two-device-accurate-FP16-original-protocol-r1.json",
+      "sha256": "7a89b1d5e87f9333a7f412bc39b9bcea290d6b9f1e37db2dc7ec650e939420cf"
+    },
+    {
+      "path": "/data/lizhijun/work/kernel-lab/harness-evolution/codex-rsi/reports/final-independent-citation-graph-two-device-actual-reproduction-r1.json",
+      "sha256": "0c5bcfbc073c08bab18d0ba9de44a120993a3bc94fc153d12f82e2497af9159f"
+    }
+  ],
+  "new_model_requests": 0,
+  "active_owned_GPU_spans": 0,
+  "all_failures_retained": true,
+  "primary_positions_consumed": 40,
+  "failed_positions_refunded": 0,
+  "main_policy_or_endpoint_overwritten": false,
+  "RSI_proven": false,
+  "new_independent_GPU_seconds": 2773.401651130058,
+  "combined_main_endpoint_and_these_closed_reproductions_GPU_seconds": 282766.3206514448
+}

@@ -1,0 +1,41 @@
+{
+  "status": "CPU_CONTROLLED_HF_TRACING_FLAG_MASK_BOUNDARY_REPRODUCED_NO_GPU_REPAIR_CLAIM",
+  "qualification": {
+    "path": "/data/lizhijun/agh-evo/codex-rsi-hackathon-v11-20261005/cpu-qualification/phase32-APP-HF-controlled-tracing-flag-SDPA-mask-original-boundary-GREEN-r2.json",
+    "sha256": "c8fc47d89f443c9149eefaaefa33ea0800a4e52ef17965f3634bf9c613077615"
+  },
+  "original_negative_GPU_report": {
+    "path": "/data/lizhijun/agh-evo/codex-rsi-hackathon-v11-20261005/application/pretrained/compiled-native-sdpa-post-v19-r2/partition-1/application-result.json",
+    "sha256": "7f86f869fc8fa3348155d379965f252a49bda94fbf2fad5b00d26e78eba7f579"
+  },
+  "CPU_shape_controls": [
+    [
+      1,
+      33
+    ],
+    [
+      1,
+      128
+    ],
+    [
+      1,
+      512
+    ],
+    [
+      2,
+      1024
+    ]
+  ],
+  "observed": "The installed HF helper returns None eagerly, but returns the original exact FP16 causal mask when its is_torchdynamo_compiling flag is controlled true. The unchanged original NativeSDPAAttention refuses this mask before arithmetic.",
+  "method": "Controlled helper tracing flag, not actual Dynamo or pretrained GPU execution. All four original shape branches passed under unchanged no-CUDA/network/external-write guard.",
+  "original_Dynamo_CPU_probe_failure": {
+    "path": "/data/lizhijun/agh-evo/codex-rsi-hackathon-v11-20261005/cpu-qualification/app-sdpa-mask-CPU-original-guard-refusal-r1/refusal.json",
+    "sha256": "65874a189091096e5cf42ebec04ee9fe165e2b57ce83a6591333650e2567f085"
+  },
+  "Dynamo_probe_refused_reason": "Original guard refuses Dynamo init_device_reg CUDA device enumeration. No guard weakening or CUDA execution.",
+  "original_APP_GPU_root_cause_proven": false,
+  "application_source_changed": false,
+  "performance_measured": false,
+  "new_model_GPU_calls": 0,
+  "next": "Source-bound support for legitimate HF-generated causal masks may be investigated after current primary pair closure and a fresh separately registered APP protocol. Original incorrect compiled logits, cache-version exception and all prior failures remain."
+}

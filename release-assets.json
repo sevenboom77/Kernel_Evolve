@@ -1,0 +1,46 @@
+{
+  "release": "v0.1.0",
+  "repository": "sevenboom77/Kernel_Evolve",
+  "assets": [
+    {
+      "id": "agh-g000",
+      "asset": "agh-g000-source.tar.gz",
+      "target": "agh/g000/source.tar",
+      "compression": "gzip",
+      "sha256": "68c9d5d6943f48e39cdb64cc41ad85548165a4b7c3f2e46b7f5ae917e4401c58",
+      "download_sha256": "1364acb97924446ed96c9262a13e05e19d5af6341afc8a1136c619d88625584a",
+      "size_bytes": 43499520,
+      "download_bytes": 15861610
+    },
+    {
+      "id": "agh-g014",
+      "asset": "agh-g014-source.tar.gz",
+      "target": "agh/g014/source.tar",
+      "compression": "gzip",
+      "sha256": "8c402576ffe1ba13fcecfe826da6a87fac92b2d32b872746a8e0c9e32508f342",
+      "download_sha256": "32b99f528f41cbc753ec33f4ac13c03e2e5e6328cd531a893b4338df436fbf44",
+      "size_bytes": 43560960,
+      "download_bytes": 15874933
+    },
+    {
+      "id": "agh-g031",
+      "asset": "agh-g031-source.tar.gz",
+      "target": "agh/g031/source.tar",
+      "compression": "gzip",
+      "sha256": "6caf9226bddb57c15a12c5a0b61ff3b253938aaee0399794d36a9a53411b9292",
+      "download_sha256": "f168de0abb4808053906298419dd3166aec82e29946c4eaf4468535a75825529",
+      "size_bytes": 43673600,
+      "download_bytes": 15901331
+    },
+    {
+      "id": "arxiv",
+      "asset": "arxiv.zip",
+      "target": "datasets/arxiv.zip",
+      "compression": "none",
+      "sha256": "49f85c801589ecdcc52cfaca99693aaea7b8af16a9ac3f41dd85a5f3193fe276",
+      "download_sha256": "49f85c801589ecdcc52cfaca99693aaea7b8af16a9ac3f41dd85a5f3193fe276",
+      "size_bytes": 83058288,
+      "download_bytes": 83058288
+    }
+  ]
+}

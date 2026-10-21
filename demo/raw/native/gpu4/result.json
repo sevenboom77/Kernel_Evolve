@@ -1,0 +1,2837 @@
+{
+  "scope": "INDEPENDENT_LOCAL_NATIVE_SMALL_M_REPRODUCTION",
+  "task_id": "K12",
+  "jobs": [
+    {
+      "job_id": "468b7b05cb804e9f",
+      "run_id": "independent-native-small-M-b4a3ae314dcaab2f",
+      "task_id": "K12",
+      "kind": "baseline",
+      "candidate_id": null,
+      "source_hash": null,
+      "snapshot_dir": null,
+      "static_json": "{}",
+      "phase": "dev",
+      "status": "complete",
+      "priority": 1,
+      "created": "2026-10-09T10:05:40.075+00:00",
+      "updated": "2026-10-09T10:10:18.297+00:00",
+      "lease_owner": "server:612114",
+      "lease_expires": 1791541518.280616,
+      "gpu_uuid": "4",
+      "attempts": 1,
+      "max_attempts": 1,
+      "payload_json": "{}"
+    },
+    {
+      "job_id": "ec824519c5374125",
+      "run_id": "independent-native-small-M-b4a3ae314dcaab2f",
+      "task_id": "K12",
+      "kind": "verify",
+      "candidate_id": "original-MiMo-K12",
+      "source_hash": "22af8289078d96579622e2fcf47ef11e1a50cf3b0f6fa0db6b9da354e52ed276",
+      "snapshot_dir": "/data/lizhijun/work/kernel-lab/artifacts/final-reproduction-20261009/native-small-M-two-device-fp32-reduction-r1/gpu4/scope/candidate",
+      "static_json": "{}",
+      "phase": "final",
+      "status": "inconclusive",
+      "priority": 2,
+      "created": "2026-10-09T10:05:40.077+00:00",
+      "updated": "2026-10-09T10:15:23.889+00:00",
+      "lease_owner": "server:612114",
+      "lease_expires": 1791541823.8553083,
+      "gpu_uuid": "4",
+      "attempts": 1,
+      "max_attempts": 1,
+      "payload_json": "{}"
+    }
+  ],
+  "results": [
+    {
+      "job_id": "468b7b05cb804e9f",
+      "run_id": "independent-native-small-M-b4a3ae314dcaab2f",
+      "task_id": "K12",
+      "candidate_id": null,
+      "status": "complete",
+      "payload_json": "{\"status\": \"complete\", \"baselines\": {\"qualified\": [\"torch_eager\", \"torch_compile\", \"specialized\", \"torch_mm_fp16_fp32_reduction\", \"compiled_torch_mm_fp16_fp32_reduction\"], \"summary\": {\"torch_eager\": {\"status\": \"ok\", \"shapes\": 3}, \"torch_compile\": {\"status\": \"ok\", \"shapes\": 3}, \"specialized\": {\"status\": \"ok\", \"shapes\": 3}, \"torch_mm_fp16\": {\"status\": \"incorrect\", \"shapes\": 0}, \"compiled_torch_mm_fp16\": {\"status\": \"incorrect\", \"shapes\": 0}, \"torch_mm_fp16_fp32_reduction\": {\"status\": \"ok\", \"shapes\": 3}, \"compiled_torch_mm_fp16_fp32_reduction\": {\"status\": \"ok\", \"shapes\": 3}}, \"strongest\": {\"t0\": {\"label\": \"torch_mm_fp16_fp32_reduction\", \"latency_us\": 29.386807603445668}, \"t1\": {\"label\": \"torch_mm_fp16_fp32_reduction\", \"latency_us\": 28.839698736218438}, \"t2\": {\"label\": \"torch_mm_fp16_fp32_reduction\", \"latency_us\": 100.0516770899981}}}, \"seconds\": 277.71049839491025, \"gpu_state_before\": {\"index\": 4, \"uuid\": \"GPU-45da8806-e439-f13e-4f45-dd916dcf46e4\", \"util\": 0.0, \"mem_used_mib\": 4.0, \"mem_total_mib\": 24564.0, \"power_w\": 10.97, \"temp_c\": 26.0, \"sm_clock_mhz\": 210.0, \"sm_clock_max_mhz\": 3105.0, \"available\": true, \"foreign_pids\": [], \"own_pids\": [], \"foreign_processes\": 0, \"own_processes\": 0, \"unknown_processes\": 0, \"visible_processes\": 0, \"other_processes\": 0, \"other_pids\": [], \"own_pids_present\": [], \"other_memory_mib\": 0, \"user_gpu_admission\": {\"policy\": \"user-premeasurement-utilization-zero-v43\", \"eligible\": true, \"original_process_presence_contaminated\": false, \"new_foreign_pids\": [], \"premeasurement_utilization\": 0.0, \"after_utilization_attributed_to_foreign\": false, \"exclusive_device_confirmed\": true}}, \"gpu_state_after\": {\"index\": 4, \"uuid\": \"GPU-45da8806-e439-f13e-4f45-dd916dcf46e4\", \"util\": 0.0, \"mem_used_mib\": 923.0, \"mem_total_mib\": 24564.0, \"power_w\": 72.37, \"temp_c\": 37.0, \"sm_clock_mhz\": 2775.0, \"sm_clock_max_mhz\": 3105.0, \"available\": true, \"foreign_pids\": [], \"own_pids\": [612114], \"foreign_processes\": 0, \"own_processes\": 1, \"unknown_processes\": 0, \"visible_processes\": 1, \"other_processes\": 0, \"other_pids\": [], \"own_pids_present\": [612114], \"other_memory_mib\": 0, \"user_gpu_admission\": {\"policy\": \"user-premeasurement-utilization-zero-v43\", \"eligible\": true, \"original_process_presence_contaminated\": false, \"new_foreign_pids\": [], \"premeasurement_utilization\": 0.0, \"after_utilization_attributed_to_foreign\": false, \"exclusive_device_confirmed\": true}}, \"contaminated\": false}",
+      "created": "2026-10-09T10:10:18.296+00:00"
+    },
+    {
+      "job_id": "ec824519c5374125",
+      "run_id": "independent-native-small-M-b4a3ae314dcaab2f",
+      "task_id": "K12",
+      "candidate_id": "original-MiMo-K12",
+      "status": "inconclusive",
+      "payload_json": "{\"status\": \"inconclusive\", \"correctness\": {\"ok\": true, \"passed\": 21, \"total\": 21, \"first_failures\": [], \"per_case\": [{\"case_id\": \"f00\", \"ok\": true, \"problems\": [], \"detail\": {\"out0\": {\"ok\": true, \"n_bad\": 0, \"n_total\": 129, \"max_abs_err\": 0.0, \"max_tol\": 0.69375}}}, {\"case_id\": \"f01\", \"ok\": true, \"problems\": [], \"detail\": {\"out0\": {\"ok\": true, \"n_bad\": 0, \"n_total\": 129, \"max_abs_err\": 0.0, \"max_tol\": 0.020000874996185303}}}, {\"case_id\": \"f02\", \"ok\": true, \"problems\": [], \"detail\": {\"out0\": {\"ok\": true, \"n_bad\": 0, \"n_total\": 129, \"max_abs_err\": 0.0, \"max_tol\": 1.43}}}, {\"case_id\": \"f03\", \"ok\": true, \"problems\": [], \"detail\": {\"out0\": {\"ok\": true, \"n_bad\": 0, \"n_total\": 11008, \"max_abs_err\": 0.25, \"max_tol\": 8.535}}}, {\"case_id\": \"f04\", \"ok\": true, \"problems\": [], \"detail\": {\"out0\": {\"ok\": true, \"n_bad\": 0, \"n_total\": 11008, \"max_abs_err\": 0.25, \"max_tol\": 7.819999999999999}}}, {\"case_id\": \"f05\", \"ok\": true, \"problems\": [], \"detail\": {\"out0\": {\"ok\": true, \"n_bad\": 0, \"n_total\": 11008, \"max_abs_err\": 2.384185791015625e-07, \"max_tol\": 0.020008654594421388}}}, {\"case_id\": \"f06\", \"ok\": true, \"problems\": [], \"detail\": {\"out0\": {\"ok\": true, \"n_bad\": 0, \"n_total\": 22016, \"max_abs_err\": 0.25, \"max_tol\": 8.78}}}, {\"case_id\": \"f07\", \"ok\": true, \"problems\": [], \"detail\": {\"out0\": {\"ok\": true, \"n_bad\": 0, \"n_total\": 22016, \"max_abs_err\": 0.125, \"max_tol\": 5.319999999999999}}}, {\"case_id\": \"f08\", \"ok\": true, \"problems\": [], \"detail\": {\"out0\": {\"ok\": true, \"n_bad\": 0, \"n_total\": 22016, \"max_abs_err\": 0.125, \"max_tol\": 5.56}}}, {\"case_id\": \"f09\", \"ok\": true, \"problems\": [], \"detail\": {\"out0\": {\"ok\": true, \"n_bad\": 0, \"n_total\": 65536, \"max_abs_err\": 2.384185791015625e-07, \"max_tol\": 0.020005226135253906}}}, {\"case_id\": \"f10\", \"ok\": true, \"problems\": [], \"detail\": {\"out0\": {\"ok\": true, \"n_bad\": 0, \"n_total\": 65536, \"max_abs_err\": 0.25, \"max_tol\": 10.39}}}, {\"case_id\": \"f11\", \"ok\": true, \"problems\": [], \"detail\": {\"out0\": {\"ok\": true, \"n_bad\": 0, \"n_total\": 65536, \"max_abs_err\": 0.125, \"max_tol\": 5.92}}}, {\"case_id\": \"f12\", \"ok\": true, \"problems\": [], \"detail\": {\"out0\": {\"ok\": true, \"n_bad\": 0, \"n_total\": 16388, \"max_abs_err\": 0.0625, \"max_tol\": 3.5}}}, {\"case_id\": \"f13\", \"ok\": true, \"problems\": [], \"detail\": {\"out0\": {\"ok\": true, \"n_bad\": 0, \"n_total\": 16388, \"max_abs_err\": 5.960464477539063e-08, \"max_tol\": 0.020003504753112793}}}, {\"case_id\": \"f14\", \"ok\": true, \"problems\": [], \"detail\": {\"out0\": {\"ok\": true, \"n_bad\": 0, \"n_total\": 16388, \"max_abs_err\": 0.125, \"max_tol\": 6.27}}}, {\"case_id\": \"f15\", \"ok\": true, \"problems\": [], \"detail\": {\"out0\": {\"ok\": true, \"n_bad\": 0, \"n_total\": 88064, \"max_abs_err\": 0.125, \"max_tol\": 6.04}}}, {\"case_id\": \"f16\", \"ok\": true, \"problems\": [], \"detail\": {\"out0\": {\"ok\": true, \"n_bad\": 0, \"n_total\": 88064, \"max_abs_err\": 0.125, \"max_tol\": 5.734999999999999}}}, {\"case_id\": \"f17\", \"ok\": true, \"problems\": [], \"detail\": {\"out0\": {\"ok\": true, \"n_bad\": 0, \"n_total\": 88064, \"max_abs_err\": 1.1920928955078125e-07, \"max_tol\": 0.0200054407119751}}}, {\"case_id\": \"f18\", \"ok\": true, \"problems\": [], \"detail\": {\"out0\": {\"ok\": true, \"n_bad\": 0, \"n_total\": 4096, \"max_abs_err\": 0.25, \"max_tol\": 8.915}}}, {\"case_id\": \"f19\", \"ok\": true, \"problems\": [], \"detail\": {\"out0\": {\"ok\": true, \"n_bad\": 0, \"n_total\": 4096, \"max_abs_err\": 0.0625, \"max_tol\": 4.895}}}, {\"case_id\": \"f20\", \"ok\": true, \"problems\": [], \"detail\": {\"out0\": {\"ok\": true, \"n_bad\": 0, \"n_total\": 4096, \"max_abs_err\": 0.125, \"max_tol\": 5.1}}}]}, \"rounds\": 5, \"statistics\": {\"rounds_used\": 5, \"per_round_task_speedup\": [0.9938609237047525, 1.0665804413486524, 1.0657152987946017, 1.0671580400288858, 1.0667832138115672], \"shape_speedup_medians\": {\"t0\": 1.1407311749605649, \"t1\": 1.0885387712102486, \"t2\": 1.0316194660140354, \"r0\": 1.0322027612391749, \"r1\": 1.0421414253065096}, \"candidate_us_medians\": {\"t0\": 37.325754902008114, \"t1\": 37.362157628777325, \"t2\": 97.11644384596083, \"r0\": 96.79074838858884, \"r1\": 72.41678237915039}, \"paired_baseline_us_medians\": {\"t0\": 42.585554897995806, \"t1\": 40.6663740746226, \"t2\": 100.19510388374329, \"r0\": 99.926344741731, \"r1\": 75.47660185911946}, \"task_speedup_mean\": 1.052019583537692, \"min_shape_median_speedup\": 1.0316194660140354, \"task_speedup_ci_low\": 1.0228162567440853, \"task_speedup_ci_high\": 1.0668925898059116, \"timing_backend\": \"cuda_events\"}, \"baselines\": [\"compiled_torch_mm_fp16_fp32_reduction\", \"specialized\", \"torch_compile\", \"torch_eager\", \"torch_mm_fp16_fp32_reduction\"], \"seconds\": 305.08581955498084, \"gpu_state_before\": {\"index\": 4, \"uuid\": \"GPU-45da8806-e439-f13e-4f45-dd916dcf46e4\", \"util\": 0.0, \"mem_used_mib\": 923.0, \"mem_total_mib\": 24564.0, \"power_w\": 72.03, \"temp_c\": 37.0, \"sm_clock_mhz\": 2775.0, \"sm_clock_max_mhz\": 3105.0, \"available\": true, \"foreign_pids\": [], \"own_pids\": [612114], \"foreign_processes\": 0, \"own_processes\": 1, \"unknown_processes\": 0, \"visible_processes\": 1, \"other_processes\": 0, \"other_pids\": [], \"own_pids_present\": [612114], \"other_memory_mib\": 0, \"user_gpu_admission\": {\"policy\": \"user-premeasurement-utilization-zero-v43\", \"eligible\": true, \"original_process_presence_contaminated\": false, \"new_foreign_pids\": [], \"premeasurement_utilization\": 0.0, \"after_utilization_attributed_to_foreign\": false, \"exclusive_device_confirmed\": true}}, \"gpu_state_after\": {\"index\": 4, \"uuid\": \"GPU-45da8806-e439-f13e-4f45-dd916dcf46e4\", \"util\": 0.0, \"mem_used_mib\": 923.0, \"mem_total_mib\": 24564.0, \"power_w\": 81.85, \"temp_c\": 49.0, \"sm_clock_mhz\": 2760.0, \"sm_clock_max_mhz\": 3105.0, \"available\": true, \"foreign_pids\": [], \"own_pids\": [612114], \"foreign_processes\": 0, \"own_processes\": 1, \"unknown_processes\": 0, \"visible_processes\": 1, \"other_processes\": 0, \"other_pids\": [], \"own_pids_present\": [612114], \"other_memory_mib\": 0, \"user_gpu_admission\": {\"policy\": \"user-premeasurement-utilization-zero-v43\", \"eligible\": true, \"original_process_presence_contaminated\": false, \"new_foreign_pids\": [], \"premeasurement_utilization\": 0.0, \"after_utilization_attributed_to_foreign\": false, \"exclusive_device_confirmed\": true}}, \"contaminated\": false}",
+      "created": "2026-10-09T10:15:23.889+00:00"
+    }
+  ],
+  "baseline_qualification": {
+    "compiled_torch_mm_fp16": {
+      "status": "incorrect",
+      "detail": {
+        "ok": false,
+        "passed": 19,
+        "total": 21,
+        "first_failures": [
+          {
+            "case_id": "f12",
+            "problems": [
+              "output[0] mismatch: {'ok': False, 'n_bad': 4, 'n_total': 16388, 'max_abs_err': 0.125, 'max_tol': 3.5, 'first_bad_flat': 398, 'expected': -0.257568359375, 'actual': -0.28515625, 'first_bad_index': [0, 398]}"
+            ]
+          },
+          {
+            "case_id": "f14",
+            "problems": [
+              "output[0] mismatch: {'ok': False, 'n_bad': 12, 'n_total': 16388, 'max_abs_err': 0.25, 'max_tol': 6.27, 'first_bad_flat': 2574, 'expected': -0.68017578125, 'actual': -0.640625, 'first_bad_index': [0, 2574]}"
+            ]
+          }
+        ],
+        "per_case": [
+          {
+            "case_id": "f00",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 129,
+                "max_abs_err": 3.814697265625e-06,
+                "max_tol": 0.69375
+              }
+            }
+          },
+          {
+            "case_id": "f01",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 129,
+                "max_abs_err": 0.0,
+                "max_tol": 0.020000874996185303
+              }
+            }
+          },
+          {
+            "case_id": "f02",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 129,
+                "max_abs_err": 0.0,
+                "max_tol": 1.43
+              }
+            }
+          },
+          {
+            "case_id": "f03",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 11008,
+                "max_abs_err": 0.0625,
+                "max_tol": 8.535
+              }
+            }
+          },
+          {
+            "case_id": "f04",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 11008,
+                "max_abs_err": 0.0625,
+                "max_tol": 7.819999999999999
+              }
+            }
+          },
+          {
+            "case_id": "f05",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 11008,
+                "max_abs_err": 1.1920928955078125e-07,
+                "max_tol": 0.020008654594421388
+              }
+            }
+          },
+          {
+            "case_id": "f06",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 22016,
+                "max_abs_err": 0.25,
+                "max_tol": 8.78
+              }
+            }
+          },
+          {
+            "case_id": "f07",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 22016,
+                "max_abs_err": 0.125,
+                "max_tol": 5.319999999999999
+              }
+            }
+          },
+          {
+            "case_id": "f08",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 22016,
+                "max_abs_err": 0.125,
+                "max_tol": 5.56
+              }
+            }
+          },
+          {
+            "case_id": "f09",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 65536,
+                "max_abs_err": 1.1920928955078125e-07,
+                "max_tol": 0.020005226135253906
+              }
+            }
+          },
+          {
+            "case_id": "f10",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 65536,
+                "max_abs_err": 0.25,
+                "max_tol": 10.39
+              }
+            }
+          },
+          {
+            "case_id": "f11",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 65536,
+                "max_abs_err": 0.125,
+                "max_tol": 5.92
+              }
+            }
+          },
+          {
+            "case_id": "f12",
+            "ok": false,
+            "problems": [
+              "output[0] mismatch: {'ok': False, 'n_bad': 4, 'n_total': 16388, 'max_abs_err': 0.125, 'max_tol': 3.5, 'first_bad_flat': 398, 'expected': -0.257568359375, 'actual': -0.28515625, 'first_bad_index': [0, 398]}"
+            ],
+            "detail": {
+              "out0": {
+                "ok": false,
+                "n_bad": 4,
+                "n_total": 16388,
+                "max_abs_err": 0.125,
+                "max_tol": 3.5,
+                "first_bad_flat": 398,
+                "expected": -0.257568359375,
+                "actual": -0.28515625,
+                "first_bad_index": [
+                  0,
+                  398
+                ]
+              }
+            }
+          },
+          {
+            "case_id": "f13",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 16388,
+                "max_abs_err": 1.7881393432617188e-07,
+                "max_tol": 0.020003504753112793
+              }
+            }
+          },
+          {
+            "case_id": "f14",
+            "ok": false,
+            "problems": [
+              "output[0] mismatch: {'ok': False, 'n_bad': 12, 'n_total': 16388, 'max_abs_err': 0.25, 'max_tol': 6.27, 'first_bad_flat': 2574, 'expected': -0.68017578125, 'actual': -0.640625, 'first_bad_index': [0, 2574]}"
+            ],
+            "detail": {
+              "out0": {
+                "ok": false,
+                "n_bad": 12,
+                "n_total": 16388,
+                "max_abs_err": 0.25,
+                "max_tol": 6.27,
+                "first_bad_flat": 2574,
+                "expected": -0.68017578125,
+                "actual": -0.640625,
+                "first_bad_index": [
+                  0,
+                  2574
+                ]
+              }
+            }
+          },
+          {
+            "case_id": "f15",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 88064,
+                "max_abs_err": 0.125,
+                "max_tol": 6.04
+              }
+            }
+          },
+          {
+            "case_id": "f16",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 88064,
+                "max_abs_err": 0.125,
+                "max_tol": 5.734999999999999
+              }
+            }
+          },
+          {
+            "case_id": "f17",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 88064,
+                "max_abs_err": 1.1920928955078125e-07,
+                "max_tol": 0.0200054407119751
+              }
+            }
+          },
+          {
+            "case_id": "f18",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 4096,
+                "max_abs_err": 0.0625,
+                "max_tol": 8.915
+              }
+            }
+          },
+          {
+            "case_id": "f19",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 4096,
+                "max_abs_err": 0.0625,
+                "max_tol": 4.895
+              }
+            }
+          },
+          {
+            "case_id": "f20",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 4096,
+                "max_abs_err": 0.0625,
+                "max_tol": 5.1
+              }
+            }
+          }
+        ]
+      }
+    },
+    "compiled_torch_mm_fp16_fp32_reduction": {
+      "status": "ok",
+      "detail": {
+        "ok": true,
+        "passed": 21,
+        "total": 21,
+        "first_failures": [],
+        "per_case": [
+          {
+            "case_id": "f00",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 129,
+                "max_abs_err": 3.814697265625e-06,
+                "max_tol": 0.69375
+              }
+            }
+          },
+          {
+            "case_id": "f01",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 129,
+                "max_abs_err": 0.0,
+                "max_tol": 0.020000874996185303
+              }
+            }
+          },
+          {
+            "case_id": "f02",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 129,
+                "max_abs_err": 0.0,
+                "max_tol": 1.43
+              }
+            }
+          },
+          {
+            "case_id": "f03",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 11008,
+                "max_abs_err": 0.0625,
+                "max_tol": 8.535
+              }
+            }
+          },
+          {
+            "case_id": "f04",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 11008,
+                "max_abs_err": 0.0625,
+                "max_tol": 7.819999999999999
+              }
+            }
+          },
+          {
+            "case_id": "f05",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 11008,
+                "max_abs_err": 1.1920928955078125e-07,
+                "max_tol": 0.020008654594421388
+              }
+            }
+          },
+          {
+            "case_id": "f06",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 22016,
+                "max_abs_err": 0.25,
+                "max_tol": 8.78
+              }
+            }
+          },
+          {
+            "case_id": "f07",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 22016,
+                "max_abs_err": 0.125,
+                "max_tol": 5.319999999999999
+              }
+            }
+          },
+          {
+            "case_id": "f08",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 22016,
+                "max_abs_err": 0.125,
+                "max_tol": 5.56
+              }
+            }
+          },
+          {
+            "case_id": "f09",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 65536,
+                "max_abs_err": 1.1920928955078125e-07,
+                "max_tol": 0.020005226135253906
+              }
+            }
+          },
+          {
+            "case_id": "f10",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 65536,
+                "max_abs_err": 0.25,
+                "max_tol": 10.39
+              }
+            }
+          },
+          {
+            "case_id": "f11",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 65536,
+                "max_abs_err": 0.125,
+                "max_tol": 5.92
+              }
+            }
+          },
+          {
+            "case_id": "f12",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 16388,
+                "max_abs_err": 0.0625,
+                "max_tol": 3.5
+              }
+            }
+          },
+          {
+            "case_id": "f13",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 16388,
+                "max_abs_err": 5.960464477539063e-08,
+                "max_tol": 0.020003504753112793
+              }
+            }
+          },
+          {
+            "case_id": "f14",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 16388,
+                "max_abs_err": 0.0625,
+                "max_tol": 6.27
+              }
+            }
+          },
+          {
+            "case_id": "f15",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 88064,
+                "max_abs_err": 0.125,
+                "max_tol": 6.04
+              }
+            }
+          },
+          {
+            "case_id": "f16",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 88064,
+                "max_abs_err": 0.125,
+                "max_tol": 5.734999999999999
+              }
+            }
+          },
+          {
+            "case_id": "f17",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 88064,
+                "max_abs_err": 1.1920928955078125e-07,
+                "max_tol": 0.0200054407119751
+              }
+            }
+          },
+          {
+            "case_id": "f18",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 4096,
+                "max_abs_err": 0.0625,
+                "max_tol": 8.915
+              }
+            }
+          },
+          {
+            "case_id": "f19",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 4096,
+                "max_abs_err": 0.0625,
+                "max_tol": 4.895
+              }
+            }
+          },
+          {
+            "case_id": "f20",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 4096,
+                "max_abs_err": 0.0625,
+                "max_tol": 5.1
+              }
+            }
+          }
+        ]
+      }
+    },
+    "specialized": {
+      "status": "ok",
+      "detail": {
+        "ok": true,
+        "passed": 21,
+        "total": 21,
+        "first_failures": [],
+        "per_case": [
+          {
+            "case_id": "f00",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 129,
+                "max_abs_err": 0.0,
+                "max_tol": 0.69375
+              }
+            }
+          },
+          {
+            "case_id": "f01",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 129,
+                "max_abs_err": 0.0,
+                "max_tol": 0.020000874996185303
+              }
+            }
+          },
+          {
+            "case_id": "f02",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 129,
+                "max_abs_err": 0.0,
+                "max_tol": 1.43
+              }
+            }
+          },
+          {
+            "case_id": "f03",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 11008,
+                "max_abs_err": 0.0,
+                "max_tol": 8.535
+              }
+            }
+          },
+          {
+            "case_id": "f04",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 11008,
+                "max_abs_err": 0.0,
+                "max_tol": 7.819999999999999
+              }
+            }
+          },
+          {
+            "case_id": "f05",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 11008,
+                "max_abs_err": 0.0,
+                "max_tol": 0.020008654594421388
+              }
+            }
+          },
+          {
+            "case_id": "f06",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 22016,
+                "max_abs_err": 0.0,
+                "max_tol": 8.78
+              }
+            }
+          },
+          {
+            "case_id": "f07",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 22016,
+                "max_abs_err": 0.0,
+                "max_tol": 5.319999999999999
+              }
+            }
+          },
+          {
+            "case_id": "f08",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 22016,
+                "max_abs_err": 0.0,
+                "max_tol": 5.56
+              }
+            }
+          },
+          {
+            "case_id": "f09",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 65536,
+                "max_abs_err": 0.0,
+                "max_tol": 0.020005226135253906
+              }
+            }
+          },
+          {
+            "case_id": "f10",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 65536,
+                "max_abs_err": 0.0,
+                "max_tol": 10.39
+              }
+            }
+          },
+          {
+            "case_id": "f11",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 65536,
+                "max_abs_err": 0.0,
+                "max_tol": 5.92
+              }
+            }
+          },
+          {
+            "case_id": "f12",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 16388,
+                "max_abs_err": 0.0,
+                "max_tol": 3.5
+              }
+            }
+          },
+          {
+            "case_id": "f13",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 16388,
+                "max_abs_err": 0.0,
+                "max_tol": 0.020003504753112793
+              }
+            }
+          },
+          {
+            "case_id": "f14",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 16388,
+                "max_abs_err": 0.0,
+                "max_tol": 6.27
+              }
+            }
+          },
+          {
+            "case_id": "f15",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 88064,
+                "max_abs_err": 0.0,
+                "max_tol": 6.04
+              }
+            }
+          },
+          {
+            "case_id": "f16",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 88064,
+                "max_abs_err": 0.0,
+                "max_tol": 5.734999999999999
+              }
+            }
+          },
+          {
+            "case_id": "f17",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 88064,
+                "max_abs_err": 0.0,
+                "max_tol": 0.0200054407119751
+              }
+            }
+          },
+          {
+            "case_id": "f18",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 4096,
+                "max_abs_err": 0.0,
+                "max_tol": 8.915
+              }
+            }
+          },
+          {
+            "case_id": "f19",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 4096,
+                "max_abs_err": 0.0,
+                "max_tol": 4.895
+              }
+            }
+          },
+          {
+            "case_id": "f20",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 4096,
+                "max_abs_err": 0.0,
+                "max_tol": 5.1
+              }
+            }
+          }
+        ]
+      }
+    },
+    "torch_compile": {
+      "status": "ok",
+      "detail": {
+        "ok": true,
+        "passed": 21,
+        "total": 21,
+        "first_failures": [],
+        "per_case": [
+          {
+            "case_id": "f00",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 129,
+                "max_abs_err": 0.0,
+                "max_tol": 0.69375
+              }
+            }
+          },
+          {
+            "case_id": "f01",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 129,
+                "max_abs_err": 0.0,
+                "max_tol": 0.020000874996185303
+              }
+            }
+          },
+          {
+            "case_id": "f02",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 129,
+                "max_abs_err": 0.0,
+                "max_tol": 1.43
+              }
+            }
+          },
+          {
+            "case_id": "f03",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 11008,
+                "max_abs_err": 0.0,
+                "max_tol": 8.535
+              }
+            }
+          },
+          {
+            "case_id": "f04",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 11008,
+                "max_abs_err": 0.0,
+                "max_tol": 7.819999999999999
+              }
+            }
+          },
+          {
+            "case_id": "f05",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 11008,
+                "max_abs_err": 0.0,
+                "max_tol": 0.020008654594421388
+              }
+            }
+          },
+          {
+            "case_id": "f06",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 22016,
+                "max_abs_err": 0.0,
+                "max_tol": 8.78
+              }
+            }
+          },
+          {
+            "case_id": "f07",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 22016,
+                "max_abs_err": 0.0,
+                "max_tol": 5.319999999999999
+              }
+            }
+          },
+          {
+            "case_id": "f08",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 22016,
+                "max_abs_err": 0.0,
+                "max_tol": 5.56
+              }
+            }
+          },
+          {
+            "case_id": "f09",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 65536,
+                "max_abs_err": 0.0,
+                "max_tol": 0.020005226135253906
+              }
+            }
+          },
+          {
+            "case_id": "f10",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 65536,
+                "max_abs_err": 0.0,
+                "max_tol": 10.39
+              }
+            }
+          },
+          {
+            "case_id": "f11",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 65536,
+                "max_abs_err": 0.0,
+                "max_tol": 5.92
+              }
+            }
+          },
+          {
+            "case_id": "f12",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 16388,
+                "max_abs_err": 0.0,
+                "max_tol": 3.5
+              }
+            }
+          },
+          {
+            "case_id": "f13",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 16388,
+                "max_abs_err": 0.0,
+                "max_tol": 0.020003504753112793
+              }
+            }
+          },
+          {
+            "case_id": "f14",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 16388,
+                "max_abs_err": 0.0,
+                "max_tol": 6.27
+              }
+            }
+          },
+          {
+            "case_id": "f15",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 88064,
+                "max_abs_err": 0.0,
+                "max_tol": 6.04
+              }
+            }
+          },
+          {
+            "case_id": "f16",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 88064,
+                "max_abs_err": 0.0,
+                "max_tol": 5.734999999999999
+              }
+            }
+          },
+          {
+            "case_id": "f17",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 88064,
+                "max_abs_err": 0.0,
+                "max_tol": 0.0200054407119751
+              }
+            }
+          },
+          {
+            "case_id": "f18",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 4096,
+                "max_abs_err": 0.0,
+                "max_tol": 8.915
+              }
+            }
+          },
+          {
+            "case_id": "f19",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 4096,
+                "max_abs_err": 0.0,
+                "max_tol": 4.895
+              }
+            }
+          },
+          {
+            "case_id": "f20",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 4096,
+                "max_abs_err": 0.0,
+                "max_tol": 5.1
+              }
+            }
+          }
+        ]
+      }
+    },
+    "torch_eager": {
+      "status": "ok",
+      "detail": {
+        "ok": true,
+        "passed": 21,
+        "total": 21,
+        "first_failures": [],
+        "per_case": [
+          {
+            "case_id": "f00",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 129,
+                "max_abs_err": 0.0,
+                "max_tol": 0.69375
+              }
+            }
+          },
+          {
+            "case_id": "f01",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 129,
+                "max_abs_err": 0.0,
+                "max_tol": 0.020000874996185303
+              }
+            }
+          },
+          {
+            "case_id": "f02",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 129,
+                "max_abs_err": 0.0,
+                "max_tol": 1.43
+              }
+            }
+          },
+          {
+            "case_id": "f03",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 11008,
+                "max_abs_err": 0.0,
+                "max_tol": 8.535
+              }
+            }
+          },
+          {
+            "case_id": "f04",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 11008,
+                "max_abs_err": 0.0,
+                "max_tol": 7.819999999999999
+              }
+            }
+          },
+          {
+            "case_id": "f05",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 11008,
+                "max_abs_err": 0.0,
+                "max_tol": 0.020008654594421388
+              }
+            }
+          },
+          {
+            "case_id": "f06",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 22016,
+                "max_abs_err": 0.0,
+                "max_tol": 8.78
+              }
+            }
+          },
+          {
+            "case_id": "f07",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 22016,
+                "max_abs_err": 0.0,
+                "max_tol": 5.319999999999999
+              }
+            }
+          },
+          {
+            "case_id": "f08",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 22016,
+                "max_abs_err": 0.0,
+                "max_tol": 5.56
+              }
+            }
+          },
+          {
+            "case_id": "f09",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 65536,
+                "max_abs_err": 0.0,
+                "max_tol": 0.020005226135253906
+              }
+            }
+          },
+          {
+            "case_id": "f10",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 65536,
+                "max_abs_err": 0.0,
+                "max_tol": 10.39
+              }
+            }
+          },
+          {
+            "case_id": "f11",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 65536,
+                "max_abs_err": 0.0,
+                "max_tol": 5.92
+              }
+            }
+          },
+          {
+            "case_id": "f12",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 16388,
+                "max_abs_err": 0.0,
+                "max_tol": 3.5
+              }
+            }
+          },
+          {
+            "case_id": "f13",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 16388,
+                "max_abs_err": 0.0,
+                "max_tol": 0.020003504753112793
+              }
+            }
+          },
+          {
+            "case_id": "f14",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 16388,
+                "max_abs_err": 0.0,
+                "max_tol": 6.27
+              }
+            }
+          },
+          {
+            "case_id": "f15",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 88064,
+                "max_abs_err": 0.0,
+                "max_tol": 6.04
+              }
+            }
+          },
+          {
+            "case_id": "f16",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 88064,
+                "max_abs_err": 0.0,
+                "max_tol": 5.734999999999999
+              }
+            }
+          },
+          {
+            "case_id": "f17",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 88064,
+                "max_abs_err": 0.0,
+                "max_tol": 0.0200054407119751
+              }
+            }
+          },
+          {
+            "case_id": "f18",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 4096,
+                "max_abs_err": 0.0,
+                "max_tol": 8.915
+              }
+            }
+          },
+          {
+            "case_id": "f19",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 4096,
+                "max_abs_err": 0.0,
+                "max_tol": 4.895
+              }
+            }
+          },
+          {
+            "case_id": "f20",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 4096,
+                "max_abs_err": 0.0,
+                "max_tol": 5.1
+              }
+            }
+          }
+        ]
+      }
+    },
+    "torch_mm_fp16": {
+      "status": "incorrect",
+      "detail": {
+        "ok": false,
+        "passed": 19,
+        "total": 21,
+        "first_failures": [
+          {
+            "case_id": "f12",
+            "problems": [
+              "output[0] mismatch: {'ok': False, 'n_bad': 4, 'n_total': 16388, 'max_abs_err': 0.125, 'max_tol': 3.5, 'first_bad_flat': 398, 'expected': -0.257568359375, 'actual': -0.28515625, 'first_bad_index': [0, 398]}"
+            ]
+          },
+          {
+            "case_id": "f14",
+            "problems": [
+              "output[0] mismatch: {'ok': False, 'n_bad': 12, 'n_total': 16388, 'max_abs_err': 0.25, 'max_tol': 6.27, 'first_bad_flat': 2574, 'expected': -0.68017578125, 'actual': -0.640625, 'first_bad_index': [0, 2574]}"
+            ]
+          }
+        ],
+        "per_case": [
+          {
+            "case_id": "f00",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 129,
+                "max_abs_err": 3.814697265625e-06,
+                "max_tol": 0.69375
+              }
+            }
+          },
+          {
+            "case_id": "f01",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 129,
+                "max_abs_err": 0.0,
+                "max_tol": 0.020000874996185303
+              }
+            }
+          },
+          {
+            "case_id": "f02",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 129,
+                "max_abs_err": 0.0,
+                "max_tol": 1.43
+              }
+            }
+          },
+          {
+            "case_id": "f03",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 11008,
+                "max_abs_err": 0.0625,
+                "max_tol": 8.535
+              }
+            }
+          },
+          {
+            "case_id": "f04",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 11008,
+                "max_abs_err": 0.0625,
+                "max_tol": 7.819999999999999
+              }
+            }
+          },
+          {
+            "case_id": "f05",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 11008,
+                "max_abs_err": 1.1920928955078125e-07,
+                "max_tol": 0.020008654594421388
+              }
+            }
+          },
+          {
+            "case_id": "f06",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 22016,
+                "max_abs_err": 0.25,
+                "max_tol": 8.78
+              }
+            }
+          },
+          {
+            "case_id": "f07",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 22016,
+                "max_abs_err": 0.125,
+                "max_tol": 5.319999999999999
+              }
+            }
+          },
+          {
+            "case_id": "f08",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 22016,
+                "max_abs_err": 0.125,
+                "max_tol": 5.56
+              }
+            }
+          },
+          {
+            "case_id": "f09",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 65536,
+                "max_abs_err": 1.1920928955078125e-07,
+                "max_tol": 0.020005226135253906
+              }
+            }
+          },
+          {
+            "case_id": "f10",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 65536,
+                "max_abs_err": 0.25,
+                "max_tol": 10.39
+              }
+            }
+          },
+          {
+            "case_id": "f11",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 65536,
+                "max_abs_err": 0.125,
+                "max_tol": 5.92
+              }
+            }
+          },
+          {
+            "case_id": "f12",
+            "ok": false,
+            "problems": [
+              "output[0] mismatch: {'ok': False, 'n_bad': 4, 'n_total': 16388, 'max_abs_err': 0.125, 'max_tol': 3.5, 'first_bad_flat': 398, 'expected': -0.257568359375, 'actual': -0.28515625, 'first_bad_index': [0, 398]}"
+            ],
+            "detail": {
+              "out0": {
+                "ok": false,
+                "n_bad": 4,
+                "n_total": 16388,
+                "max_abs_err": 0.125,
+                "max_tol": 3.5,
+                "first_bad_flat": 398,
+                "expected": -0.257568359375,
+                "actual": -0.28515625,
+                "first_bad_index": [
+                  0,
+                  398
+                ]
+              }
+            }
+          },
+          {
+            "case_id": "f13",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 16388,
+                "max_abs_err": 1.7881393432617188e-07,
+                "max_tol": 0.020003504753112793
+              }
+            }
+          },
+          {
+            "case_id": "f14",
+            "ok": false,
+            "problems": [
+              "output[0] mismatch: {'ok': False, 'n_bad': 12, 'n_total': 16388, 'max_abs_err': 0.25, 'max_tol': 6.27, 'first_bad_flat': 2574, 'expected': -0.68017578125, 'actual': -0.640625, 'first_bad_index': [0, 2574]}"
+            ],
+            "detail": {
+              "out0": {
+                "ok": false,
+                "n_bad": 12,
+                "n_total": 16388,
+                "max_abs_err": 0.25,
+                "max_tol": 6.27,
+                "first_bad_flat": 2574,
+                "expected": -0.68017578125,
+                "actual": -0.640625,
+                "first_bad_index": [
+                  0,
+                  2574
+                ]
+              }
+            }
+          },
+          {
+            "case_id": "f15",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 88064,
+                "max_abs_err": 0.125,
+                "max_tol": 6.04
+              }
+            }
+          },
+          {
+            "case_id": "f16",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 88064,
+                "max_abs_err": 0.125,
+                "max_tol": 5.734999999999999
+              }
+            }
+          },
+          {
+            "case_id": "f17",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 88064,
+                "max_abs_err": 1.1920928955078125e-07,
+                "max_tol": 0.0200054407119751
+              }
+            }
+          },
+          {
+            "case_id": "f18",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 4096,
+                "max_abs_err": 0.0625,
+                "max_tol": 8.915
+              }
+            }
+          },
+          {
+            "case_id": "f19",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 4096,
+                "max_abs_err": 0.0625,
+                "max_tol": 4.895
+              }
+            }
+          },
+          {
+            "case_id": "f20",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 4096,
+                "max_abs_err": 0.0625,
+                "max_tol": 5.1
+              }
+            }
+          }
+        ]
+      }
+    },
+    "torch_mm_fp16_fp32_reduction": {
+      "status": "ok",
+      "detail": {
+        "ok": true,
+        "passed": 21,
+        "total": 21,
+        "first_failures": [],
+        "per_case": [
+          {
+            "case_id": "f00",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 129,
+                "max_abs_err": 3.814697265625e-06,
+                "max_tol": 0.69375
+              }
+            }
+          },
+          {
+            "case_id": "f01",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 129,
+                "max_abs_err": 0.0,
+                "max_tol": 0.020000874996185303
+              }
+            }
+          },
+          {
+            "case_id": "f02",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 129,
+                "max_abs_err": 0.0,
+                "max_tol": 1.43
+              }
+            }
+          },
+          {
+            "case_id": "f03",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 11008,
+                "max_abs_err": 0.0625,
+                "max_tol": 8.535
+              }
+            }
+          },
+          {
+            "case_id": "f04",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 11008,
+                "max_abs_err": 0.0625,
+                "max_tol": 7.819999999999999
+              }
+            }
+          },
+          {
+            "case_id": "f05",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 11008,
+                "max_abs_err": 1.1920928955078125e-07,
+                "max_tol": 0.020008654594421388
+              }
+            }
+          },
+          {
+            "case_id": "f06",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 22016,
+                "max_abs_err": 0.25,
+                "max_tol": 8.78
+              }
+            }
+          },
+          {
+            "case_id": "f07",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 22016,
+                "max_abs_err": 0.125,
+                "max_tol": 5.319999999999999
+              }
+            }
+          },
+          {
+            "case_id": "f08",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 22016,
+                "max_abs_err": 0.125,
+                "max_tol": 5.56
+              }
+            }
+          },
+          {
+            "case_id": "f09",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 65536,
+                "max_abs_err": 1.1920928955078125e-07,
+                "max_tol": 0.020005226135253906
+              }
+            }
+          },
+          {
+            "case_id": "f10",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 65536,
+                "max_abs_err": 0.25,
+                "max_tol": 10.39
+              }
+            }
+          },
+          {
+            "case_id": "f11",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 65536,
+                "max_abs_err": 0.125,
+                "max_tol": 5.92
+              }
+            }
+          },
+          {
+            "case_id": "f12",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 16388,
+                "max_abs_err": 0.0625,
+                "max_tol": 3.5
+              }
+            }
+          },
+          {
+            "case_id": "f13",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 16388,
+                "max_abs_err": 5.960464477539063e-08,
+                "max_tol": 0.020003504753112793
+              }
+            }
+          },
+          {
+            "case_id": "f14",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 16388,
+                "max_abs_err": 0.0625,
+                "max_tol": 6.27
+              }
+            }
+          },
+          {
+            "case_id": "f15",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 88064,
+                "max_abs_err": 0.125,
+                "max_tol": 6.04
+              }
+            }
+          },
+          {
+            "case_id": "f16",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 88064,
+                "max_abs_err": 0.125,
+                "max_tol": 5.734999999999999
+              }
+            }
+          },
+          {
+            "case_id": "f17",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 88064,
+                "max_abs_err": 1.1920928955078125e-07,
+                "max_tol": 0.0200054407119751
+              }
+            }
+          },
+          {
+            "case_id": "f18",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 4096,
+                "max_abs_err": 0.0625,
+                "max_tol": 8.915
+              }
+            }
+          },
+          {
+            "case_id": "f19",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 4096,
+                "max_abs_err": 0.0625,
+                "max_tol": 4.895
+              }
+            }
+          },
+          {
+            "case_id": "f20",
+            "ok": true,
+            "problems": [],
+            "detail": {
+              "out0": {
+                "ok": true,
+                "n_bad": 0,
+                "n_total": 4096,
+                "max_abs_err": 0.0625,
+                "max_tol": 5.1
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "verification": {
+    "status": "inconclusive",
+    "correctness": {
+      "ok": true,
+      "passed": 21,
+      "total": 21,
+      "first_failures": [],
+      "per_case": [
+        {
+          "case_id": "f00",
+          "ok": true,
+          "problems": [],
+          "detail": {
+            "out0": {
+              "ok": true,
+              "n_bad": 0,
+              "n_total": 129,
+              "max_abs_err": 0.0,
+              "max_tol": 0.69375
+            }
+          }
+        },
+        {
+          "case_id": "f01",
+          "ok": true,
+          "problems": [],
+          "detail": {
+            "out0": {
+              "ok": true,
+              "n_bad": 0,
+              "n_total": 129,
+              "max_abs_err": 0.0,
+              "max_tol": 0.020000874996185303
+            }
+          }
+        },
+        {
+          "case_id": "f02",
+          "ok": true,
+          "problems": [],
+          "detail": {
+            "out0": {
+              "ok": true,
+              "n_bad": 0,
+              "n_total": 129,
+              "max_abs_err": 0.0,
+              "max_tol": 1.43
+            }
+          }
+        },
+        {
+          "case_id": "f03",
+          "ok": true,
+          "problems": [],
+          "detail": {
+            "out0": {
+              "ok": true,
+              "n_bad": 0,
+              "n_total": 11008,
+              "max_abs_err": 0.25,
+              "max_tol": 8.535
+            }
+          }
+        },
+        {
+          "case_id": "f04",
+          "ok": true,
+          "problems": [],
+          "detail": {
+            "out0": {
+              "ok": true,
+              "n_bad": 0,
+              "n_total": 11008,
+              "max_abs_err": 0.25,
+              "max_tol": 7.819999999999999
+            }
+          }
+        },
+        {
+          "case_id": "f05",
+          "ok": true,
+          "problems": [],
+          "detail": {
+            "out0": {
+              "ok": true,
+              "n_bad": 0,
+              "n_total": 11008,
+              "max_abs_err": 2.384185791015625e-07,
+              "max_tol": 0.020008654594421388
+            }
+          }
+        },
+        {
+          "case_id": "f06",
+          "ok": true,
+          "problems": [],
+          "detail": {
+            "out0": {
+              "ok": true,
+              "n_bad": 0,
+              "n_total": 22016,
+              "max_abs_err": 0.25,
+              "max_tol": 8.78
+            }
+          }
+        },
+        {
+          "case_id": "f07",
+          "ok": true,
+          "problems": [],
+          "detail": {
+            "out0": {
+              "ok": true,
+              "n_bad": 0,
+              "n_total": 22016,
+              "max_abs_err": 0.125,
+              "max_tol": 5.319999999999999
+            }
+          }
+        },
+        {
+          "case_id": "f08",
+          "ok": true,
+          "problems": [],
+          "detail": {
+            "out0": {
+              "ok": true,
+              "n_bad": 0,
+              "n_total": 22016,
+              "max_abs_err": 0.125,
+              "max_tol": 5.56
+            }
+          }
+        },
+        {
+          "case_id": "f09",
+          "ok": true,
+          "problems": [],
+          "detail": {
+            "out0": {
+              "ok": true,
+              "n_bad": 0,
+              "n_total": 65536,
+              "max_abs_err": 2.384185791015625e-07,
+              "max_tol": 0.020005226135253906
+            }
+          }
+        },
+        {
+          "case_id": "f10",
+          "ok": true,
+          "problems": [],
+          "detail": {
+            "out0": {
+              "ok": true,
+              "n_bad": 0,
+              "n_total": 65536,
+              "max_abs_err": 0.25,
+              "max_tol": 10.39
+            }
+          }
+        },
+        {
+          "case_id": "f11",
+          "ok": true,
+          "problems": [],
+          "detail": {
+            "out0": {
+              "ok": true,
+              "n_bad": 0,
+              "n_total": 65536,
+              "max_abs_err": 0.125,
+              "max_tol": 5.92
+            }
+          }
+        },
+        {
+          "case_id": "f12",
+          "ok": true,
+          "problems": [],
+          "detail": {
+            "out0": {
+              "ok": true,
+              "n_bad": 0,
+              "n_total": 16388,
+              "max_abs_err": 0.0625,
+              "max_tol": 3.5
+            }
+          }
+        },
+        {
+          "case_id": "f13",
+          "ok": true,
+          "problems": [],
+          "detail": {
+            "out0": {
+              "ok": true,
+              "n_bad": 0,
+              "n_total": 16388,
+              "max_abs_err": 5.960464477539063e-08,
+              "max_tol": 0.020003504753112793
+            }
+          }
+        },
+        {
+          "case_id": "f14",
+          "ok": true,
+          "problems": [],
+          "detail": {
+            "out0": {
+              "ok": true,
+              "n_bad": 0,
+              "n_total": 16388,
+              "max_abs_err": 0.125,
+              "max_tol": 6.27
+            }
+          }
+        },
+        {
+          "case_id": "f15",
+          "ok": true,
+          "problems": [],
+          "detail": {
+            "out0": {
+              "ok": true,
+              "n_bad": 0,
+              "n_total": 88064,
+              "max_abs_err": 0.125,
+              "max_tol": 6.04
+            }
+          }
+        },
+        {
+          "case_id": "f16",
+          "ok": true,
+          "problems": [],
+          "detail": {
+            "out0": {
+              "ok": true,
+              "n_bad": 0,
+              "n_total": 88064,
+              "max_abs_err": 0.125,
+              "max_tol": 5.734999999999999
+            }
+          }
+        },
+        {
+          "case_id": "f17",
+          "ok": true,
+          "problems": [],
+          "detail": {
+            "out0": {
+              "ok": true,
+              "n_bad": 0,
+              "n_total": 88064,
+              "max_abs_err": 1.1920928955078125e-07,
+              "max_tol": 0.0200054407119751
+            }
+          }
+        },
+        {
+          "case_id": "f18",
+          "ok": true,
+          "problems": [],
+          "detail": {
+            "out0": {
+              "ok": true,
+              "n_bad": 0,
+              "n_total": 4096,
+              "max_abs_err": 0.25,
+              "max_tol": 8.915
+            }
+          }
+        },
+        {
+          "case_id": "f19",
+          "ok": true,
+          "problems": [],
+          "detail": {
+            "out0": {
+              "ok": true,
+              "n_bad": 0,
+              "n_total": 4096,
+              "max_abs_err": 0.0625,
+              "max_tol": 4.895
+            }
+          }
+        },
+        {
+          "case_id": "f20",
+          "ok": true,
+          "problems": [],
+          "detail": {
+            "out0": {
+              "ok": true,
+              "n_bad": 0,
+              "n_total": 4096,
+              "max_abs_err": 0.125,
+              "max_tol": 5.1
+            }
+          }
+        }
+      ]
+    },
+    "rounds": 5,
+    "statistics": {
+      "rounds_used": 5,
+      "per_round_task_speedup": [
+        0.9938609237047525,
+        1.0665804413486524,
+        1.0657152987946017,
+        1.0671580400288858,
+        1.0667832138115672
+      ],
+      "shape_speedup_medians": {
+        "t0": 1.1407311749605649,
+        "t1": 1.0885387712102486,
+        "t2": 1.0316194660140354,
+        "r0": 1.0322027612391749,
+        "r1": 1.0421414253065096
+      },
+      "candidate_us_medians": {
+        "t0": 37.325754902008114,
+        "t1": 37.362157628777325,
+        "t2": 97.11644384596083,
+        "r0": 96.79074838858884,
+        "r1": 72.41678237915039
+      },
+      "paired_baseline_us_medians": {
+        "t0": 42.585554897995806,
+        "t1": 40.6663740746226,
+        "t2": 100.19510388374329,
+        "r0": 99.926344741731,
+        "r1": 75.47660185911946
+      },
+      "task_speedup_mean": 1.052019583537692,
+      "min_shape_median_speedup": 1.0316194660140354,
+      "task_speedup_ci_low": 1.0228162567440853,
+      "task_speedup_ci_high": 1.0668925898059116,
+      "timing_backend": "cuda_events"
+    },
+    "baselines": [
+      "compiled_torch_mm_fp16_fp32_reduction",
+      "specialized",
+      "torch_compile",
+      "torch_eager",
+      "torch_mm_fp16_fp32_reduction"
+    ],
+    "seconds": 305.08581955498084,
+    "gpu_state_before": {
+      "index": 4,
+      "uuid": "GPU-45da8806-e439-f13e-4f45-dd916dcf46e4",
+      "util": 0.0,
+      "mem_used_mib": 923.0,
+      "mem_total_mib": 24564.0,
+      "power_w": 72.03,
+      "temp_c": 37.0,
+      "sm_clock_mhz": 2775.0,
+      "sm_clock_max_mhz": 3105.0,
+      "available": true,
+      "foreign_pids": [],
+      "own_pids": [
+        612114
+      ],
+      "foreign_processes": 0,
+      "own_processes": 1,
+      "unknown_processes": 0,
+      "visible_processes": 1,
+      "other_processes": 0,
+      "other_pids": [],
+      "own_pids_present": [
+        612114
+      ],
+      "other_memory_mib": 0,
+      "user_gpu_admission": {
+        "policy": "user-premeasurement-utilization-zero-v43",
+        "eligible": true,
+        "original_process_presence_contaminated": false,
+        "new_foreign_pids": [],
+        "premeasurement_utilization": 0.0,
+        "after_utilization_attributed_to_foreign": false,
+        "exclusive_device_confirmed": true
+      }
+    },
+    "gpu_state_after": {
+      "index": 4,
+      "uuid": "GPU-45da8806-e439-f13e-4f45-dd916dcf46e4",
+      "util": 0.0,
+      "mem_used_mib": 923.0,
+      "mem_total_mib": 24564.0,
+      "power_w": 81.85,
+      "temp_c": 49.0,
+      "sm_clock_mhz": 2760.0,
+      "sm_clock_max_mhz": 3105.0,
+      "available": true,
+      "foreign_pids": [],
+      "own_pids": [
+        612114
+      ],
+      "foreign_processes": 0,
+      "own_processes": 1,
+      "unknown_processes": 0,
+      "visible_processes": 1,
+      "other_processes": 0,
+      "other_pids": [],
+      "own_pids_present": [
+        612114
+      ],
+      "other_memory_mib": 0,
+      "user_gpu_admission": {
+        "policy": "user-premeasurement-utilization-zero-v43",
+        "eligible": true,
+        "original_process_presence_contaminated": false,
+        "new_foreign_pids": [],
+        "premeasurement_utilization": 0.0,
+        "after_utilization_attributed_to_foreign": false,
+        "exclusive_device_confirmed": true
+      }
+    },
+    "contaminated": false
+  },
+  "comparisons": {
+    "original_baselines": {
+      "complete": true,
+      "incomplete": [],
+      "statistics": {
+        "rounds_used": 5,
+        "per_round_task_speedup": [
+          4.159369464525769,
+          4.440168279585781,
+          4.438988059609553,
+          4.441704855986103,
+          4.439535481677538
+        ],
+        "shape_speedup_medians": {
+          "t0": 3.4982202008145316,
+          "t1": 3.587706873259474,
+          "t2": 5.1483202027066755,
+          "r0": 5.156556270235208,
+          "r1": 5.177735952665447
+        },
+        "candidate_us_medians": {
+          "t0": 37.325754902008114,
+          "t1": 37.362157628777325,
+          "t2": 97.11644384596083,
+          "r0": 96.79074838858884,
+          "r1": 72.41678237915039
+        },
+        "paired_baseline_us_medians": {
+          "t0": 130.66480159759521,
+          "t1": 134.09471988677979,
+          "t2": 499.85098157610213,
+          "r0": 498.9785058157785,
+          "r1": 374.9549777008766
+        },
+        "task_speedup_mean": 4.383953228276949,
+        "min_shape_median_speedup": 3.4982202008145316,
+        "task_speedup_ci_low": 4.271452946554528,
+        "task_speedup_ci_high": 4.44072762184908
+      }
+    },
+    "all_qualified_libraries": {
+      "complete": true,
+      "incomplete": [],
+      "statistics": {
+        "rounds_used": 5,
+        "per_round_task_speedup": [
+          0.9938609237047525,
+          1.0665804413486524,
+          1.0657152987946017,
+          1.0671580400288858,
+          1.0667832138115672
+        ],
+        "shape_speedup_medians": {
+          "t0": 1.1407311749605649,
+          "t1": 1.0885387712102486,
+          "t2": 1.0316194660140354,
+          "r0": 1.0322027612391749,
+          "r1": 1.0421414253065096
+        },
+        "candidate_us_medians": {
+          "t0": 37.325754902008114,
+          "t1": 37.362157628777325,
+          "t2": 97.11644384596083,
+          "r0": 96.79074838858884,
+          "r1": 72.41678237915039
+        },
+        "paired_baseline_us_medians": {
+          "t0": 42.585554897995806,
+          "t1": 40.6663740746226,
+          "t2": 100.19510388374329,
+          "r0": 99.926344741731,
+          "r1": 75.47660185911946
+        },
+        "task_speedup_mean": 1.052019583537692,
+        "min_shape_median_speedup": 1.0316194660140354,
+        "task_speedup_ci_low": 1.0228162567440853,
+        "task_speedup_ci_high": 1.0668925898059116
+      }
+    }
+  },
+  "strong_FP16_library_coverage_complete": true,
+  "strong_library_gain_verified": false,
+  "performance_measured": true,
+  "owned_resource_closure_complete": true,
+  "original_process_presence_contaminated": false,
+  "gpu_spans": [
+    {
+      "ts": "2026-10-09T10:05:40.327+00:00",
+      "kind": "independent_gpu_span_start",
+      "run_id": "independent-native-small-M-b4a3ae314dcaab2f",
+      "job_id": "468b7b05cb804e9f",
+      "gpu_uuid": "GPU-45da8806-e439-f13e-4f45-dd916dcf46e4",
+      "owner": "server:612114",
+      "pid": 612114
+    },
+    {
+      "ts": "2026-10-09T10:10:18.038+00:00",
+      "kind": "independent_gpu_span_end",
+      "run_id": "independent-native-small-M-b4a3ae314dcaab2f",
+      "job_id": "468b7b05cb804e9f",
+      "gpu_uuid": "GPU-45da8806-e439-f13e-4f45-dd916dcf46e4",
+      "owner": "server:612114",
+      "seconds": 277.7105007963255,
+      "pid": 612114
+    },
+    {
+      "ts": "2026-10-09T10:10:18.537+00:00",
+      "kind": "independent_gpu_span_start",
+      "run_id": "independent-native-small-M-b4a3ae314dcaab2f",
+      "job_id": "ec824519c5374125",
+      "gpu_uuid": "GPU-45da8806-e439-f13e-4f45-dd916dcf46e4",
+      "owner": "server:612114",
+      "pid": 612114
+    },
+    {
+      "ts": "2026-10-09T10:15:23.622+00:00",
+      "kind": "independent_gpu_span_end",
+      "run_id": "independent-native-small-M-b4a3ae314dcaab2f",
+      "job_id": "ec824519c5374125",
+      "gpu_uuid": "GPU-45da8806-e439-f13e-4f45-dd916dcf46e4",
+      "owner": "server:612114",
+      "seconds": 305.0858216029592,
+      "pid": 612114
+    }
+  ],
+  "local_gpu_seconds": 582.7963223992847,
+  "model_requests": 0,
+  "production_ledger_or_queue_writes": 0,
+  "foreign_processes_signaled": 0,
+  "RSI_proven": false,
+  "prepared_scope": {
+    "root": "/data/lizhijun/work/kernel-lab/artifacts/final-reproduction-20261009/native-small-M-two-device-fp32-reduction-r1/gpu4/scope",
+    "candidate": {
+      "path": "/data/lizhijun/work/kernel-lab/artifacts/final-reproduction-20261009/native-small-M-two-device-fp32-reduction-r1/gpu4/scope/candidate/kernel.py",
+      "sha256": "22af8289078d96579622e2fcf47ef11e1a50cf3b0f6fa0db6b9da354e52ed276"
+    },
+    "extended_baselines": {
+      "path": "/data/lizhijun/work/kernel-lab/artifacts/final-reproduction-20261009/native-small-M-two-device-fp32-reduction-r1/gpu4/scope/tasks/K12/baselines.py",
+      "sha256": "a6ce969a65af5262e911b658504331b88295a88cc00ef9bd59ffe585975351f5"
+    },
+    "original_baselines_prefix_sha256": "0c5d7f7fa54058bcc9862511d774cb5fa8659f8d0b49b42c41bd64e22f20945e"
+  },
+  "failure": null,
+  "environment": {
+    "python": "3.11.10 (main, Oct  3 2024, 07:29:13) [GCC 11.2.0]",
+    "torch": "2.5.1+cu121",
+    "triton": "3.1.0",
+    "CUDA_runtime": "12.1"
+  }
+}

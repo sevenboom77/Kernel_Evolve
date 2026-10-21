@@ -1,0 +1,79 @@
+{
+  "status": "ACTUAL_G031_SOURCE_BUILD_AND_FULL_SDK_QUALIFIED_NO_PAID_BENEFIT_CLAIM",
+  "source_author": "Codex outer loop",
+  "source_commit": "12e3b131e405295805caa3daa90f4c2b827cbed4",
+  "parent_source_commit": "e1dffe9a8eca77cb1fdd81c1a8b5842c8c36370e",
+  "engineering_parent_source_commit": "ccaec0ceacc0bc9a2c2566806c37b537928ffbea",
+  "engineering_parent_quality_rejected": true,
+  "runtime_manifest_sha256": "2ee19ddf2e0be895cce9855bfaf707131a4284cfb6092bf8e49ffce08b1d2552",
+  "private_actual_qualification_sha256": "e6d7b630a452a4334e050646d58ec5ee9365ec4026a9018a36a808e7ee30cc2e",
+  "source_archive_sha256": "6caf9226bddb57c15a12c5a0b61ff3b253938aaee0399794d36a9a53411b9292",
+  "source_patch": {
+    "path": "source-patches/G031-first-numeric-focus.patch",
+    "sha256": "8543e2739161e70d60a8d4137bb859d603fef125323ca82d7c74c5b500b5193d"
+  },
+  "incremental_patch": {
+    "path": "source-patches/G031-from-G030-first-numeric-focus.patch",
+    "sha256": "4f7adb540358d5581de890e8aa3cd49f3a22e4b29b0e0dd68218c429ab33f4fa"
+  },
+  "source_file_count": 3633,
+  "runtime_file_count": 175,
+  "implementation": "First authenticated classified DEV incorrect source receives the existing fixed bounded numerical repair focus. First errors retain their ordinary action; distinct-source repeats retain their original strategy action. Source/authentication/DEV gates, invalid diagnostic rejection, best correct source, repaired clearing, raw feedback, 4facts/2048bytes and original numerics/caps/scoring remain.",
+  "engineering": {
+    "full_Core_passed": 2429,
+    "full_Core_failed": 0,
+    "original_Core_opt_in_skips": 3,
+    "nearest_passed": 131,
+    "related_passed": 413,
+    "guard_tests": 553,
+    "original_guard_skips": 2,
+    "typecheck_gen_format_docs": "PASS",
+    "reviewed_Core_lines": 26976,
+    "original_absolute_Core_ceiling": 27000,
+    "added_Core_lines_from_G030": 0
+  },
+  "SDK": {
+    "legacy_actual_HTTP_bodies": 1227,
+    "legacy_stage_count": 31,
+    "output_limit_actual_HTTP_bodies": 9,
+    "output_limit_cases": 6,
+    "actual_total_HTTP_bodies": 1587,
+    "failed_new_output_fixture_HTTP_bodies_retained": 0,
+    "actual_total_HTTP_including_new_output_fixture_failures": 1587,
+    "original_output_fixture_failures_retained": 0,
+    "original_preexecution_new_actor_derivation_refusal_retained": true,
+    "new_diagnostic_actual_HTTP_bodies": 351,
+    "new_diagnostic_cases": 9,
+    "original_native_tools": 23,
+    "request_cap": 24,
+    "candidate_cap": 4,
+    "max_output_tokens": 4096,
+    "context_window": 32768,
+    "request_25_and_fifth_candidate_refused": true,
+    "all_owned_lifetimes_closed": true,
+    "actual_restarted_output_limit_SDK_turn_tested": false,
+    "replay_cancel_scope_live_budget_tested_in_actual_SessionImpl": true,
+    "external_model_calls": 0,
+    "GPU_calls": 0,
+    "original_credentials_read": false
+  },
+  "legacy_complete_qualification": {
+    "path": "/data/lizhijun/agh-evo/codex-rsi-hackathon-v11-20261005/cpu-qualification/g031-legacy-full-SDK-execution-r1/completed.json",
+    "sha256": "a1c9d498afe6c11516a52492d81f8f1d7990d5cce823ed05c18f9c53c67f8a52"
+  },
+  "output_limit_complete_qualification": {
+    "path": "/data/lizhijun/agh-evo/codex-rsi-hackathon-v11-20261005/cpu-qualification/g031-output-limit-full-SDK-r1/verification.json",
+    "sha256": "cbdc78494d926cd05ee80b0219423bd68fa59b8a639b0d7cfa18ab34e75fa58a"
+  },
+  "diagnostic_complete_qualification": {
+    "path": "/data/lizhijun/agh-evo/codex-rsi-hackathon-v11-20261005/cpu-qualification/g031-diagnostic-full-SDK-execution-r1/completed.json",
+    "sha256": "d43d4cc9aabb36d2f25e3ce6674ca209b3d9b3790c6edf8ff064ede091141545"
+  },
+  "all_previous_private_failures_retained": true,
+  "accepted": false,
+  "promotion_permitted": false,
+  "RSI_proven": false,
+  "model_authorship_verified": false,
+  "incumbent_modified": false,
+  "next": "Register complete 47309 history and fresh native20 G014/G031 pair on the same selected idle pool; both arms use the qualified per-job waiting/owned-lease evaluator and original score."
+}

@@ -1,0 +1,65 @@
+{
+  "created_at": "2026-10-21",
+  "scope": "Public release copy only; original source-reading directory untouched.",
+  "redaction": "Private home-directory usernames replaced with USER. Original private paths are intentionally not recorded.",
+  "unchanged": "Candidate code, experiment numeric values, stored source-hash identifiers, and unrelated evidence fields.",
+  "changes": [
+    {
+      "path": "demo/raw/native-original/agh-events.jsonl",
+      "action": "Replace private home-directory username with USER; preserve all other bytes.",
+      "replacements": 39,
+      "original_sha256": "c0e93b7cf6b622dceb852aba11bf3fd499ce8aaf7cdda4e2427d5856115747f3",
+      "new_sha256": "85b56c9f0c9f30f66ce8b3bed06c0632524d814ada7bddc5ab48c498870350bb",
+      "original_bytes": 352763,
+      "new_bytes": 352607
+    },
+    {
+      "path": "demo/raw/native-original/episode.json",
+      "action": "Replace private home-directory username with USER; preserve all other bytes.",
+      "replacements": 1,
+      "original_sha256": "2f78b0330b08095ac2b0b5734109c8ad67a7732c041753f25745f66d7f318233",
+      "new_sha256": "5619fd9c9da269b93b011a1ae6a8a524b29176c0f9ecbfd64fa0ee552d5a0e1b",
+      "original_bytes": 14598,
+      "new_bytes": 14594
+    },
+    {
+      "path": "demo/raw/native-original/queue.sqlite",
+      "action": "Replace private home-directory usernames in results.payload_json TEXT values; VACUUM; verify integrity and unchanged non-path values.",
+      "updated_text_values": 19,
+      "replacements": 176,
+      "original_sha256": "ae01e57e265d57be17f2284ec10430a7ee5d4acff86eecfe4a8fe49614720645",
+      "new_sha256": "ff9ed6f780a0d937872fb4d83cfe02b9a9fe3082d18c9301f49d2ea32d0864a5",
+      "original_bytes": 4747264,
+      "new_bytes": 4747264
+    },
+    {
+      "path": "harness-evolution/competition/application/COMPILED_CANDIDATE_PLAN.md",
+      "action": "Replace private home-directory username with USER; preserve all other bytes.",
+      "replacements": 1,
+      "original_sha256": "196ee74abe42968f2a1c043e6ff0f408b5383f668d19dfd8847b762f8890af3b",
+      "new_sha256": "b6723496299bfffda95a589aceb03925ce0936730917f35d2286870fb0e67fe9",
+      "original_bytes": 3019,
+      "new_bytes": 3015
+    },
+    {
+      "path": "demo/review-manifest.json",
+      "action": "Update sha256 and bytes only for the three modified demo evidence files.",
+      "entries_updated": [
+        "raw/native-original/agh-events.jsonl",
+        "raw/native-original/episode.json",
+        "raw/native-original/queue.sqlite"
+      ],
+      "original_sha256": "77c898eea606a795510e3c1562f88fb7e0a017bb0257884821f9893b9fe0e36d",
+      "new_sha256": "ce01b43970f4d92d5177af2dde050207a6e5766b7e65960a6f44a11e6dc1d12c",
+      "original_bytes": 7376,
+      "new_bytes": 7376
+    }
+  ],
+  "verification": {
+    "private_home_prefixes_remaining": 0,
+    "sqlite_integrity": "ok",
+    "sqlite_schema_unchanged": true,
+    "sqlite_non_path_values_unchanged": true,
+    "manifest_unrelated_values_unchanged": true
+  }
+}

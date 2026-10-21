@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "status": "GOAL_AND_FINITE_PLAN_REGISTERED_NO_NEW_PAID_EXPERIMENT",
+  "timezone": "Asia/Shanghai",
+  "competitive_goal": "Agnes hackathon postgraduate first prize competitiveness",
+  "completion_target": "Locally reviewable, reproducible final technical submission and explicit external dependencies",
+  "functional_freeze_at": "2026-10-11T20:00:00+08:00",
+  "release_candidate_at": "2026-10-13T20:00:00+08:00",
+  "final_technical_delivery_at": "2026-10-14T18:00:00+08:00",
+  "limits": {
+    "candidate_generations_including_G031": 2,
+    "paired_series": 5,
+    "primary_task_positions": 200,
+    "screening_pairs": 2,
+    "selected_candidate_DEV_replication_pairs": 2,
+    "independent_holdout_pairs": 1,
+    "new_normal_boundary_failure_demo_episodes": 3,
+    "cumulative_token_USD_GPU_limits": null
+  },
+  "consumed_since_this_goal": {
+    "paid_paired_series": 0,
+    "primary_task_positions": 0,
+    "screened_generations": [],
+    "demo_episodes": 0
+  },
+  "known_first_candidate": {
+    "version": "G031",
+    "source_commit": "12e3b131e405295805caa3daa90f4c2b827cbed4",
+    "source_and_build_qualified": true,
+    "SDK_stage_families_closed": true,
+    "SDK_aggregate_reader_closed": true,
+    "new_GPU_performance_proven": false,
+    "SDK_aggregate_qualification": {
+      "path": "/data/lizhijun/agh-evo/codex-rsi-hackathon-v11-20261005/cpu-qualification/g031-complete-SDK-r1/cpu-verification.json",
+      "sha256": "e6d7b630a452a4334e050646d58ec5ee9365ec4026a9018a36a808e7ee30cc2e"
+    },
+    "public_qualification": {
+      "path": "/data/lizhijun/work/kernel-lab/harness-evolution/codex-rsi/reports/g031-actual-source-full-SDK-qualification-r1.json",
+      "sha256": "86faa678d7d477c7939811ba02221f0c04d4002a57c01a39130a803918a568de"
+    }
+  },
+  "measurement_parent_commit": "e1dffe9a8eca77cb1fdd81c1a8b5842c8c36370e",
+  "history": {
+    "closed_carry": "/data/lizhijun/agh-evo/codex-rsi-hackathon-v11-20261005/closed-v50-idle-start-admission-carry-r1/carry.json",
+    "closed_carry_sha256": "19f9c826455eb4f80526243be383edc8e0549a415ba08a7d851723699b447c14",
+    "requests": 47309,
+    "total_unknown_requests": 33991,
+    "old_requests_refunded_or_reset": false
+  },
+  "research_targets_are_not_final_submission_completion_gates": {
+    "average_correct_tasks_per_twenty": 14,
+    "stable_full_task_gain_relative_to_frozen_H0": 0.1,
+    "RSI_proven": false
+  },
+  "model": {
+    "current": "mimo-v2.6-pro",
+    "reasoning_mode": "off",
+    "credential_values_changed": false,
+    "formal_submission_rule_status": "OFFICIAL_CURRENT_CLAUSES_INCONSISTENT_REQUIRES_CONFIRMATION"
+  },
+  "external_actions": {
+    "publication_authorized": false,
+    "registration_identity_deferred": true,
+    "submission_authorized": false,
+    "contacting_others_authorized": false
+  },
+  "stop_conditions": [
+    "No repeatable gain after at most two candidate evaluations",
+    "Functional freeze date reached",
+    "Any proposed run would exceed paired series or primary position limit"
+  ],
+  "post_freeze_scope": "Only defects blocking correctness, reproduction, credential protection or presentation; no new optimization hypotheses",
+  "runtime_enforcement_status": "Plan ledger created; bind and check it before any new paid launch, not yet wired into a launcher",
+  "goal_complete": false
+}

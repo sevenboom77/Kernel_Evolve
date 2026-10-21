@@ -1,0 +1,32 @@
+# Local credentials and dependencies
+.env
+.env.*
+!.env.example
+node_modules/
+.venv/
+__pycache__/
+*.py[cod]
+.DS_Store
+
+# Fresh experiments and local builds
+/artifacts/
+/outputs/
+/runtime-new/
+/source-g031/
+*.sqlite-wal
+*.sqlite-shm
+
+# Downloadable, hash-bound release assets
+/agh/*/source.tar
+/agh/runtime-g031-independent/
+/datasets/arxiv.zip
+
+# Historical submission packaging and personal/materials metadata
+/提交资料/
+/slides/
+/video/
+/qualification/
+/bundle-manifest.json
+/release-inputs.json
+/提交包文件SHA256.json
+/verify_submission.py

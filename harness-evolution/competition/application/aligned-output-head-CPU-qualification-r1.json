@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "status": "ACTUAL_CPU_HEAD_CONTRACTS_18_PASS_NOT_WHOLE_MODEL_GPU_QUALIFIED",
+  "source": {
+    "path": "/data/lizhijun/work/kernel-lab/harness-evolution/competition/application/aligned_output_head.py",
+    "sha256": "aef9f77646091f902abec3247e66fa515bd83c7654c9474751f26002d65cd34e"
+  },
+  "test_source": {
+    "path": "/data/lizhijun/work/kernel-lab/tests/test_competition_aligned_output_head.py",
+    "sha256": "671ec353813615bf383d6bd8f88e3e0cac08d6f01fd2c8fcad6692a69cf9803e"
+  },
+  "original_model_source": {
+    "path": "/data/lizhijun/work/kernel-lab/harness-evolution/competition/application/pretrained_gpt2.py",
+    "sha256": "eeab9a6743cf98390ebe9c23955f38cee8b4ac2da2d5309e32576d4a0089f0cc"
+  },
+  "RED": {
+    "proof": {
+      "path": "/data/lizhijun/agh-evo/codex-rsi-hackathon-v11-20261005/cpu-qualification/phase29-application-aligned-head-RED-r1.json",
+      "sha256": "418e1a1742718fb6a0530d1cab3d93381304a9951e812df624b5f4bfecd94461"
+    },
+    "tests": 18,
+    "failures": 16,
+    "errors": 0,
+    "skips": 0,
+    "actual_control": "unchanged torch.nn.functional.linear with original FP16 head dimensions"
+  },
+  "GREEN": {
+    "proof": {
+      "path": "/data/lizhijun/agh-evo/codex-rsi-hackathon-v11-20261005/cpu-qualification/phase29-application-aligned-head-GREEN-r1.json",
+      "sha256": "9964adcd97c3fc5e9d38d30f12fe9ff7bae385d3a913e4a18f06ccfebfe24f41"
+    },
+    "tests": 18,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "exit_code": 0
+  },
+  "guard": {
+    "path": "/data/lizhijun/agh-evo/codex-rsi-hackathon-v11-20261005/cpu-qualification/portable-v6-no-CUDA-network-external-write-guard.py",
+    "sha256": "17d25f3e440b4dccb2d1fbee9cd87e2bc63c67cfb9f11d78c0df8af6914e403c"
+  },
+  "fixed_dimensions": {
+    "hidden": 768,
+    "original_vocab": 50257,
+    "padded_vocab": 50304,
+    "zero_pad_columns": 47,
+    "dtype": "FP16"
+  },
+  "qualified": [
+    "NN and padding-only TN packed cache",
+    "original weight and tied-alias identity",
+    "nonpersistent cache and original parameter names",
+    "actual CPU mathematical comparison at original dimensions",
+    "output slice and contiguous copy included in forward",
+    "tracked frozen inference, shape, dtype and mutation refusal"
+  ],
+  "new_model_API_calls": 0,
+  "new_GPU_calls": 0,
+  "whole_model_GPU_numerics_qualified": false,
+  "compiled_GPU_qualified": false,
+  "measured_speedup": null,
+  "RSI_or_source_promotion": false,
+  "next_gate": "both V29 primary arms fully closed and latest history carried before fresh registered application GPU benchmark"
+}

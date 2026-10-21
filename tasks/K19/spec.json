@@ -1,0 +1,154 @@
+{
+  "task_id": "K19",
+  "name": "resize_normalize",
+  "group": "advanced",
+  "description": "NCHW bilinear resize to (Ho, Wo) with align_corners=False (PyTorch semantics), followed by per-channel (y - mean[c]) / std[c] in fp32.",
+  "inputs": [
+    {
+      "name": "x",
+      "dtype": "float32",
+      "shape": [
+        "B",
+        "C",
+        "H",
+        "W"
+      ],
+      "layout": "NCHW"
+    },
+    {
+      "name": "mean",
+      "dtype": "float32",
+      "shape": [
+        "C"
+      ],
+      "layout": "contiguous"
+    },
+    {
+      "name": "std",
+      "dtype": "float32",
+      "shape": [
+        "C"
+      ],
+      "layout": "contiguous"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "y",
+      "dtype": "float32",
+      "shape": [
+        "B",
+        "C",
+        "Ho",
+        "Wo"
+      ]
+    }
+  ],
+  "domain": {
+    "B": [
+      1,
+      4
+    ],
+    "C": [
+      3,
+      3
+    ],
+    "H": [
+      16,
+      720
+    ],
+    "W": [
+      16,
+      1280
+    ],
+    "Ho": [
+      8,
+      384
+    ],
+    "Wo": [
+      8,
+      384
+    ]
+  },
+  "dev_shapes": [
+    {
+      "B": 1,
+      "C": 3,
+      "H": 480,
+      "W": 640,
+      "Ho": 224,
+      "Wo": 224
+    },
+    {
+      "B": 4,
+      "C": 3,
+      "H": 224,
+      "W": 224,
+      "Ho": 112,
+      "Wo": 112
+    },
+    {
+      "B": 1,
+      "C": 3,
+      "H": 720,
+      "W": 1280,
+      "Ho": 384,
+      "Wo": 384
+    }
+  ],
+  "reserved_shapes": [
+    {
+      "B": 2,
+      "C": 3,
+      "H": 113,
+      "W": 97,
+      "Ho": 57,
+      "Wo": 41
+    },
+    {
+      "B": 1,
+      "C": 3,
+      "H": 719,
+      "W": 1279,
+      "Ho": 359,
+      "Wo": 383
+    }
+  ],
+  "static_params": {},
+  "finite_input_abs_max": 10.0,
+  "max_candidate_attempts": 12,
+  "checks": [
+    "inputs_unmodified",
+    "outputs_not_aliased",
+    "std_positive"
+  ],
+  "notes": "std is strictly positive. The sampler must match PyTorch's align_corners=False rule (clamped source coordinates) at the borders.",
+  "rtol": 0.0001,
+  "atol": 1e-05,
+  "backend": "triton",
+  "stagnation_attempts": 5,
+  "output_arity": 1,
+  "accumulation_dtype": "float32",
+  "mutates_inputs": false,
+  "layout": "contiguous",
+  "finite_only": true,
+  "schema_version": 1,
+  "shape_params": {},
+  "dev_correctness_cases": 12,
+  "final_correctness_cases": 21,
+  "dev_timing_cases": 3,
+  "reserved_timing_cases": 2,
+  "coverage": {
+    "dev_families": [
+      "large",
+      "plain",
+      "uniform"
+    ],
+    "final_families": [
+      "large",
+      "mixed_sign",
+      "plain",
+      "uniform"
+    ]
+  }
+}

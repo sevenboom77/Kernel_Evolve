@@ -1,0 +1,1494 @@
+{
+  "status": "ORIGINAL_NATIVE_K12_TWO_DEVICE21_CASE_FIVE_ROUND_REPRODUCTION_CLOSED_DEFAULT_FP16_FAILED",
+  "source_author": "H0/MiMo original native AGH task",
+  "operator_source_SHA256": "22af8289078d96579622e2fcf47ef11e1a50cf3b0f6fa0db6b9da354e52ed276",
+  "source_freeze": {
+    "path": "/data/lizhijun/work/kernel-lab/artifacts/final-reproduction-20261009/native-small-M-two-device-r1/source-freeze.json",
+    "sha256": "5bacc6c7dd9e9d010d27a36ba1eb108be1f82f8ad25a13697612aa35ec973d32"
+  },
+  "entrypoint": {
+    "path": "/data/lizhijun/work/kernel-lab/harness-evolution/competition/reproduce_native_small_m.py",
+    "sha256": "e938cf0d4c6cb7d4f3172f5c0a8099b5262d7034da7ee7972f621897f51741a3"
+  },
+  "original_author_source_chain": {
+    "path": "/data/lizhijun/work/kernel-lab/harness-evolution/codex-rsi/reports/original-native-MiMo-small-M-actual-source-trace-verification-r1.json",
+    "sha256": "0311c3cf19e66203b062fe453f74393d6b1c6b7efa9db0d91c0b2de0d7cbb247"
+  },
+  "replicas": [
+    {
+      "physical_gpu": 0,
+      "physical_gpu_uuid": "GPU-49a08068-3065-8834-91ae-14c48eab6201",
+      "execution": {
+        "path": "/data/lizhijun/work/kernel-lab/artifacts/final-reproduction-20261009/native-small-M-two-device-r1/gpu0/execution.json",
+        "sha256": "ce20fc9aa8580b5cddb299f3c583709d6f6120a9f12b024c48111f00fb39c486"
+      },
+      "result": {
+        "path": "/data/lizhijun/work/kernel-lab/artifacts/final-reproduction-20261009/native-small-M-two-device-r1/gpu0/result.json",
+        "sha256": "f17ea52a1d4e35a2e6ed5abd643e907e35c75bea103e32ff5c44b7a8755c6c8b"
+      },
+      "local_SQL": {
+        "path": "/data/lizhijun/work/kernel-lab/artifacts/final-reproduction-20261009/native-small-M-two-device-r1/gpu0/scope/artifacts/independent-native-small-M-0f7eed6934887d5f/queue.sqlite",
+        "sha256": "81003543cc8b9106ce830f42f79839d3a93b4a6d91ef0a316aee00e458b1959a"
+      },
+      "operator_sha256": "22af8289078d96579622e2fcf47ef11e1a50cf3b0f6fa0db6b9da354e52ed276",
+      "correctness_cases_passed": 21,
+      "verification_rounds": 5,
+      "original_baseline_statistics": {
+        "rounds_used": 5,
+        "per_round_task_speedup": [
+          4.376019116389052,
+          4.440062054683277,
+          4.441795346833523,
+          4.442862036363532,
+          4.404638831942656
+        ],
+        "shape_speedup_medians": {
+          "t0": 3.4911020500376098,
+          "t1": 3.5975604969498853,
+          "t2": 5.147952509316703,
+          "r0": 5.160299465927252,
+          "r1": 5.179655585320933
+        },
+        "candidate_us_medians": {
+          "t0": 37.535170817004584,
+          "t1": 37.61399188164855,
+          "t2": 97.37256973508804,
+          "r0": 96.88389301300049,
+          "r1": 72.50775773841215
+        },
+        "paired_baseline_us_medians": {
+          "t0": 130.94382700712785,
+          "t1": 135.16483777835043,
+          "t2": 501.3633785825787,
+          "r0": 499.94629451206754,
+          "r1": 375.55200403386897
+        },
+        "task_speedup_mean": 4.421075477242408,
+        "min_shape_median_speedup": 3.4911020500376098,
+        "task_speedup_ci_low": 4.394898305588667,
+        "task_speedup_ci_high": 4.4416620263094755
+      },
+      "default_FP16_library_failures": {
+        "torch_mm_fp16": {
+          "status": "incorrect",
+          "detail": {
+            "ok": false,
+            "passed": 19,
+            "total": 21,
+            "first_failures": [
+              {
+                "case_id": "f12",
+                "problems": [
+                  "output[0] mismatch: {'ok': False, 'n_bad': 4, 'n_total': 16388, 'max_abs_err': 0.125, 'max_tol': 3.5, 'first_bad_flat': 398, 'expected': -0.257568359375, 'actual': -0.28515625, 'first_bad_index': [0, 398]}"
+                ]
+              },
+              {
+                "case_id": "f14",
+                "problems": [
+                  "output[0] mismatch: {'ok': False, 'n_bad': 12, 'n_total': 16388, 'max_abs_err': 0.25, 'max_tol': 6.27, 'first_bad_flat': 2574, 'expected': -0.68017578125, 'actual': -0.640625, 'first_bad_index': [0, 2574]}"
+                ]
+              }
+            ],
+            "per_case": [
+              {
+                "case_id": "f00",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 129,
+                    "max_abs_err": 3.814697265625e-06,
+                    "max_tol": 0.69375
+                  }
+                }
+              },
+              {
+                "case_id": "f01",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 129,
+                    "max_abs_err": 0.0,
+                    "max_tol": 0.020000874996185303
+                  }
+                }
+              },
+              {
+                "case_id": "f02",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 129,
+                    "max_abs_err": 0.0,
+                    "max_tol": 1.43
+                  }
+                }
+              },
+              {
+                "case_id": "f03",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 11008,
+                    "max_abs_err": 0.0625,
+                    "max_tol": 8.535
+                  }
+                }
+              },
+              {
+                "case_id": "f04",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 11008,
+                    "max_abs_err": 0.0625,
+                    "max_tol": 7.819999999999999
+                  }
+                }
+              },
+              {
+                "case_id": "f05",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 11008,
+                    "max_abs_err": 1.1920928955078125e-07,
+                    "max_tol": 0.020008654594421388
+                  }
+                }
+              },
+              {
+                "case_id": "f06",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 22016,
+                    "max_abs_err": 0.25,
+                    "max_tol": 8.78
+                  }
+                }
+              },
+              {
+                "case_id": "f07",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 22016,
+                    "max_abs_err": 0.125,
+                    "max_tol": 5.319999999999999
+                  }
+                }
+              },
+              {
+                "case_id": "f08",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 22016,
+                    "max_abs_err": 0.125,
+                    "max_tol": 5.56
+                  }
+                }
+              },
+              {
+                "case_id": "f09",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 65536,
+                    "max_abs_err": 1.1920928955078125e-07,
+                    "max_tol": 0.020005226135253906
+                  }
+                }
+              },
+              {
+                "case_id": "f10",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 65536,
+                    "max_abs_err": 0.25,
+                    "max_tol": 10.39
+                  }
+                }
+              },
+              {
+                "case_id": "f11",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 65536,
+                    "max_abs_err": 0.125,
+                    "max_tol": 5.92
+                  }
+                }
+              },
+              {
+                "case_id": "f12",
+                "ok": false,
+                "problems": [
+                  "output[0] mismatch: {'ok': False, 'n_bad': 4, 'n_total': 16388, 'max_abs_err': 0.125, 'max_tol': 3.5, 'first_bad_flat': 398, 'expected': -0.257568359375, 'actual': -0.28515625, 'first_bad_index': [0, 398]}"
+                ],
+                "detail": {
+                  "out0": {
+                    "ok": false,
+                    "n_bad": 4,
+                    "n_total": 16388,
+                    "max_abs_err": 0.125,
+                    "max_tol": 3.5,
+                    "first_bad_flat": 398,
+                    "expected": -0.257568359375,
+                    "actual": -0.28515625,
+                    "first_bad_index": [
+                      0,
+                      398
+                    ]
+                  }
+                }
+              },
+              {
+                "case_id": "f13",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 16388,
+                    "max_abs_err": 1.7881393432617188e-07,
+                    "max_tol": 0.020003504753112793
+                  }
+                }
+              },
+              {
+                "case_id": "f14",
+                "ok": false,
+                "problems": [
+                  "output[0] mismatch: {'ok': False, 'n_bad': 12, 'n_total': 16388, 'max_abs_err': 0.25, 'max_tol': 6.27, 'first_bad_flat': 2574, 'expected': -0.68017578125, 'actual': -0.640625, 'first_bad_index': [0, 2574]}"
+                ],
+                "detail": {
+                  "out0": {
+                    "ok": false,
+                    "n_bad": 12,
+                    "n_total": 16388,
+                    "max_abs_err": 0.25,
+                    "max_tol": 6.27,
+                    "first_bad_flat": 2574,
+                    "expected": -0.68017578125,
+                    "actual": -0.640625,
+                    "first_bad_index": [
+                      0,
+                      2574
+                    ]
+                  }
+                }
+              },
+              {
+                "case_id": "f15",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 88064,
+                    "max_abs_err": 0.125,
+                    "max_tol": 6.04
+                  }
+                }
+              },
+              {
+                "case_id": "f16",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 88064,
+                    "max_abs_err": 0.125,
+                    "max_tol": 5.734999999999999
+                  }
+                }
+              },
+              {
+                "case_id": "f17",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 88064,
+                    "max_abs_err": 1.1920928955078125e-07,
+                    "max_tol": 0.0200054407119751
+                  }
+                }
+              },
+              {
+                "case_id": "f18",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 4096,
+                    "max_abs_err": 0.0625,
+                    "max_tol": 8.915
+                  }
+                }
+              },
+              {
+                "case_id": "f19",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 4096,
+                    "max_abs_err": 0.0625,
+                    "max_tol": 4.895
+                  }
+                }
+              },
+              {
+                "case_id": "f20",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 4096,
+                    "max_abs_err": 0.0625,
+                    "max_tol": 5.1
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "compiled_torch_mm_fp16": {
+          "status": "incorrect",
+          "detail": {
+            "ok": false,
+            "passed": 19,
+            "total": 21,
+            "first_failures": [
+              {
+                "case_id": "f12",
+                "problems": [
+                  "output[0] mismatch: {'ok': False, 'n_bad': 4, 'n_total': 16388, 'max_abs_err': 0.125, 'max_tol': 3.5, 'first_bad_flat': 398, 'expected': -0.257568359375, 'actual': -0.28515625, 'first_bad_index': [0, 398]}"
+                ]
+              },
+              {
+                "case_id": "f14",
+                "problems": [
+                  "output[0] mismatch: {'ok': False, 'n_bad': 12, 'n_total': 16388, 'max_abs_err': 0.25, 'max_tol': 6.27, 'first_bad_flat': 2574, 'expected': -0.68017578125, 'actual': -0.640625, 'first_bad_index': [0, 2574]}"
+                ]
+              }
+            ],
+            "per_case": [
+              {
+                "case_id": "f00",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 129,
+                    "max_abs_err": 3.814697265625e-06,
+                    "max_tol": 0.69375
+                  }
+                }
+              },
+              {
+                "case_id": "f01",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 129,
+                    "max_abs_err": 0.0,
+                    "max_tol": 0.020000874996185303
+                  }
+                }
+              },
+              {
+                "case_id": "f02",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 129,
+                    "max_abs_err": 0.0,
+                    "max_tol": 1.43
+                  }
+                }
+              },
+              {
+                "case_id": "f03",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 11008,
+                    "max_abs_err": 0.0625,
+                    "max_tol": 8.535
+                  }
+                }
+              },
+              {
+                "case_id": "f04",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 11008,
+                    "max_abs_err": 0.0625,
+                    "max_tol": 7.819999999999999
+                  }
+                }
+              },
+              {
+                "case_id": "f05",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 11008,
+                    "max_abs_err": 1.1920928955078125e-07,
+                    "max_tol": 0.020008654594421388
+                  }
+                }
+              },
+              {
+                "case_id": "f06",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 22016,
+                    "max_abs_err": 0.25,
+                    "max_tol": 8.78
+                  }
+                }
+              },
+              {
+                "case_id": "f07",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 22016,
+                    "max_abs_err": 0.125,
+                    "max_tol": 5.319999999999999
+                  }
+                }
+              },
+              {
+                "case_id": "f08",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 22016,
+                    "max_abs_err": 0.125,
+                    "max_tol": 5.56
+                  }
+                }
+              },
+              {
+                "case_id": "f09",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 65536,
+                    "max_abs_err": 1.1920928955078125e-07,
+                    "max_tol": 0.020005226135253906
+                  }
+                }
+              },
+              {
+                "case_id": "f10",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 65536,
+                    "max_abs_err": 0.25,
+                    "max_tol": 10.39
+                  }
+                }
+              },
+              {
+                "case_id": "f11",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 65536,
+                    "max_abs_err": 0.125,
+                    "max_tol": 5.92
+                  }
+                }
+              },
+              {
+                "case_id": "f12",
+                "ok": false,
+                "problems": [
+                  "output[0] mismatch: {'ok': False, 'n_bad': 4, 'n_total': 16388, 'max_abs_err': 0.125, 'max_tol': 3.5, 'first_bad_flat': 398, 'expected': -0.257568359375, 'actual': -0.28515625, 'first_bad_index': [0, 398]}"
+                ],
+                "detail": {
+                  "out0": {
+                    "ok": false,
+                    "n_bad": 4,
+                    "n_total": 16388,
+                    "max_abs_err": 0.125,
+                    "max_tol": 3.5,
+                    "first_bad_flat": 398,
+                    "expected": -0.257568359375,
+                    "actual": -0.28515625,
+                    "first_bad_index": [
+                      0,
+                      398
+                    ]
+                  }
+                }
+              },
+              {
+                "case_id": "f13",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 16388,
+                    "max_abs_err": 1.7881393432617188e-07,
+                    "max_tol": 0.020003504753112793
+                  }
+                }
+              },
+              {
+                "case_id": "f14",
+                "ok": false,
+                "problems": [
+                  "output[0] mismatch: {'ok': False, 'n_bad': 12, 'n_total': 16388, 'max_abs_err': 0.25, 'max_tol': 6.27, 'first_bad_flat': 2574, 'expected': -0.68017578125, 'actual': -0.640625, 'first_bad_index': [0, 2574]}"
+                ],
+                "detail": {
+                  "out0": {
+                    "ok": false,
+                    "n_bad": 12,
+                    "n_total": 16388,
+                    "max_abs_err": 0.25,
+                    "max_tol": 6.27,
+                    "first_bad_flat": 2574,
+                    "expected": -0.68017578125,
+                    "actual": -0.640625,
+                    "first_bad_index": [
+                      0,
+                      2574
+                    ]
+                  }
+                }
+              },
+              {
+                "case_id": "f15",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 88064,
+                    "max_abs_err": 0.125,
+                    "max_tol": 6.04
+                  }
+                }
+              },
+              {
+                "case_id": "f16",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 88064,
+                    "max_abs_err": 0.125,
+                    "max_tol": 5.734999999999999
+                  }
+                }
+              },
+              {
+                "case_id": "f17",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 88064,
+                    "max_abs_err": 1.1920928955078125e-07,
+                    "max_tol": 0.0200054407119751
+                  }
+                }
+              },
+              {
+                "case_id": "f18",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 4096,
+                    "max_abs_err": 0.0625,
+                    "max_tol": 8.915
+                  }
+                }
+              },
+              {
+                "case_id": "f19",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 4096,
+                    "max_abs_err": 0.0625,
+                    "max_tol": 4.895
+                  }
+                }
+              },
+              {
+                "case_id": "f20",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 4096,
+                    "max_abs_err": 0.0625,
+                    "max_tol": 5.1
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "local_GPU_seconds": 500.4981822138652,
+      "own_PID_closure_freshly_confirmed": true
+    },
+    {
+      "physical_gpu": 1,
+      "physical_gpu_uuid": "GPU-ed61bade-208d-c66f-4fe1-3909fcebdc81",
+      "execution": {
+        "path": "/data/lizhijun/work/kernel-lab/artifacts/final-reproduction-20261009/native-small-M-two-device-r1/gpu1/execution.json",
+        "sha256": "ab2e6e6a0f2fc4e41fd3b59355b1bf23f018668d442af254656c014c83d505f1"
+      },
+      "result": {
+        "path": "/data/lizhijun/work/kernel-lab/artifacts/final-reproduction-20261009/native-small-M-two-device-r1/gpu1/result.json",
+        "sha256": "140682c593e1f57ada4ee8d2ec6cbefd2a2a671f09d7900abe2138000bf3b318"
+      },
+      "local_SQL": {
+        "path": "/data/lizhijun/work/kernel-lab/artifacts/final-reproduction-20261009/native-small-M-two-device-r1/gpu1/scope/artifacts/independent-native-small-M-05e4686a7143befc/queue.sqlite",
+        "sha256": "f9841eacea2b651fd712d5f402a7c64ab01a8867a9e9efeff41b29ac86e6163f"
+      },
+      "operator_sha256": "22af8289078d96579622e2fcf47ef11e1a50cf3b0f6fa0db6b9da354e52ed276",
+      "correctness_cases_passed": 21,
+      "verification_rounds": 5,
+      "original_baseline_statistics": {
+        "rounds_used": 5,
+        "per_round_task_speedup": [
+          3.8630917645397416,
+          4.442542647409618,
+          4.439373742201741,
+          4.4396255154265605,
+          4.439210754625432
+        ],
+        "shape_speedup_medians": {
+          "t0": 3.494123146010737,
+          "t1": 3.5891162911022216,
+          "t2": 5.149935820097356,
+          "r0": 5.159016913649851,
+          "r1": 5.178864185580602
+        },
+        "candidate_us_medians": {
+          "t0": 37.471636286321676,
+          "t1": 37.539594628837676,
+          "t2": 97.24056137191666,
+          "r0": 96.8472859630846,
+          "r1": 72.48789613897151
+        },
+        "paired_baseline_us_medians": {
+          "t0": 131.06656074523926,
+          "t1": 134.44791926015722,
+          "t2": 500.90871137731216,
+          "r0": 499.6367863246373,
+          "r1": 375.3651349972456
+        },
+        "task_speedup_mean": 4.324768884840618,
+        "min_shape_median_speedup": 3.494123146010737,
+        "task_speedup_ci_low": 4.093622312734243,
+        "task_speedup_ci_high": 4.441209890295943
+      },
+      "default_FP16_library_failures": {
+        "torch_mm_fp16": {
+          "status": "incorrect",
+          "detail": {
+            "ok": false,
+            "passed": 19,
+            "total": 21,
+            "first_failures": [
+              {
+                "case_id": "f12",
+                "problems": [
+                  "output[0] mismatch: {'ok': False, 'n_bad': 4, 'n_total': 16388, 'max_abs_err': 0.125, 'max_tol': 3.5, 'first_bad_flat': 398, 'expected': -0.257568359375, 'actual': -0.28515625, 'first_bad_index': [0, 398]}"
+                ]
+              },
+              {
+                "case_id": "f14",
+                "problems": [
+                  "output[0] mismatch: {'ok': False, 'n_bad': 12, 'n_total': 16388, 'max_abs_err': 0.25, 'max_tol': 6.27, 'first_bad_flat': 2574, 'expected': -0.68017578125, 'actual': -0.640625, 'first_bad_index': [0, 2574]}"
+                ]
+              }
+            ],
+            "per_case": [
+              {
+                "case_id": "f00",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 129,
+                    "max_abs_err": 3.814697265625e-06,
+                    "max_tol": 0.69375
+                  }
+                }
+              },
+              {
+                "case_id": "f01",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 129,
+                    "max_abs_err": 0.0,
+                    "max_tol": 0.020000874996185303
+                  }
+                }
+              },
+              {
+                "case_id": "f02",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 129,
+                    "max_abs_err": 0.0,
+                    "max_tol": 1.43
+                  }
+                }
+              },
+              {
+                "case_id": "f03",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 11008,
+                    "max_abs_err": 0.0625,
+                    "max_tol": 8.535
+                  }
+                }
+              },
+              {
+                "case_id": "f04",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 11008,
+                    "max_abs_err": 0.0625,
+                    "max_tol": 7.819999999999999
+                  }
+                }
+              },
+              {
+                "case_id": "f05",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 11008,
+                    "max_abs_err": 1.1920928955078125e-07,
+                    "max_tol": 0.020008654594421388
+                  }
+                }
+              },
+              {
+                "case_id": "f06",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 22016,
+                    "max_abs_err": 0.25,
+                    "max_tol": 8.78
+                  }
+                }
+              },
+              {
+                "case_id": "f07",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 22016,
+                    "max_abs_err": 0.125,
+                    "max_tol": 5.319999999999999
+                  }
+                }
+              },
+              {
+                "case_id": "f08",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 22016,
+                    "max_abs_err": 0.125,
+                    "max_tol": 5.56
+                  }
+                }
+              },
+              {
+                "case_id": "f09",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 65536,
+                    "max_abs_err": 1.1920928955078125e-07,
+                    "max_tol": 0.020005226135253906
+                  }
+                }
+              },
+              {
+                "case_id": "f10",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 65536,
+                    "max_abs_err": 0.25,
+                    "max_tol": 10.39
+                  }
+                }
+              },
+              {
+                "case_id": "f11",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 65536,
+                    "max_abs_err": 0.125,
+                    "max_tol": 5.92
+                  }
+                }
+              },
+              {
+                "case_id": "f12",
+                "ok": false,
+                "problems": [
+                  "output[0] mismatch: {'ok': False, 'n_bad': 4, 'n_total': 16388, 'max_abs_err': 0.125, 'max_tol': 3.5, 'first_bad_flat': 398, 'expected': -0.257568359375, 'actual': -0.28515625, 'first_bad_index': [0, 398]}"
+                ],
+                "detail": {
+                  "out0": {
+                    "ok": false,
+                    "n_bad": 4,
+                    "n_total": 16388,
+                    "max_abs_err": 0.125,
+                    "max_tol": 3.5,
+                    "first_bad_flat": 398,
+                    "expected": -0.257568359375,
+                    "actual": -0.28515625,
+                    "first_bad_index": [
+                      0,
+                      398
+                    ]
+                  }
+                }
+              },
+              {
+                "case_id": "f13",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 16388,
+                    "max_abs_err": 1.7881393432617188e-07,
+                    "max_tol": 0.020003504753112793
+                  }
+                }
+              },
+              {
+                "case_id": "f14",
+                "ok": false,
+                "problems": [
+                  "output[0] mismatch: {'ok': False, 'n_bad': 12, 'n_total': 16388, 'max_abs_err': 0.25, 'max_tol': 6.27, 'first_bad_flat': 2574, 'expected': -0.68017578125, 'actual': -0.640625, 'first_bad_index': [0, 2574]}"
+                ],
+                "detail": {
+                  "out0": {
+                    "ok": false,
+                    "n_bad": 12,
+                    "n_total": 16388,
+                    "max_abs_err": 0.25,
+                    "max_tol": 6.27,
+                    "first_bad_flat": 2574,
+                    "expected": -0.68017578125,
+                    "actual": -0.640625,
+                    "first_bad_index": [
+                      0,
+                      2574
+                    ]
+                  }
+                }
+              },
+              {
+                "case_id": "f15",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 88064,
+                    "max_abs_err": 0.125,
+                    "max_tol": 6.04
+                  }
+                }
+              },
+              {
+                "case_id": "f16",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 88064,
+                    "max_abs_err": 0.125,
+                    "max_tol": 5.734999999999999
+                  }
+                }
+              },
+              {
+                "case_id": "f17",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 88064,
+                    "max_abs_err": 1.1920928955078125e-07,
+                    "max_tol": 0.0200054407119751
+                  }
+                }
+              },
+              {
+                "case_id": "f18",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 4096,
+                    "max_abs_err": 0.0625,
+                    "max_tol": 8.915
+                  }
+                }
+              },
+              {
+                "case_id": "f19",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 4096,
+                    "max_abs_err": 0.0625,
+                    "max_tol": 4.895
+                  }
+                }
+              },
+              {
+                "case_id": "f20",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 4096,
+                    "max_abs_err": 0.0625,
+                    "max_tol": 5.1
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "compiled_torch_mm_fp16": {
+          "status": "incorrect",
+          "detail": {
+            "ok": false,
+            "passed": 19,
+            "total": 21,
+            "first_failures": [
+              {
+                "case_id": "f12",
+                "problems": [
+                  "output[0] mismatch: {'ok': False, 'n_bad': 4, 'n_total': 16388, 'max_abs_err': 0.125, 'max_tol': 3.5, 'first_bad_flat': 398, 'expected': -0.257568359375, 'actual': -0.28515625, 'first_bad_index': [0, 398]}"
+                ]
+              },
+              {
+                "case_id": "f14",
+                "problems": [
+                  "output[0] mismatch: {'ok': False, 'n_bad': 12, 'n_total': 16388, 'max_abs_err': 0.25, 'max_tol': 6.27, 'first_bad_flat': 2574, 'expected': -0.68017578125, 'actual': -0.640625, 'first_bad_index': [0, 2574]}"
+                ]
+              }
+            ],
+            "per_case": [
+              {
+                "case_id": "f00",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 129,
+                    "max_abs_err": 3.814697265625e-06,
+                    "max_tol": 0.69375
+                  }
+                }
+              },
+              {
+                "case_id": "f01",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 129,
+                    "max_abs_err": 0.0,
+                    "max_tol": 0.020000874996185303
+                  }
+                }
+              },
+              {
+                "case_id": "f02",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 129,
+                    "max_abs_err": 0.0,
+                    "max_tol": 1.43
+                  }
+                }
+              },
+              {
+                "case_id": "f03",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 11008,
+                    "max_abs_err": 0.0625,
+                    "max_tol": 8.535
+                  }
+                }
+              },
+              {
+                "case_id": "f04",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 11008,
+                    "max_abs_err": 0.0625,
+                    "max_tol": 7.819999999999999
+                  }
+                }
+              },
+              {
+                "case_id": "f05",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 11008,
+                    "max_abs_err": 1.1920928955078125e-07,
+                    "max_tol": 0.020008654594421388
+                  }
+                }
+              },
+              {
+                "case_id": "f06",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 22016,
+                    "max_abs_err": 0.25,
+                    "max_tol": 8.78
+                  }
+                }
+              },
+              {
+                "case_id": "f07",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 22016,
+                    "max_abs_err": 0.125,
+                    "max_tol": 5.319999999999999
+                  }
+                }
+              },
+              {
+                "case_id": "f08",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 22016,
+                    "max_abs_err": 0.125,
+                    "max_tol": 5.56
+                  }
+                }
+              },
+              {
+                "case_id": "f09",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 65536,
+                    "max_abs_err": 1.1920928955078125e-07,
+                    "max_tol": 0.020005226135253906
+                  }
+                }
+              },
+              {
+                "case_id": "f10",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 65536,
+                    "max_abs_err": 0.25,
+                    "max_tol": 10.39
+                  }
+                }
+              },
+              {
+                "case_id": "f11",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 65536,
+                    "max_abs_err": 0.125,
+                    "max_tol": 5.92
+                  }
+                }
+              },
+              {
+                "case_id": "f12",
+                "ok": false,
+                "problems": [
+                  "output[0] mismatch: {'ok': False, 'n_bad': 4, 'n_total': 16388, 'max_abs_err': 0.125, 'max_tol': 3.5, 'first_bad_flat': 398, 'expected': -0.257568359375, 'actual': -0.28515625, 'first_bad_index': [0, 398]}"
+                ],
+                "detail": {
+                  "out0": {
+                    "ok": false,
+                    "n_bad": 4,
+                    "n_total": 16388,
+                    "max_abs_err": 0.125,
+                    "max_tol": 3.5,
+                    "first_bad_flat": 398,
+                    "expected": -0.257568359375,
+                    "actual": -0.28515625,
+                    "first_bad_index": [
+                      0,
+                      398
+                    ]
+                  }
+                }
+              },
+              {
+                "case_id": "f13",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 16388,
+                    "max_abs_err": 1.7881393432617188e-07,
+                    "max_tol": 0.020003504753112793
+                  }
+                }
+              },
+              {
+                "case_id": "f14",
+                "ok": false,
+                "problems": [
+                  "output[0] mismatch: {'ok': False, 'n_bad': 12, 'n_total': 16388, 'max_abs_err': 0.25, 'max_tol': 6.27, 'first_bad_flat': 2574, 'expected': -0.68017578125, 'actual': -0.640625, 'first_bad_index': [0, 2574]}"
+                ],
+                "detail": {
+                  "out0": {
+                    "ok": false,
+                    "n_bad": 12,
+                    "n_total": 16388,
+                    "max_abs_err": 0.25,
+                    "max_tol": 6.27,
+                    "first_bad_flat": 2574,
+                    "expected": -0.68017578125,
+                    "actual": -0.640625,
+                    "first_bad_index": [
+                      0,
+                      2574
+                    ]
+                  }
+                }
+              },
+              {
+                "case_id": "f15",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 88064,
+                    "max_abs_err": 0.125,
+                    "max_tol": 6.04
+                  }
+                }
+              },
+              {
+                "case_id": "f16",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 88064,
+                    "max_abs_err": 0.125,
+                    "max_tol": 5.734999999999999
+                  }
+                }
+              },
+              {
+                "case_id": "f17",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 88064,
+                    "max_abs_err": 1.1920928955078125e-07,
+                    "max_tol": 0.0200054407119751
+                  }
+                }
+              },
+              {
+                "case_id": "f18",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 4096,
+                    "max_abs_err": 0.0625,
+                    "max_tol": 8.915
+                  }
+                }
+              },
+              {
+                "case_id": "f19",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 4096,
+                    "max_abs_err": 0.0625,
+                    "max_tol": 4.895
+                  }
+                }
+              },
+              {
+                "case_id": "f20",
+                "ok": true,
+                "problems": [],
+                "detail": {
+                  "out0": {
+                    "ok": true,
+                    "n_bad": 0,
+                    "n_total": 4096,
+                    "max_abs_err": 0.0625,
+                    "max_tol": 5.1
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "local_GPU_seconds": 493.85026935487986,
+      "own_PID_closure_freshly_confirmed": true
+    }
+  ],
+  "same_original_21_case_contract_and_tolerance": true,
+  "same_original_five_shapes_five_rounds_30_batches_20_warmup": true,
+  "strong_default_FP16_library_victory_claimed": false,
+  "default_FP16_library_passes": 19,
+  "default_FP16_library_total_cases": 21,
+  "default_FP16_failed_case_ids": [
+    "f12",
+    "f14"
+  ],
+  "new_model_requests": 0,
+  "total_independent_local_GPU_seconds": 994.3484515687451,
+  "production_ledger_or_queue_modified": false,
+  "foreign_processes_signaled": 0,
+  "RSI_proven": false,
+  "r1_source_results_or_failures_rewritten": false
+}

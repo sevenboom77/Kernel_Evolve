@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "status": "ACTUAL_ORIGINAL_NATIVE_MIMO_SMALL_M_WRITE_SUBMIT_VERIFY_EXPORT_PASS",
+  "actual_original_guard_CPU_qualification": {
+    "path": "/data/lizhijun/agh-evo/codex-rsi-hackathon-v11-20261005/cpu-qualification/phase32-FINAL-native-small-M-source-chain-GREEN-r2.json",
+    "sha256": "c9c27e9f9cdfda17de45b2f4f70fd3e0a0b6a73378d04be86f956426e4267cd7"
+  },
+  "source_bindings": [
+    {
+      "path": "/data/lizhijun/agh-evo/codex-rsi-hackathon-v11-20261005/rounds/v15-d2-parent/experiment/batches/v15-d2-parent/tasks/K12/trace/agh-events.jsonl",
+      "sha256": "c0e93b7cf6b622dceb852aba11bf3fd499ce8aaf7cdda4e2427d5856115747f3"
+    },
+    {
+      "path": "/data/lizhijun/agh-evo/codex-rsi-hackathon-v11-20261005/rounds/v15-d2-parent/experiment/batches/v15-d2-parent/tasks/K12/trace/episode.json",
+      "sha256": "2f78b0330b08095ac2b0b5734109c8ad67a7732c041753f25745f66d7f318233"
+    },
+    {
+      "path": "/data/lizhijun/agh-evo/codex-rsi-hackathon-v11-20261005/rounds/v15-d2-parent/experiment/batches/v15-d2-parent/kernel-run/queue.sqlite",
+      "sha256": "ae01e57e265d57be17f2284ec10430a7ee5d4acff86eecfe4a8fe49614720645"
+    },
+    {
+      "path": "/data/lizhijun/work/kernel-lab/harness-evolution/codex-rsi/operators/g000-v15-dev2/manifest.json",
+      "sha256": "7c306de80f3c75255d8704a710828f583bbbccbcca21aaecca07147e8a01a06d"
+    },
+    {
+      "path": "/data/lizhijun/agh-evo/codex-rsi-hackathon-v11-20261005/rounds/v15-d2-parent/root-execution/closed-score/score-audit.json",
+      "sha256": "6a9109fe5f7b5d964e314f68fb332c33ad3237712e42ac7a6c4461c077448212"
+    },
+    {
+      "path": "/data/lizhijun/agh-evo/codex-rsi-hackathon-v11-20261005/rounds/v15-d2-parent/experiment/state.json",
+      "sha256": "e2a24fc2762d03d08aad136419b2c9e6933cb92a7cb13a471c2a6c440052a30b"
+    },
+    {
+      "path": "/data/lizhijun/agh-evo/codex-rsi-hackathon-v11-20261005/rounds/v15-d2-parent/experiment/batches/v15-d2-parent/source-edit-barrier.json",
+      "sha256": "b59bae84ed2b2bf77dd426c16273c9e716a9b3d0a32593ae0f005e777cb9c601"
+    },
+    {
+      "path": "/data/lizhijun/work/kernel-lab/harness-evolution/codex-rsi/native_source_provenance.py",
+      "sha256": "e620fe0a848487f32d08ef6356bcf88269ea697198ba6bb83a9644ab2fe8656a"
+    },
+    {
+      "path": "/data/lizhijun/agh-evo/codex-rsi-hackathon-v11-20261005/audit_original_native_small_m_chain_r1.py",
+      "sha256": "76b8ac30f4e271e504325600ebbed7a19293c8995f00fa39eb5adc74a7793ff1"
+    }
+  ],
+  "original_score_evidence_references_verified": 1055,
+  "exported_kernel": {
+    "path": "/data/lizhijun/work/kernel-lab/harness-evolution/codex-rsi/operators/g000-v15-dev2/K12/kernel.py",
+    "sha256": "22af8289078d96579622e2fcf47ef11e1a50cf3b0f6fa0db6b9da354e52ed276"
+  },
+  "original_snapshot_kernel": {
+    "path": "/data/lizhijun/work/kernel-lab/artifacts/codex-rsi-hackathon-v11-20261005-v15-d2-parent/snapshots/K12/c003-6c4133ea/kernel.py",
+    "sha256": "22af8289078d96579622e2fcf47ef11e1a50cf3b0f6fa0db6b9da354e52ed276"
+  },
+  "chain": {
+    "task_id": "K12",
+    "run_id": "codex-rsi-hackathon-v11-20261005-v15-d2-parent",
+    "model": "mimo-v2.6-pro",
+    "thinking": "off",
+    "candidate_id": "c003-6c4133ea",
+    "candidate_job_id": "0e609a494b214e27",
+    "verify_job_id": "90ba0e93e0304897",
+    "model_write_seq": 213,
+    "write_result_seq": 219,
+    "submit_call_seq": 244,
+    "submit_result_seq": 248,
+    "source_file_sha256": "22af8289078d96579622e2fcf47ef11e1a50cf3b0f6fa0db6b9da354e52ed276",
+    "source_package_sha256": "6c4133ea374ad0fe913c2aa02459be034f9d763f03aa3a17afe8d17b353800e1",
+    "correctness_cases": 21,
+    "verification_rounds": 5,
+    "verified_speedup": 4.273790361257423,
+    "verified_CI": [
+      4.2072559767634585,
+      4.359480067949599
+    ],
+    "prior_candidate_statuses": [
+      "crashed",
+      "compile_fail"
+    ],
+    "original_episode_budget_exhausted_retained": true,
+    "new_model_GPU_calls": 0,
+    "harness_causal_gain_or_RSI_proven": false
+  },
+  "model_author_of_exported_kernel_confirmed_from_actual_write": true,
+  "original_H0_source_commit": "54b05f2a959b5f6328ac2bf572fbd981bf567094",
+  "harness_patch_author": null,
+  "baseline_scope": "Original frozen qualified specialized / torch_compile / torch_eager per shape; paired independent verification baseline is preserved.",
+  "original_shape_speedups": {
+    "t0": 2.87428781800786,
+    "t1": 3.5961323076552025,
+    "t2": 5.152122182776274,
+    "r0": 5.162828331235354,
+    "r1": 5.178443089883895
+  },
+  "original_paired_candidate_us": {
+    "t0": 46.10121272602548,
+    "t1": 37.72071328493628,
+    "t2": 97.41653601328532,
+    "r0": 96.98554674784342,
+    "r1": 72.49195235116142
+  },
+  "original_paired_baseline_us": {
+    "t0": 132.3461314194075,
+    "t1": 135.72314615999716,
+    "t2": 501.56604882442593,
+    "r0": 500.7655007498605,
+    "r1": 375.66513238951217
+  },
+  "normal_boundary_correctness": "All original 21 cases passed; this is an audit of original cases, not a new GPU reproduction.",
+  "failure_repair_demo_available": [
+    "original c001 crashed",
+    "original c002 compile_fail",
+    "MiMo write/213 \u2192 write result/219 \u2192 submit/244 \u2192 submit result/248 \u2192 c003 complete \u2192 independent verify complete"
+  ],
+  "new_model_GPU_calls": 0,
+  "original_credential_values_read": false,
+  "fresh_GPU_reproduction_performed": false,
+  "RSI_proven": false,
+  "limits": [
+    "Historical H0 operator gain is not a causal gain from G031.",
+    "Source author and original-result linkage do not prove final ZIP acceptance.",
+    "Official third-party-model eligibility still requires rule clarification."
+  ],
+  "actual_original_guard_execution": {
+    "path": "/data/lizhijun/agh-evo/codex-rsi-hackathon-v11-20261005/cpu-qualification/FINAL-native-small-M-source-chain-actual-original-guard-r1.json",
+    "sha256": "02c05974e35271cf244b845110052333ef1adbdb0046b7cca5e7bffcd3850afc"
+  },
+  "original_failed_schema_check_retained": {
+    "proof": {
+      "path": "/data/lizhijun/agh-evo/codex-rsi-hackathon-v11-20261005/cpu-qualification/phase32-FINAL-native-small-M-source-chain-GREEN-r1.json",
+      "sha256": "6d17364f0161d5272e5583a399753a99771d55abe5e0fbb06b8030005475f75e"
+    },
+    "inputs": {
+      "path": "/data/lizhijun/agh-evo/codex-rsi-hackathon-v11-20261005/cpu-qualification/FINAL-native-small-M-failed-GREEN-r1-inputs/failure-inputs.json",
+      "sha256": "39548ffba2f437a354e2be08e3024b00b1bc71e1b0f9c91bd1b9461ad377b4ba"
+    },
+    "reason": "Reader initially assumed status=correct; the unchanged original verify schema is status=complete plus correctness.ok=true. All original numeric checks retained."
+  }
+}

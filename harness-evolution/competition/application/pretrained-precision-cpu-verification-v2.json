@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "kind": "pretrained-compiler-precision-diagnostic-CPU-qualification",
+  "status": "CPU_CONTRACTS_AND_PRIVATE_COMPILE_SCOPE_VERIFIED_GPU_PENDING",
+  "application_sources": {
+    "harness-evolution/competition/application/benchmark_pretrained_gpt2_precise.py": "b301cff95b6b1b3fa881dd12ff095d523eb706d6c9465cf51732676e01c9cbb2",
+    "harness-evolution/competition/export_pretrained_precision.py": "f6f2eb974c7984c85b8ea9503aa74ad94838155dd8850cf3080b032368c0c843",
+    "harness-evolution/competition/reproduce_pretrained_precision.py": "d1549491153f8192ad3fe5234add9198a194d8918e17f1078cc3a1778aeb8763",
+    "harness-evolution/competition/application/benchmark_pretrained_gpt2.py": "f2152dcaf06bb643df35b50292b3fcd0399457a9771e7420c071860bd90ca1a9",
+    "harness-evolution/competition/export_pretrained_application.py": "425597ecdecf73bb21615f71e0b2a1492ad58c9e99e9d9b9dfb3e03c75988b3d",
+    "harness-evolution/competition/reproduce_pretrained_application.py": "d986fac266d1ff1f028d2f721b03763a7adfc93716688c012ecc671edf323ced"
+  },
+  "compiler_precision_profile": {
+    "emulate_precision_casts": true,
+    "installed_config_source_sha256": "71ffb08b5f91ab22c843af2b1139b9011f2efcb7f7d8c6825d00f39bb691fe0a"
+  },
+  "source_bound_qualified_suites": {
+    "precision-profile-qualified-r2.xml": {
+      "sha256": "7ad203350bfaacc9e862d6b29b9bb9b6770fddf2a18c0df63d7444ccf7355a94",
+      "tests": 50,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "precision-lifecycle-green-r2.xml": {
+      "sha256": "40ca58a405697eda422b090fca3869f6c2b28a3ecb399ceac1f30e919a749e0c",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "precision-reproduce-green.xml": {
+      "sha256": "acefd439b5ed0f06b9d23dcebe4a2e91b2d09e4e0f36b4928bdf0630fd395af6",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "overlapping_old_reproduction_tests": 4,
+  "prior_RED_evidence": {
+    "precision-profile-red.xml": {
+      "sha256": "d0189db35b3328a33992da12e5fb440d2b0ac1fd954b7574848379ca7c0a47de",
+      "tests": 3,
+      "failures": 3,
+      "errors": 0,
+      "skipped": 0
+    },
+    "precision-export-red.xml": {
+      "sha256": "9b10e2761d2cd0dfde8f253dcfc8afabc415fc10bf2717dcd5cce4fb13f80f86",
+      "tests": 16,
+      "failures": 12,
+      "errors": 0,
+      "skipped": 0
+    },
+    "precision-import-scope-red.xml": {
+      "sha256": "9771751063895174396f12577aa47e9c5f8b5c8100bc414d12cd878eca99473a",
+      "tests": 1,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0
+    },
+    "precision-export-import-scope-red.xml": {
+      "sha256": "4ca11996c772be3920737d802105529ce2a0fa9ba70073971e69839068ba0a7e",
+      "tests": 1,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0
+    },
+    "precision-lifecycle-red.xml": {
+      "sha256": "c86f7416144e9372fd5d83da8a43a596d1ebba941f239516f33a7217e6e9dc43",
+      "tests": 7,
+      "failures": 7,
+      "errors": 0,
+      "skipped": 0
+    },
+    "precision-reproduce-red.xml": {
+      "sha256": "2918ba70021ac78b24d9357fcdfe33c08d054297d8ccbd8d6f61429d20eb9269",
+      "tests": 4,
+      "failures": 4,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "actual_CPU_inductor": {
+    "scope": "private Logits metadata and config restoration only",
+    "backend": "inductor",
+    "fullgraph": true,
+    "CUDA_visibility": "empty",
+    "all_actual_device_count_results_zero": true,
+    "CUDA_initialization_and_network_refused": true,
+    "explicit_cast_fixture_bitwise_equal": false,
+    "explicit_cast_fixture_maximum_absolute_difference": 0.001953125,
+    "configuration_restored": true,
+    "proof_sha256": "ad83fc2ed5ca10eb2788892da0654b0992193287edcea095d654216f883880b9",
+    "prior_bitwise_failure_preserved_sha256": "5ec78a6c060f1a474aad62385584b8f3dfe9c97d71bdc9a368cbcbb4afbaf6ca"
+  },
+  "execution_readiness": {
+    "source_freeze_sha256": "402f0fbf4753da37cbe4aaf6b93fb998175e43aaebece455b5b4ef6d7c626822",
+    "bound_source_count": 21,
+    "GPU_admissions": 0,
+    "model_API_requests": 0,
+    "wait_for_all_eight_V15_arms_and_primary_owned_RPC_cleanup": true,
+    "two_pre_registered_devices": [
+      0,
+      3
+    ]
+  },
+  "original_four_shapes_tolerances_samples_wall_limit_preserved": true,
+  "old_numeric_failures_retained": true,
+  "old_original_validator_and_modules_unchanged": true,
+  "GPU_numerics_verified": false,
+  "GPU_speedup_measured": false,
+  "RSI_promotion_proven": false,
+  "limits": [
+    "CPU namespace compilation is not whole-model numerical qualification.",
+    "The explicit cast CPU fixture differs; the GPU hypothesis is unproven.",
+    "The registered application has not run GPU work yet."
+  ]
+}

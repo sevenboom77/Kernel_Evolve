@@ -1,0 +1,6 @@
+third_party/agnes-harness/** linguist-vendored
+*.sqlite binary
+*.png binary
+*.zip binary
+*.tar binary
+*.gz binary

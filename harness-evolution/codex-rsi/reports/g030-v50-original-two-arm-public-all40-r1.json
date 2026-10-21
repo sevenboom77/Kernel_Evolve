@@ -1,0 +1,658 @@
+{
+  "status": "ORIGINAL_TWO_ARM_PHASE50_ABLATION_CLOSED_PUBLIC_EXPORT",
+  "schema_version": 1,
+  "reliability_revision": 50,
+  "task_position_denominator": 40,
+  "closed_arm_count": 2,
+  "parent_source_commit": "e1dffe9a8eca77cb1fdd81c1a8b5842c8c36370e",
+  "candidate_source_commit": "ccaec0ceacc0bc9a2c2566806c37b537928ffbea",
+  "source_patch_author": "Codex",
+  "model_sampling_seed_fixed": false,
+  "original_promotion": {
+    "development_pair_count": 1,
+    "pairs": [
+      {
+        "pair": "dev-ablation",
+        "kind": "dev",
+        "task_denominator": 20,
+        "fair": true,
+        "eligible": false,
+        "cost_ratios": {
+          "token_upper_bound": 1.1063991709949093,
+          "usd_upper_bound": 1.0974975679825578,
+          "gpu_seconds": 1.1529589103479068
+        },
+        "reasons": [],
+        "parent": {
+          "correct_count": 7,
+          "verified_gain_count": 3,
+          "deployment_geomean": 1.0557750923492804,
+          "contributions": {
+            "K01": 1,
+            "K02": 1.520663030894903,
+            "K03": 1,
+            "K04": 1,
+            "K05": 1,
+            "K06": 1,
+            "K07": 1.4638770747691328,
+            "K08": 1,
+            "K09": 1.3301194449512053,
+            "K10": 1,
+            "K11": 1,
+            "K12": 1,
+            "K13": 1,
+            "K14": 1,
+            "K15": 1,
+            "K16": 1,
+            "K17": 1,
+            "K18": 1,
+            "K19": 1,
+            "K20": 1
+          },
+          "strict_eligible": false,
+          "usage": {
+            "coverage_complete": true,
+            "known_tokens": 5420524,
+            "token_upper_bound": 16495918,
+            "unknown_request_count": 292,
+            "usd_upper_bound": 7.311102372599976,
+            "gpu_seconds": 2368.355000257492,
+            "unreported_token_upper_gap": 11075394,
+            "known_tokens_definition": "Reported lower bound, including genuine partial usage; unknown request reservations remain in token/USD upper bounds."
+          }
+        },
+        "candidate": {
+          "correct_count": 8,
+          "verified_gain_count": 4,
+          "deployment_geomean": 1.1136473138245961,
+          "contributions": {
+            "K01": 1,
+            "K02": 1,
+            "K03": 1,
+            "K04": 1.9590170832465763,
+            "K05": 1.6704372810235735,
+            "K06": 1.7880333445523646,
+            "K07": 1.471327886624227,
+            "K08": 1,
+            "K09": 1,
+            "K10": 1,
+            "K11": 1,
+            "K12": 1,
+            "K13": 1,
+            "K14": 1,
+            "K15": 1,
+            "K16": 1,
+            "K17": 1,
+            "K18": 1,
+            "K19": 1,
+            "K20": 1
+          },
+          "strict_eligible": false,
+          "usage": {
+            "coverage_complete": true,
+            "known_tokens": 6186852,
+            "token_upper_bound": 18251070,
+            "unknown_request_count": 301,
+            "usd_upper_bound": 8.023917073199982,
+            "gpu_seconds": 2730.6160004138947,
+            "unreported_token_upper_gap": 12064218,
+            "known_tokens_definition": "Reported lower bound, including genuine partial usage; unknown request reservations remain in token/USD upper bounds."
+          }
+        },
+        "descriptive_deployment_geomean_ratio": 1.0548149145539512,
+        "correct_completion_nonregression": true,
+        "strict_eligible": false,
+        "cost_ratio_at_most_1_1": false,
+        "log_ratios": [
+          0.0,
+          -0.4191464442847639,
+          0.0,
+          0.6724428593156914,
+          0.5130854370775602,
+          0.5811163256559342,
+          0.005076870580808929,
+          0.0,
+          -0.2852687464351333,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    ],
+    "holdout": null,
+    "gates": {
+      "minimum_three_distinct_dev_pairs": false,
+      "all_development_pairs_fair_and_eligible": false,
+      "correct_completion_nonregression": true,
+      "all_token_USD_GPU_ratios_at_most_1_1": false,
+      "verified_gain_delta_at_least_one": true,
+      "geomean_ratio_at_least_1_03": true,
+      "paired_CI_lower_strictly_above_one": false,
+      "independent_holdout_fair_and_eligible": false,
+      "holdout_correct_gains_geomean_nonregression": false,
+      "DEV_selection_frozen_before_holdout": false
+    },
+    "promotion_eligible": false,
+    "incumbent_modified": false,
+    "rsi_established": false,
+    "bootstrap_resamples": 2000,
+    "bootstrap_seed": 12345,
+    "task_denominator_per_arm": 20,
+    "deployment_geomean_ratio": 1.0548149145539514,
+    "verified_gain_count_delta": 1,
+    "paired_ci_low": 0.9532998906850672,
+    "paired_ci_high": 1.1806397030846636,
+    "claim": "Read-only eligibility assessment; unchanged official scores, no pointer change, model sampling uncontrolled."
+  },
+  "arms": [
+    {
+      "batch_id": "v50-ablation-parent",
+      "pair": "dev-ablation",
+      "kind": "dev",
+      "arm": "parent",
+      "source_commit": "e1dffe9a8eca77cb1fdd81c1a8b5842c8c36370e",
+      "execution_status": "CLOSED",
+      "denominator": 20,
+      "counts": {
+        "terminal": 20,
+        "evaluation_complete": 13,
+        "environment_error": 7,
+        "correct": 7,
+        "verified_gain": 3
+      },
+      "all20_eligible": false,
+      "official_deployment_geomean_all_twenty": 1.0557750923492804,
+      "rows": [
+        {
+          "task_id": "K01",
+          "terminal": true,
+          "evaluation_complete": false,
+          "environment_error": true,
+          "correct": false,
+          "verified_gain": false,
+          "source_candidates": 4,
+          "deployment_speedup": 1
+        },
+        {
+          "task_id": "K02",
+          "terminal": true,
+          "evaluation_complete": true,
+          "environment_error": false,
+          "correct": true,
+          "verified_gain": true,
+          "source_candidates": 4,
+          "deployment_speedup": 1.520663030894903
+        },
+        {
+          "task_id": "K03",
+          "terminal": true,
+          "evaluation_complete": true,
+          "environment_error": false,
+          "correct": true,
+          "verified_gain": false,
+          "source_candidates": 4,
+          "deployment_speedup": 1
+        },
+        {
+          "task_id": "K04",
+          "terminal": true,
+          "evaluation_complete": true,
+          "environment_error": false,
+          "correct": false,
+          "verified_gain": false,
+          "source_candidates": 4,
+          "deployment_speedup": 1
+        },
+        {
+          "task_id": "K05",
+          "terminal": true,
+          "evaluation_complete": false,
+          "environment_error": true,
+          "correct": false,
+          "verified_gain": false,
+          "source_candidates": 4,
+          "deployment_speedup": 1
+        },
+        {
+          "task_id": "K06",
+          "terminal": true,
+          "evaluation_complete": false,
+          "environment_error": true,
+          "correct": false,
+          "verified_gain": false,
+          "source_candidates": 4,
+          "deployment_speedup": 1
+        },
+        {
+          "task_id": "K07",
+          "terminal": true,
+          "evaluation_complete": true,
+          "environment_error": false,
+          "correct": true,
+          "verified_gain": true,
+          "source_candidates": 4,
+          "deployment_speedup": 1.4638770747691328
+        },
+        {
+          "task_id": "K08",
+          "terminal": true,
+          "evaluation_complete": true,
+          "environment_error": false,
+          "correct": true,
+          "verified_gain": false,
+          "source_candidates": 4,
+          "deployment_speedup": 1
+        },
+        {
+          "task_id": "K09",
+          "terminal": true,
+          "evaluation_complete": true,
+          "environment_error": false,
+          "correct": true,
+          "verified_gain": true,
+          "source_candidates": 4,
+          "deployment_speedup": 1.3301194449512053
+        },
+        {
+          "task_id": "K10",
+          "terminal": true,
+          "evaluation_complete": false,
+          "environment_error": true,
+          "correct": false,
+          "verified_gain": false,
+          "source_candidates": 4,
+          "deployment_speedup": 1
+        },
+        {
+          "task_id": "K11",
+          "terminal": true,
+          "evaluation_complete": true,
+          "environment_error": false,
+          "correct": true,
+          "verified_gain": false,
+          "source_candidates": 4,
+          "deployment_speedup": 1
+        },
+        {
+          "task_id": "K12",
+          "terminal": true,
+          "evaluation_complete": true,
+          "environment_error": false,
+          "correct": false,
+          "verified_gain": false,
+          "source_candidates": 4,
+          "deployment_speedup": 1
+        },
+        {
+          "task_id": "K13",
+          "terminal": true,
+          "evaluation_complete": false,
+          "environment_error": true,
+          "correct": false,
+          "verified_gain": false,
+          "source_candidates": 4,
+          "deployment_speedup": 1
+        },
+        {
+          "task_id": "K14",
+          "terminal": true,
+          "evaluation_complete": true,
+          "environment_error": false,
+          "correct": true,
+          "verified_gain": false,
+          "source_candidates": 4,
+          "deployment_speedup": 1
+        },
+        {
+          "task_id": "K15",
+          "terminal": true,
+          "evaluation_complete": true,
+          "environment_error": false,
+          "correct": false,
+          "verified_gain": false,
+          "source_candidates": 4,
+          "deployment_speedup": 1
+        },
+        {
+          "task_id": "K16",
+          "terminal": true,
+          "evaluation_complete": true,
+          "environment_error": false,
+          "correct": false,
+          "verified_gain": false,
+          "source_candidates": 4,
+          "deployment_speedup": 1
+        },
+        {
+          "task_id": "K17",
+          "terminal": true,
+          "evaluation_complete": false,
+          "environment_error": true,
+          "correct": false,
+          "verified_gain": false,
+          "source_candidates": 2,
+          "deployment_speedup": 1
+        },
+        {
+          "task_id": "K18",
+          "terminal": true,
+          "evaluation_complete": true,
+          "environment_error": false,
+          "correct": false,
+          "verified_gain": false,
+          "source_candidates": 4,
+          "deployment_speedup": 1
+        },
+        {
+          "task_id": "K19",
+          "terminal": true,
+          "evaluation_complete": true,
+          "environment_error": false,
+          "correct": false,
+          "verified_gain": false,
+          "source_candidates": 4,
+          "deployment_speedup": 1
+        },
+        {
+          "task_id": "K20",
+          "terminal": true,
+          "evaluation_complete": false,
+          "environment_error": true,
+          "correct": false,
+          "verified_gain": false,
+          "source_candidates": 4,
+          "deployment_speedup": 1
+        }
+      ],
+      "missing_evaluation_task_ids": [
+        "K01",
+        "K05",
+        "K06",
+        "K10",
+        "K13",
+        "K17",
+        "K20"
+      ],
+      "search_gain_without_complete_correct_final_task_ids": [],
+      "original_usage": {
+        "coverage_complete": true,
+        "known_tokens": 5420524,
+        "token_upper_bound": 16495918,
+        "unknown_request_count": 292,
+        "usd_upper_bound": 7.311102372599976,
+        "gpu_seconds": 2368.355000257492,
+        "unreported_token_upper_gap": 11075394,
+        "known_tokens_definition": "Reported lower bound, including genuine partial usage; unknown request reservations remain in token/USD upper bounds."
+      },
+      "original_score_sha256": "c31169dc11b71882f678c4d0ad9e494e948b4545c8f69114ef84deeca3ae975a",
+      "runtime_manifest_sha256": "110fe56fdbf39ec3069a56cfc784f0fba46b2c10f405df70b5bd509523e456f9",
+      "model": "mimo-v2.6-pro"
+    },
+    {
+      "batch_id": "v50-ablation-candidate",
+      "pair": "dev-ablation",
+      "kind": "dev",
+      "arm": "candidate",
+      "source_commit": "ccaec0ceacc0bc9a2c2566806c37b537928ffbea",
+      "execution_status": "CLOSED",
+      "denominator": 20,
+      "counts": {
+        "terminal": 20,
+        "evaluation_complete": 18,
+        "environment_error": 2,
+        "correct": 8,
+        "verified_gain": 4
+      },
+      "all20_eligible": false,
+      "official_deployment_geomean_all_twenty": 1.1136473138245961,
+      "rows": [
+        {
+          "task_id": "K01",
+          "terminal": true,
+          "evaluation_complete": true,
+          "environment_error": false,
+          "correct": false,
+          "verified_gain": false,
+          "source_candidates": 4,
+          "deployment_speedup": 1
+        },
+        {
+          "task_id": "K02",
+          "terminal": true,
+          "evaluation_complete": true,
+          "environment_error": false,
+          "correct": false,
+          "verified_gain": false,
+          "source_candidates": 4,
+          "deployment_speedup": 1
+        },
+        {
+          "task_id": "K03",
+          "terminal": true,
+          "evaluation_complete": true,
+          "environment_error": false,
+          "correct": false,
+          "verified_gain": false,
+          "source_candidates": 4,
+          "deployment_speedup": 1
+        },
+        {
+          "task_id": "K04",
+          "terminal": true,
+          "evaluation_complete": true,
+          "environment_error": false,
+          "correct": true,
+          "verified_gain": true,
+          "source_candidates": 4,
+          "deployment_speedup": 1.9590170832465763
+        },
+        {
+          "task_id": "K05",
+          "terminal": true,
+          "evaluation_complete": true,
+          "environment_error": false,
+          "correct": true,
+          "verified_gain": true,
+          "source_candidates": 4,
+          "deployment_speedup": 1.6704372810235735
+        },
+        {
+          "task_id": "K06",
+          "terminal": true,
+          "evaluation_complete": true,
+          "environment_error": false,
+          "correct": true,
+          "verified_gain": true,
+          "source_candidates": 4,
+          "deployment_speedup": 1.7880333445523646
+        },
+        {
+          "task_id": "K07",
+          "terminal": true,
+          "evaluation_complete": true,
+          "environment_error": false,
+          "correct": true,
+          "verified_gain": true,
+          "source_candidates": 4,
+          "deployment_speedup": 1.471327886624227
+        },
+        {
+          "task_id": "K08",
+          "terminal": true,
+          "evaluation_complete": true,
+          "environment_error": false,
+          "correct": false,
+          "verified_gain": false,
+          "source_candidates": 4,
+          "deployment_speedup": 1
+        },
+        {
+          "task_id": "K09",
+          "terminal": true,
+          "evaluation_complete": true,
+          "environment_error": false,
+          "correct": true,
+          "verified_gain": false,
+          "source_candidates": 4,
+          "deployment_speedup": 1
+        },
+        {
+          "task_id": "K10",
+          "terminal": true,
+          "evaluation_complete": false,
+          "environment_error": true,
+          "correct": false,
+          "verified_gain": false,
+          "source_candidates": 4,
+          "deployment_speedup": 1
+        },
+        {
+          "task_id": "K11",
+          "terminal": true,
+          "evaluation_complete": true,
+          "environment_error": false,
+          "correct": true,
+          "verified_gain": false,
+          "source_candidates": 4,
+          "deployment_speedup": 1
+        },
+        {
+          "task_id": "K12",
+          "terminal": true,
+          "evaluation_complete": true,
+          "environment_error": false,
+          "correct": false,
+          "verified_gain": false,
+          "source_candidates": 4,
+          "deployment_speedup": 1
+        },
+        {
+          "task_id": "K13",
+          "terminal": true,
+          "evaluation_complete": true,
+          "environment_error": false,
+          "correct": true,
+          "verified_gain": false,
+          "source_candidates": 4,
+          "deployment_speedup": 1
+        },
+        {
+          "task_id": "K14",
+          "terminal": true,
+          "evaluation_complete": true,
+          "environment_error": false,
+          "correct": true,
+          "verified_gain": false,
+          "source_candidates": 4,
+          "deployment_speedup": 1
+        },
+        {
+          "task_id": "K15",
+          "terminal": true,
+          "evaluation_complete": false,
+          "environment_error": true,
+          "correct": false,
+          "verified_gain": false,
+          "source_candidates": 4,
+          "deployment_speedup": 1
+        },
+        {
+          "task_id": "K16",
+          "terminal": true,
+          "evaluation_complete": true,
+          "environment_error": false,
+          "correct": false,
+          "verified_gain": false,
+          "source_candidates": 4,
+          "deployment_speedup": 1
+        },
+        {
+          "task_id": "K17",
+          "terminal": true,
+          "evaluation_complete": true,
+          "environment_error": false,
+          "correct": false,
+          "verified_gain": false,
+          "source_candidates": 4,
+          "deployment_speedup": 1
+        },
+        {
+          "task_id": "K18",
+          "terminal": true,
+          "evaluation_complete": true,
+          "environment_error": false,
+          "correct": false,
+          "verified_gain": false,
+          "source_candidates": 4,
+          "deployment_speedup": 1
+        },
+        {
+          "task_id": "K19",
+          "terminal": true,
+          "evaluation_complete": true,
+          "environment_error": false,
+          "correct": false,
+          "verified_gain": false,
+          "source_candidates": 4,
+          "deployment_speedup": 1
+        },
+        {
+          "task_id": "K20",
+          "terminal": true,
+          "evaluation_complete": true,
+          "environment_error": false,
+          "correct": false,
+          "verified_gain": false,
+          "source_candidates": 4,
+          "deployment_speedup": 1
+        }
+      ],
+      "missing_evaluation_task_ids": [
+        "K10",
+        "K15"
+      ],
+      "search_gain_without_complete_correct_final_task_ids": [],
+      "original_usage": {
+        "coverage_complete": true,
+        "known_tokens": 6186852,
+        "token_upper_bound": 18251070,
+        "unknown_request_count": 301,
+        "usd_upper_bound": 8.023917073199982,
+        "gpu_seconds": 2730.6160004138947,
+        "unreported_token_upper_gap": 12064218,
+        "known_tokens_definition": "Reported lower bound, including genuine partial usage; unknown request reservations remain in token/USD upper bounds."
+      },
+      "original_score_sha256": "5392d6836eb2a1fd86820a5754eaacbce21dacb5a07bb30cdaa8b34a0209d128",
+      "runtime_manifest_sha256": "d782f422021540689ee130406e8dbbaab0702b21299c81988ceb2d642f3ae344",
+      "model": "mimo-v2.6-pro"
+    }
+  ],
+  "original_bindings_sha256": {
+    "completion": "1f0b84219e4938943a30ea58424c40af4654eeaf11c1729d548f4b05d5f0f950",
+    "audit": "045b1c352671c01b95c0a06f88d5e0a6bfb50b336fd129bb65908e7086926927",
+    "index": "9cc2f3353b5a5eca4482191aeb54b1a5b9ba103da7e593a8af57f912590436c3",
+    "series": "ea1838863b3d1b0eb7fc040a338948eeed7025057b6782affc2bda11cc199ff9",
+    "reader": "ecdb5791a0a8d68ebf358cd4dd9fa4ff3d1148d270d01f4d47ae6ccc13eafb0e",
+    "source_freeze": "3e6684df61828456e1063ace3ff12af0d6def4ed379ff400b6f45e113bbdc062",
+    "closed_endpoint": "7c800574ae5b8756b17ec2526976a80ad9087393a3656b20386e28ea363d0d42"
+  },
+  "exporter_sha256": "e5086a87219298e53cb916f56f955c2586263be25bf3a16ebeacd01fbb42e7b9",
+  "source_effect_claimed_by_export": false,
+  "held_raw_traces_read": 0,
+  "new_model_GPU_calls": 0,
+  "limitations": [
+    "Original failed, missing and unknown task positions remain in the denominator.",
+    "This export does not promote a source or claim sustained improvement.",
+    "Original search gain flags and descriptive contributions can survive incomplete final evaluation; original all20 eligibility remains required.",
+    "Model sampling is controlled only to the extent recorded in the original series.",
+    "Application results are separate from primary AGH source measurements."
+  ]
+}
