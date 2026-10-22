@@ -1,1 +1,0 @@
-{ "toolCallFormats": ["native", "qwen3_coder"], "thinkTag": { "open": "<think>", "close": "</think>" } }

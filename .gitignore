@@ -1,32 +1,36 @@
-# Local credentials and dependencies
+# Local configuration
 .env
 .env.*
 !.env.example
-node_modules/
 .venv/
+.conda/
+node_modules/
 __pycache__/
 *.py[cod]
+.pytest_cache/
+*.egg-info/
+# Generated runtime data
+runs/
+results/
+outputs/
+artifacts/
+reports/
+evidence/
+.agh*/
+.runtime/
+.locks/
+.ledger.json
+*.log
+*.pid
+*.sock
+*.sqlite*
+*.db
 .DS_Store
 
-# Fresh experiments and local builds
-/artifacts/
-/outputs/
-/runtime-new/
-/source-g031/
-*.sqlite-wal
-*.sqlite-shm
-
-# Downloadable, hash-bound release assets
-/agh/*/source.tar
-/agh/runtime-g031-independent/
-/datasets/arxiv.zip
-
-# Historical submission packaging and personal/materials metadata
-/提交资料/
-/slides/
-/video/
-/qualification/
-/bundle-manifest.json
-/release-inputs.json
-/提交包文件SHA256.json
-/verify_submission.py
+# Optional build products
+.ledger.json
+.cache/
+*.egg-info/
+runtime/node
+runtime/node/bin/node
+runtime/system/
